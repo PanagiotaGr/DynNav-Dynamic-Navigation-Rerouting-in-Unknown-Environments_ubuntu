@@ -25,6 +25,7 @@ setup(
         'fsm_controller = rl_robot.fsm_controller:main',
         'benchmark = rl_robot.benchmark_node:main',
 
+'astar_planner = rl_robot.astar_planner:main',
         ],
     },
 )
