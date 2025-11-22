@@ -1,0 +1,15 @@
+package.xml
+setup.cfg
+setup.py
+config/dynamic_nav_params.yaml
+config/nav2_params.yaml
+launch/bringup_slam.launch.py
+launch/dynamic_nav_tb3.launch.py
+nav_research/__init__.py
+nav_research.egg-info/PKG-INFO
+nav_research.egg-info/SOURCES.txt
+nav_research.egg-info/dependency_links.txt
+nav_research.egg-info/requires.txt
+nav_research.egg-info/top_level.txt
+nav_research.egg-info/zip-safe
+resource/nav_research
