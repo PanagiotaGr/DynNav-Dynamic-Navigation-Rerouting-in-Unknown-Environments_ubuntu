@@ -143,6 +143,135 @@ def main(args=None):
     rclpy.shutdown()
 
 
-if __name__ == "__main__":
-    main()
+# ============================================================
+# 9) RL MODEL COMPARISON / EVALUATION
+# ============================================================
 
+from dataclasses import dataclass
+
+
+@dataclass
+class RLModelConfig:
+    name: str
+    episodes: int
+    obstacles: set | None  # set of (x, y) grid cells with obstacles
+
+
+def train_rl_model(config: RLModelConfig, grid_size: int = 10):
+    """
+    Εκπαιδεύει ένα RL μοντέλο (Q-learning) για συγκεκριμένη διαμόρφωση εμποδίων.
+    Επιστρέφει (env, agent).
+    """
+    env, agent = train_q_learning(
+        episodes=config.episodes,
+        width=grid_size,
+        height=grid_size,
+        start=(0, 0),
+        goal=(grid_size - 1, grid_size - 1),
+        obstacles=config.obstacles,
+    )
+    return env, agent
+
+
+def evaluate_agent(env: GridWorldEnv, agent: QLearningAgent,
+                   n_episodes: int = 100, max_steps: int = 200):
+    """
+    Αξιολόγηση ενός εκπαιδευμένου agent σε πολλά επεισόδια.
+
+    Μετράμε:
+      - success_rate
+      - mean_steps_successful
+      - mean_return
+    """
+    successes = 0
+    returns = []
+    steps_success = []
+
+    for ep in range(n_episodes):
+        state = env.reset()
+        total_reward = 0.0
+        done = False
+
+        for t in range(max_steps):
+            action = agent.select_action(state)
+            next_state, reward, done, _ = env.step(action)
+            total_reward += reward
+            state = next_state
+            if done:
+                if state == env.goal:
+                    successes += 1
+                    steps_success.append(t + 1)
+                break
+
+        returns.append(total_reward)
+
+    success_rate = successes / n_episodes if n_episodes > 0 else 0.0
+    mean_return = float(np.mean(returns)) if returns else 0.0
+    mean_steps_successful = (
+        float(np.mean(steps_success)) if steps_success else float("inf")
+    )
+
+    return {
+        "success_rate": success_rate,
+        "mean_return": mean_return,
+        "mean_steps_successful": mean_steps_successful,
+        "episodes": n_episodes,
+    }
+
+
+def compare_rl_models():
+    """
+    Συγκρίνει πολλαπλά RL μοντέλα (διαφορετικά εμπόδια / training episodes)
+    και τυπώνει πίνακα με μετρικές.
+    """
+    grid_size = 10
+
+    # Ορισμός μοντέλων
+    configs = [
+        RLModelConfig(
+            name="no_obstacles",
+            episodes=500,
+            obstacles=None,
+        ),
+        RLModelConfig(
+            name="center_wall",
+            episodes=500,
+            obstacles={(3, 3), (3, 4), (3, 5), (4, 5), (5, 5)},
+        ),
+        RLModelConfig(
+            name="diagonal_barrier",
+            episodes=700,
+            obstacles={(i, i) for i in range(3, 7)},
+        ),
+    ]
+
+    results = []
+
+    print("=== RL MODEL COMPARISON (GridWorld) ===")
+    print(f"Grid size: {grid_size}x{grid_size}")
+    print(f"{'model':20s}  {'succ_rate':>9s}  {'mean_steps_succ':>15s}  {'mean_return':>12s}")
+
+    for cfg in configs:
+        print(f"\n[INFO] Training model '{cfg.name}' for {cfg.episodes} episodes...")
+        env, agent = train_rl_model(cfg, grid_size=grid_size)
+        metrics = evaluate_agent(env, agent, n_episodes=100, max_steps=grid_size * grid_size)
+        results.append((cfg, metrics))
+
+        print(f"     -> success_rate       = {metrics['success_rate']:.3f}")
+        print(f"     -> mean_steps_success = {metrics['mean_steps_successful']:.2f}")
+        print(f"     -> mean_return        = {metrics['mean_return']:.2f}")
+
+    print("\n=== SUMMARY TABLE ===")
+    print(f"{'model':20s}  {'succ_rate':>9s}  {'mean_steps_succ':>15s}  {'mean_return':>12s}")
+    for cfg, m in results:
+        print(
+            f"{cfg.name:20s}  "
+            f"{m['success_rate']:9.3f}  "
+            f"{m['mean_steps_successful']:15.2f}  "
+            f"{m['mean_return']:12.2f}"
+        )
+
+
+# ============================================================
+# MAIN ENTRY POINT: RUN RL MODEL COMPARISON
+# ===========================================================
