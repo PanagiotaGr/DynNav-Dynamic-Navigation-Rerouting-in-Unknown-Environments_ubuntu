@@ -256,7 +256,7 @@ def pick_next_viewpoint(priority_map: np.ndarray,
 # 10. Demo main
 # ============================================================
 if __name__ == "__main__":
-    coverage_csv = "coverage_grid_with_uncertainty.csv"
+    coverage_path = "coverage_grid_with_uncertainty_pose.csv"
     centroids_csv = "cluster_waypoints.csv"
     output_csv = "ig_next_goal.csv"
 
