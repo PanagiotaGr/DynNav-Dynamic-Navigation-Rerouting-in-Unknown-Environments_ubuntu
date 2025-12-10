@@ -94,14 +94,19 @@ Located in `visual_odometry/`:
 
 The repository includes a full experimental framework with:
 
-* Multi-seed benchmark runs
-* Statistical summaries
-* Paired t-tests
-* Ablation studies
-* Confidence interval boxplots
-* Coverage, path length, replanning rate, entropy reduction, and timing metrics
+* Multi-seed benchmark runs  
+* Statistical summaries  
+* Paired t-tests  
+* Ablation studies  
+* Confidence interval boxplots  
+* Coverage, path length, replanning rate, entropy reduction, and timing metrics  
 
-All experimental scripts and result tables are available under `experiments/`, `phd_experiments/`, and `results/statistical_runs/`.
+All experimental scripts and result tables are organized under:
+
+* `experiments/`  
+* `results/statistical_runs/`  
+
+ensuring full reproducibility of the reported results.
 
 ---
 
