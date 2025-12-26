@@ -162,20 +162,35 @@ def demo_small_grid():
     print("Total cost:", total_cost)
 
 
-def demo_case1_coverage_basic():
+
+def demo_case_learned_unc_plain():
     """
-    Case 1:
-      coverage_grid_with_uncertainty.csv
-      στήλες: i, j, uncertainty
+    Planner σε learned σ χωρίς calibration correction.
+    Παίρνει από learned_uncertainty_grid.csv (row, col, learned_sigma).
     """
-    csv_path = "coverage_grid_with_uncertainty.csv"
+    csv_path = "learned_uncertainty_grid.csv"
     grid_unc = load_grid_with_uncertainty(
         csv_path=csv_path,
-        col_i="i",
-        col_j="j",
-        col_unc="uncertainty",
+        col_i="row",
+        col_j="col",
+        col_unc="learned_sigma",
     )
-    run_planner_on_grid(grid_unc, lambda_risk=0.5, tag="case1_basic")
+    run_planner_on_grid(grid_unc, lambda_risk=0.7, tag="case_learned_plain")
+
+
+def demo_case_learned_unc_calib():
+    """
+    Planner σε calibration-aware learned σ.
+    Παίρνει από calib_learned_uncertainty_grid.csv (row, col, calib_sigma).
+    """
+    csv_path = "calib_learned_uncertainty_grid.csv"
+    grid_unc = load_grid_with_uncertainty(
+        csv_path=csv_path,
+        col_i="row",
+        col_j="col",
+        col_unc="calib_sigma",
+    )
+    run_planner_on_grid(grid_unc, lambda_risk=0.7, tag="case_learned_calib")
 
 
 def demo_case2_pose_unc():
@@ -245,9 +260,20 @@ def demo_case4_feature_unc():
 # ==========================
 
 if __name__ == "__main__":
+    # 0) sanity check
     demo_small_grid()
-    demo_case2_pose_unc()      # fused
-    demo_case2_pose_only()   # βγάζεις σχόλιο αν θες να το τρέξεις κι αυτό
+
+    # 1) fused uncertainty (map+pose)
+    demo_case2_pose_unc()
+
+    # 2) pose-only risk
+    demo_case2_pose_only()
+
+    # 3) learned σ (plain)
+    demo_case_learned_unc_plain()
+
+    # 4) learned σ με calibration-aware διόρθωση
+    demo_case_learned_unc_calib()
 
     # ΔΙΑΛΕΓΕΙΣ ΠΕΡΙΠΤΩΣΗ ΑΝΑΛΟΓΑ ΜΕ ΤΟ CSV ΠΟΥ ΘΕΣ
     # Βγάλε το σχόλιο από όποιο demo θέλεις να τρέξεις.
