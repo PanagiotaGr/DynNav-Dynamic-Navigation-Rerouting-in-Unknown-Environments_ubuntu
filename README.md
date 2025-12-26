@@ -170,3 +170,151 @@ Electrical & Computer Engineering, D.U.Th.
 ## 11. Disclaimer
 
 This repository is intended for **research and educational use only**. Trained neural models and experimental datasets are provided for reproducibility.
+
+
+## 12. Uncertainty-Aware Navigation Extensions
+
+This repository also includes a set of research extensions that build on
+top of the core dynamic navigation pipeline, with a focus on
+uncertainty-aware planning, risk budgeting, and drift-aware exploration.
+
+### 12.1 Belief–Risk Planning and λ-Sweep
+
+We formulate global path planning as a trade-off between geometric path
+length and integrated uncertainty. Given a fused uncertainty grid, we
+run an A* planner with a weighted cost:
+
+\[
+J(\lambda) = L_{\text{geom}} + \lambda \, R_{\text{fused}},
+\]
+
+where \(L_{\text{geom}}\) is the geometric path length and
+\(R_{\text{fused}}\) is the integrated fused risk along the path
+(e.g. combining coverage and pose/VO uncertainty).
+
+The script:
+
+- `sweep_lambda_fused_risk.py`
+
+performs a sweep over λ and stores metrics in:
+
+- `belief_risk_lambda_sweep.csv`
+
+Post-processing and visualization are handled by:
+
+- `plot_belief_risk_lambda_sweep.py`
+
+which generates:
+
+- `lambda_sweep_geometric_length.png`  
+- `lambda_sweep_length_cells.png`  
+- `lambda_sweep_fused_risk.png`  
+- `lambda_sweep_total_cost.png`  
+
+These plots illustrate how increasing λ induces a “phase transition”
+from purely shortest-path behavior to explicitly risk-averse behavior,
+revealing operating regimes where risk can be reduced without changing
+geometric path length.
+
+We also support **risk-budgeted planning** via:
+
+- `select_lambda_for_risk_budget.py`
+
+Given a user-specified risk budget \(R_{\max}\), this script selects the
+smallest λ such that the integrated fused risk satisfies
+\(R(\lambda) \le R_{\max}\). This provides a simple interface for
+designing planners that operate under explicit safety or risk
+constraints.
+
+---
+
+### 12.2 Learned vs Calibrated Uncertainty on Fixed Paths
+
+To study the effect of uncertainty calibration on path-wise risk
+assessment, we compare learned uncertainty grids against their
+calibrated counterparts on fixed trajectories.
+
+The analysis script:
+
+- `analyze_learned_vs_calib_paths.py`
+
+produces:
+
+- `learned_vs_calib_path_metrics.csv`
+
+which contains integrated, mean and maximum risk values for multiple
+scenarios (learned vs calibrated, evaluated crosswise on both grids).
+
+For visualization:
+
+- `plot_learned_vs_calib_paths.py`
+
+generates:
+
+- `learned_vs_calib_sum.png`  
+- `learned_vs_calib_mean.png`  
+- `learned_vs_calib_max.png`  
+
+These plots highlight how calibration reshapes the risk distribution
+along identical geometric paths, typically reducing overconfident or
+underconfident regions while preserving the underlying structure of the
+trajectories.
+
+---
+
+### 12.3 Drift-Aware Next-Best-View (NBV)
+
+We extend the information-gain-based exploration framework with a
+drift-aware Next-Best-View (NBV) criterion. Given:
+
+- a coverage grid,
+- an information/entropy proxy (e.g. feature density or uncertainty),
+- a per-cell pose/drift uncertainty map,
+
+
+Single-step comparison is implemented in:
+
+- `drift_aware_nbv_experiment.py`
+
+which outputs:
+
+- `nbv_classical_topk.csv`, `nbv_classical_topk.png`  
+- `nbv_driftaware_topk.csv`, `nbv_driftaware_topk.png`  
+
+These results visualize the top-K NBV targets selected by the classical
+vs drift-aware criteria, showing how drift-aware exploration shifts
+attention away from highly uncertain regions while still prioritizing
+informative viewpoints.
+
+---
+
+### 12.4 Multi-Step Drift-Aware Exploration
+
+To evaluate exploration policies over multiple NBV decisions, we run
+multi-step experiments where a policy repeatedly:
+
+1. selects an NBV target according to its scoring rule,
+2. marks the corresponding cell as covered,
+3. zeroes out its local information gain.
+
+We compare:
+
+- **Classical policy**: \(\alpha = 0\) (pure IG-based NBV),  
+- **Drift-aware policy**: \(\alpha > 0\) (information gain with drift
+  penalty).
+
+The multi-step experiment is implemented in:
+
+- `drift_aware_nbv_multistep.py`
+
+This script produces:
+
+- `nbv_multistep_classical_metrics.csv` (step, IG, drift)  
+- `nbv_multistep_driftaware_metrics.csv`  
+- `nbv_multistep_classical_goals.csv`  
+- `nbv_multistep_driftaware_goals.csv`  
+- `nbv_multistep_ig.png` (information gain per step)  
+- `nbv_multistep_drift.png` (drift exposure per step)  
+
+
+
