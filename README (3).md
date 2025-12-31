@@ -7,7 +7,7 @@ The system estimates **self-trust**, performs **policy switching** between Norma
 In multi-robot systems operating in uncertain environments, sensor noise and localization drift may lead robots to traverse **high-risk regions**.  
 This project introduces a mechanism that:
 
-- estimates **Self-Trust** \( S(t) \in [0,1] \)
+- estimates **Self-Trust** ( S(t) in [0,1] )
 - dynamically switches policies between:
   - NORMAL_POLICY
   - SAFE_MODE_POLICY
@@ -55,9 +55,7 @@ Observations:
 
 ### λ-Sweep: Risk vs Distance Trade-off
 Cost function:
-\(
-J = Distance + \lambda \cdot Risk
-\)
+\J = Distance + \lambda \cdot Risk\)
 
 λ values tested:
 ```
@@ -151,9 +149,7 @@ Supports future improvements:
 - adaptive λ
 - per-robot trust modelling
 
-## Publication Relevance
-Suitable for:
-ICRA • IROS • RSS • RA-L • ICAR
+
 
 ## Summary
 The system:
