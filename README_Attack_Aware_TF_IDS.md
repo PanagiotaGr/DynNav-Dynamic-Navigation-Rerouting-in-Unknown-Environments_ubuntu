@@ -1,5 +1,5 @@
 
-# Attack-Aware TF Integrity Monitoring with CUSUM (Research Note)
+# Attack-Aware TF Integrity Monitoring with CUSUM 
 
 ## Overview
 This work documents the design and implementation of a **stealth drift detection mechanism** for ROS 2 TF streams,
@@ -100,8 +100,4 @@ The approach naturally extends to:
 
 ---
 
-## Disclaimer
-This code and documentation are for **research and educational purposes only**.
-They are not certified for safety-critical deployment.
 
-Author: Panagiota Grosdouli  
