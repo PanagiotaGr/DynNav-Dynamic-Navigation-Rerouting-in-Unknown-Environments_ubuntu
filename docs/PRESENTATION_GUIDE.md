@@ -34,38 +34,46 @@ metrics, event log, and exported evidence
 
 For a short presentation, focus on uncertainty estimation, risk-aware planning, recoverability, dynamic rerouting, and the supervisor. Present the remaining contribution modules as research extensions.
 
-## Canonical live demonstration
+## Guided presentation application
 
-Use the versioned scenario:
+Install and launch the deterministic presentation mode with:
 
 ```bash
-python scripts/run_all.py \
-  --config configs/presentation.yaml \
-  --out-dir results/presentation
+python -m pip install -e ".[dev,dashboard]"
+streamlit run app/presentation.py
 ```
 
-Launch the interactive laboratory with:
+The application loads `configs/presentation.yaml` and separates the narrative into four stages:
+
+1. Research problem
+2. Baseline comparison
+3. Dynamic response
+4. Evidence and limitations
+
+The full research playground remains available through:
 
 ```bash
 streamlit run app/dashboard.py
 ```
 
-The demonstration should follow one fixed narrative:
+## Canonical live demonstration
 
-1. Show the map, start, goal, unknown cells, and initial route.
-2. Explain why the shortest route is not necessarily the safest route.
-3. Introduce a dynamic change that invalidates or degrades the current route.
-4. Show the updated risk or uncertainty information.
-5. Show the replanning decision and supervisor state.
-6. Finish with the event timeline and quantitative metrics.
+Use the versioned scenario in `configs/presentation.yaml`. The demonstration should follow one fixed narrative:
+
+1. Show the map, start, goal, uncertainty field, and initial route.
+2. Explain why the shortest route is not necessarily the lowest-risk route.
+3. Compare Classical A* and Risk-aware A* under the same environment.
+4. Advance the rollout until a dynamic change affects the active route.
+5. Show the replanning event and supervisor state.
+6. Finish with quantitative metrics and evidence boundaries.
 
 ## Experimental comparison
 
 At minimum, compare:
 
-- Dijkstra;
-- classical A*;
-- risk-aware A*;
+- Dijkstra where supported by the benchmark runner;
+- Classical A*;
+- Risk-aware A*;
 - the full DynNav presentation pipeline.
 
 Report:
@@ -76,7 +84,7 @@ Report:
 - runtime;
 - number of replans;
 - average and maximum route risk;
-- recoverability score;
+- recoverability score where implemented;
 - supervisor transitions and stop requests.
 
 Use multiple random seeds for reportable results. Report the mean together with dispersion or confidence intervals. A single deterministic run is appropriate for a live demonstration, but it is not sufficient evidence for a general performance claim.
@@ -103,7 +111,7 @@ The ablation should determine which modules improve safety-related metrics and w
 4. DynNav architecture.
 5. Risk, uncertainty, and recoverability formulation.
 6. Dynamic monitoring and supervisor decisions.
-7. Canonical live demonstration.
+7. Canonical guided demonstration.
 8. Experimental protocol and baselines.
 9. Results, limitations, and evidence boundaries.
 10. Conclusions and next validation steps.
@@ -138,10 +146,11 @@ Before presenting or publishing results, record:
 
 ## Presentation readiness checklist
 
-- [ ] The canonical scenario runs from a clean environment.
-- [ ] The dashboard opens without import or dependency errors.
-- [ ] The live demo has a deterministic fallback recording.
-- [ ] All displayed numbers originate from versioned result files.
+- [ ] Run `pytest tests/test_presentation_config.py`.
+- [ ] The guided application opens without import or dependency errors.
+- [ ] The canonical scenario produces simulation frames and a valid planner comparison.
+- [ ] The live demo has a deterministic fallback recording or screenshots.
+- [ ] All reported numbers originate from versioned result files.
 - [ ] Baselines use the same maps, seeds, and stopping conditions.
 - [ ] Limitations are stated before questions from the audience.
 - [ ] Experimental modules are not described as certified capabilities.
