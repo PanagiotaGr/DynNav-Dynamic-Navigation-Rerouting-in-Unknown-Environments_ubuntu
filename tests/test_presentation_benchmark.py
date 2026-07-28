@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import math
 
 import pytest
@@ -12,7 +13,7 @@ def test_parse_seeds_accepts_ranges_and_removes_duplicates() -> None:
 
 
 def test_parse_seeds_rejects_descending_range() -> None:
-    with pytest.raises(Exception):
+    with pytest.raises(argparse.ArgumentTypeError):
         parse_seeds("5-2")
 
 
