@@ -1,0 +1,18 @@
+# Canonical deterministic scenario for live demonstrations and recorded presentations.
+# Keep this file stable so screenshots, metrics, and narration remain reproducible.
+seed: 23
+map_size: [32, 48]
+start: [2, 2]
+goal: [45, 28]
+obstacle_density: 0.14
+dynamic_obstacle_count: 4
+unknown_cell_ratio: 0.60
+planner: risk_astar
+lambda_risk: 3.5
+lambda_uncertainty: 1.5
+lambda_recoverability: 2.0
+risk_threshold: 0.60
+uncertainty_threshold: 0.68
+recoverability_threshold: 0.30
+max_steps: 180
+output_dir: results/presentation
