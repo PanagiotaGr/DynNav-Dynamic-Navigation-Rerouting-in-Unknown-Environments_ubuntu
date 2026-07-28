@@ -89,6 +89,25 @@ Report:
 
 Use multiple random seeds for reportable results. Report the mean together with dispersion or confidence intervals. A single deterministic run is appropriate for a live demonstration, but it is not sufficient evidence for a general performance claim.
 
+## Automated multi-seed benchmark
+
+Run the presentation benchmark with identical generated environments for both planners:
+
+```bash
+python scripts/presentation_benchmark.py \
+  --seeds 1-20 \
+  --out-dir results/presentation/benchmark
+```
+
+The command writes:
+
+- `raw.csv` with one row per planner and seed;
+- `aggregate.csv` with mean and population standard deviation;
+- `summary.md` with a presentation-ready comparison table;
+- `scenario.txt` with the exact scenario parameters used.
+
+For a faster smoke run, use `--seeds 1-3 --max-steps 60`. Runtime measurements are machine-dependent, so only compare planner timings produced on the same machine and in the same run.
+
 ## Recommended ablation study
 
 Evaluate the following configurations on the same scenario set:
@@ -146,7 +165,8 @@ Before presenting or publishing results, record:
 
 ## Presentation readiness checklist
 
-- [ ] Run `pytest tests/test_presentation_config.py`.
+- [ ] Run `pytest tests/test_presentation_config.py tests/test_presentation_benchmark.py`.
+- [ ] Run a benchmark smoke test with `--seeds 1-3 --max-steps 60`.
 - [ ] The guided application opens without import or dependency errors.
 - [ ] The canonical scenario produces simulation frames and a valid planner comparison.
 - [ ] The live demo has a deterministic fallback recording or screenshots.
