@@ -1,0 +1,19 @@
+# Canonical deterministic scenario for live demonstrations and recorded presentations.
+# Keys map directly to dynnav_dashboard.config.ScenarioConfig.
+grid_size: 40
+start: [2, 2]
+goal: [37, 37]
+n_static_obstacles: 14
+n_dynamic_obstacles: 4
+obstacle_min_size: 2
+obstacle_max_size: 5
+risk_inflation_radius: 3
+uncertainty_sigma: 4.0
+cvar_alpha: 0.95
+astar_weight: 1.0
+risk_weight: 3.0
+max_steps: 180
+sensing_radius: 6
+random_seed: 7
+cell_meters: 0.25
+nominal_speed_mps: 0.35
