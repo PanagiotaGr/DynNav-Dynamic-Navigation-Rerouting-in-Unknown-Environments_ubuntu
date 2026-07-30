@@ -37,6 +37,7 @@ web = []
 [project.scripts]
 dynnav-benchmark = "dynnav.benchmarks:main"
 dynnav-demo = "dynnav.demo:main"
+dynnav-experiment = "dynnav.experiments.reproducible_pipeline:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/dynnav", "src/dynnav_dashboard"]
