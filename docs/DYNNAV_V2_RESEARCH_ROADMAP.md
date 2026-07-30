@@ -1,211 +1,195 @@
-# DynNav v2 Research Roadmap
+# DynNav research roadmap
 
-## Goal
+## Research program
 
-DynNav v2 aims to turn the repository from a collection of modular navigation experiments into a lab-grade research platform for uncertainty-aware, risk-sensitive, and learning-augmented robot navigation in unknown environments.
+DynNav is focused on one primary problem:
 
-The target is not to claim that DynNav already outperforms established robotics laboratories. The target is to make the project scientifically readable, reproducible, comparable, and extensible enough that a robotics researcher can evaluate it seriously.
+> **Planning to preserve escape options during online navigation in dynamic and partially observed environments.**
+
+The project studies whether explicit risk and recoverability terms can prevent a robot from entering states that become difficult or impossible to escape after route invalidation.
 
 ## Central research question
 
-How should an autonomous mobile robot plan, replan, and explore when its map, sensor observations, learned predictions, communication inputs, and high-level goals are uncertain or partially unreliable?
+> Can explicit recoverability estimation reduce irreversible navigation failures during online replanning without imposing excessive path-length and computation overhead?
 
-## Research thesis
+## Core hypothesis
 
-A navigation system operating in unknown environments should not optimize path length alone. It should optimize a multi-objective cost that explicitly accounts for:
+A planner that optimizes only current progress or expected occupancy risk may select a route that is locally attractive but structurally fragile. A planner that also estimates future escape and return options should fail less often when the map changes or a route is blocked.
 
-- geometric path cost,
-- probabilistic collision risk,
-- epistemic and aleatoric uncertainty,
-- tail risk under rare but severe failures,
-- recoverability after a bad decision,
-- energy and communication feasibility,
-- semantic and human-aware constraints,
-- runtime safety guarantees.
+## Canonical objective
 
-A canonical DynNav v2 objective is:
-
-```text
-J(path) = alpha * length(path)
-        + beta  * expected_risk(path)
-        + gamma * CVaR_risk(path)
-        + delta * uncertainty(path)
-        + eta   * irreversibility(path)
-        + zeta  * resource_cost(path)
-        + rho   * intervention_cost(path)
+```math
+J(\pi)=L(\pi)+\lambda_rR(\pi)+\lambda_{irr}I(\pi),
 ```
 
-The exact weights must not be hard-coded as a claim of optimality. They should be evaluated through ablations, sensitivity analysis, and task-specific trade-off curves.
+where:
 
-## Scientific positioning
+- `L` is geometric or traversal cost;
+- `R` is cumulative occupancy or collision risk;
+- `I` is irreversibility cost;
+- `lambda_r` and `lambda_irr` control the trade-off.
 
-DynNav v2 should be positioned against four families of methods:
+A state-level irreversibility model may combine:
 
-1. **Classical replanning**: A*, D*, D* Lite, RRT*, DWA, TEB, Nav2.
-2. **Risk-aware planning**: expected-risk, max-risk, chance-constrained, and CVaR planners.
-3. **Learning-augmented navigation**: learned heuristics, learned local policies, learned world models, and foundation-model-assisted planning.
-4. **Safety-constrained autonomy**: runtime shields, control barrier filters, STL monitors, and human-aware constraints.
+```math
+I(s)=w_1\frac{1}{1+N_{escape}(s)}+w_2B(s)+w_3P_{return\ failure}(s).
+```
 
-The contribution should be framed as an integrated evaluation framework, not as a single monolithic algorithm.
+The exact definition must be supported by dimensional contracts, normalization, deterministic tests and ablations. No heuristic statistic should be presented as a probability unless it is calibrated and validated as one.
 
-## DynNav v2 pillars
+## Experimental hypotheses
 
-### 1. Uncertainty as a first-class planning signal
+- **H1:** Recoverability-aware planning reduces irreversible failure rate compared with shortest-path and risk-only planning.
+- **H2:** The benefit increases with the probability and severity of route invalidation.
+- **H3:** Failure reduction can be achieved with bounded path-length and runtime overhead.
+- **H4:** The combined risk-plus-recoverability objective outperforms either term alone in mixed-risk bottleneck scenarios.
 
-Every planner-facing state should expose uncertainty rather than hiding it inside perception or mapping.
+## Required baselines
 
-Required artifacts:
+| Variant | Cost |
+|---|---|
+| Shortest | `L` |
+| Risk-aware | `L + lambda_r R` |
+| Recoverability-aware | `L + lambda_irr I` |
+| Combined | `L + lambda_r R + lambda_irr I` |
 
-- calibrated uncertainty metrics,
-- reliability diagrams or equivalent calibration summaries,
-- Brier score / NLL / ECE where probabilistic outputs are used,
-- planner ablations with uncertainty disabled, raw, and calibrated.
+A D* Lite or equivalent incremental replanning baseline should be evaluated with the same scenario sequence, observations and dynamic changes.
 
-### 2. Risk-sensitive decision making
+## Benchmark scenarios
 
-DynNav should distinguish average risk from tail risk.
+The benchmark suite will prioritize controlled failure mechanisms:
 
-Required artifacts:
+1. dead ends and single-exit regions;
+2. narrow bottlenecks;
+3. short fragile route versus long recoverable route;
+4. sudden route closure after entry;
+5. moving obstacle that blocks return;
+6. partial map revelation;
+7. repeated block-clear cycles;
+8. noisy or delayed occupancy updates.
 
-- expected risk,
-- max risk,
-- CVaR risk,
-- risk-length Pareto curves,
-- explicit failure cases where shortest paths are unsafe.
+Each scenario must define the map, start, goal, safe regions, obstacle events, observation schedule and failure condition.
 
-### 3. Recoverability and irreversibility
+## Primary metrics
 
-A path should not only be judged by whether it reaches the goal. It should also be judged by whether the robot preserves future options.
+The principal metric is:
 
-Required artifacts:
+```math
+\text{Irreversible Failure Rate}=
+\frac{\text{runs with no feasible safe escape}}
+{\text{total runs}}.
+```
 
-- returnability score,
-- escape-option count,
-- bottleneck exposure,
-- feasibility after unexpected obstacle insertion,
-- comparison between naive and recoverability-aware planning.
+Supporting metrics:
 
-### 4. Prediction-aware dynamic navigation
+- mission success rate;
+- recovery success rate;
+- emergency-stop rate;
+- minimum escape-option count;
+- bottleneck exposure;
+- cumulative risk exposure;
+- path-length overhead;
+- number of replans;
+- planning and replanning time;
+- structured failure reason.
 
-Dynamic obstacles should be represented as future occupancy distributions rather than only current obstacle cells.
+## Statistical protocol
 
-Required artifacts:
+Publication-grade experiments should include:
 
-- future occupancy maps,
-- prediction error metrics,
-- risk over a planning horizon,
-- comparison between reactive-only and prediction-aware navigation.
+- multiple deterministic seeds;
+- identical scenario traces across planners;
+- confidence intervals;
+- effect sizes;
+- paired comparisons where appropriate;
+- sensitivity analysis for `lambda_r`, `lambda_irr` and irreversibility subweights;
+- failure-case inspection rather than aggregate metrics alone.
 
-### 5. Runtime safety layer
+## Work packages
 
-Learning-based modules should be treated as proposals, not as trusted controllers.
+### WP1 — Mathematical contracts
 
-Required artifacts:
+- Define units, ranges and normalization for length, risk and irreversibility.
+- Define zero-weight behavior.
+- Separate scores, probabilities and calibrated probabilities.
+- Add configuration validation and deterministic unit tests.
 
-- shielded vs unshielded evaluation,
-- intervention rate,
-- minimum distance to obstacles,
-- STL robustness or equivalent formal safety score,
-- correction cost.
+**Exit criterion:** every objective term has an explicit contract and tested disable/ablation behavior.
 
-### 6. Reproducibility and comparability
+### WP2 — Recoverability model
 
-Every module should provide the same minimum reproducibility interface.
+- Define safe regions and return targets.
+- Implement escape-option counting.
+- Implement bottleneck exposure.
+- Define returnability and irreversible-failure conditions.
+- Add graph and grid test cases with known answers.
 
-Required artifacts:
+**Exit criterion:** the model distinguishes open regions, bottlenecks, dead ends and blocked-return states predictably.
 
-- command to run the experiment,
-- deterministic seed support,
-- CSV or JSON output,
-- baseline comparison,
-- metric definitions,
-- limitations section,
-- expected runtime.
+### WP3 — Unified planner interface
 
-## Minimum benchmark suite
+- Expose `L`, `R` and `I` through one planner-facing cost API.
+- Support the four canonical ablations.
+- Preserve deterministic A* and incremental replanning baselines.
+- Report structured failure reasons.
 
-DynNav v2 should include at least the following benchmark categories.
+**Exit criterion:** all variants run through one configuration and metric schema.
 
-| Category | Purpose | Core metrics |
-|---|---|---|
-| Static unknown maps | Test exploration and replanning | success rate, path length, replans, runtime |
-| Dynamic obstacles | Test prediction and reaction | collision rate, min distance, prediction error |
-| Noisy sensing | Test uncertainty handling | calibration error, localization drift, risk score |
-| Adversarial perturbations | Test robustness | detection F1, degradation, recovery success |
-| Human-aware zones | Test semantic constraints | violation count, speed adaptation, confirmations |
-| Multi-robot scenarios | Test coordination | conflicts, communication cost, team success |
-| Resource-limited missions | Test energy/connectivity | feasibility verdict, margin, relay/recharge need |
-| Safety-shield stress tests | Test formal safety | violations, interventions, correction cost |
+### WP4 — Dynamic route invalidation
 
-## Required baseline policy
+- Add deterministic event timelines.
+- Support repeated obstacle insertion and clearing.
+- Model partial map updates and stale observations.
+- Evaluate route invalidation before and after bottleneck entry.
 
-Each new contribution should compare against at least one of the following:
+**Exit criterion:** scenario replay produces identical event and planner traces for a fixed seed.
 
-- naive shortest-path planner,
-- classical risk-unaware planner,
-- uncalibrated uncertainty version,
-- no-shield version,
-- no-prediction reactive version,
-- random or greedy policy,
-- existing Nav2-style baseline where applicable.
+### WP5 — Benchmark runner and artifacts
 
-A module should not be marked as research-complete unless it includes a baseline and a measurable metric.
+- Consolidate benchmark commands.
+- Store commit, dependency versions, configuration and seeds.
+- Generate CSV/JSON results and comparison tables.
+- Save event logs and selected failure rollouts.
 
-## Publication-readiness checklist
+**Exit criterion:** an external researcher can reproduce a complete comparison from one documented command.
 
-A module is publication-ready only when it satisfies all of the following:
+### WP6 — Multi-seed evaluation
 
-- [ ] Clear problem statement.
-- [ ] Explicit assumptions.
-- [ ] Algorithm description.
-- [ ] Baselines.
-- [ ] Quantitative metrics.
-- [ ] Ablation study.
-- [ ] Limitations.
-- [ ] Reproducible command.
-- [ ] Stored result artifact.
-- [ ] Short scientific note explaining what the result does and does not prove.
+- Run the benchmark matrix.
+- Produce confidence intervals and effect sizes.
+- Generate Pareto plots for safety gain versus path/runtime overhead.
+- Document counterexamples and negative results.
 
-## Near-term implementation plan
+**Exit criterion:** H1–H4 can be supported or rejected from stored artifacts.
 
-### Phase 1 — Repository credibility
+### WP7 — Integration validation
 
-- Standardize README claims.
-- Add benchmark protocol.
-- Add contribution template.
-- Add reproducibility checklist.
-- Add issue templates for research modules, experiments, and paper-readiness tasks.
+After the algorithmic and experimental core is stable:
 
-### Phase 2 — Core benchmark runner
+- create a verified ROS 2/Nav2 integration path;
+- add deterministic simulation scenarios;
+- validate occupancy-grid conversion and path output;
+- progress toward physical-robot experiments.
 
-- Add a unified benchmark manifest.
-- Add machine-readable metric schema.
-- Add comparison table generator.
-- Add smoke tests for all lightweight experiments.
+These activities extend the evidence base but do not replace the focused algorithmic evaluation.
 
-### Phase 3 — DynNav v2 algorithmic core
+## Immediate implementation order
 
-- Implement unified risk/uncertainty cost interface.
-- Add prediction-aware future occupancy API.
-- Add planner ablation hooks.
-- Add deterministic scenario generator.
+1. Audit existing risk and recoverability implementations.
+2. Freeze terminology and mathematical contracts.
+3. Add irreversibility unit tests and known-answer maps.
+4. Implement the common ablation interface.
+5. Build deterministic bottleneck and route-closure scenarios.
+6. Add irreversible-failure metrics and structured reasons.
+7. Run multi-seed comparisons.
+8. Generate paper-ready tables and figures from stored artifacts.
 
-### Phase 4 — Research presentation
+## Secondary repository modules
 
-- Add figures for architecture and benchmark pipeline.
-- Add a paper-style technical report skeleton.
-- Add results tables generated from benchmark outputs.
-- Add BibTeX/citation metadata for the modules.
+Learning, multi-robot, semantic, security, language, neural representation and swarm modules remain available as exploratory extensions. They are not milestones for the central research claim and should not delay the work packages above.
 
-## What DynNav v2 should avoid
-
-- Overclaiming state-of-the-art performance without standardized benchmarks.
-- Mixing speculative future work with implemented results.
-- Reporting only reward or path length when safety is the actual objective.
-- Treating foundation models as reliable planners without validation.
-- Treating learned policies as safe without runtime monitoring.
-- Adding many modules without a shared evaluation protocol.
+See [`CONTRIBUTION_FEATURE_CATALOG.md`](CONTRIBUTION_FEATURE_CATALOG.md).
 
 ## Success definition
 
-DynNav v2 is successful when an external robotics researcher can clone the repository, run a documented benchmark, inspect the output metrics, understand each module's assumptions, and compare DynNav against a baseline without needing private context from the author.
+DynNav succeeds when an external researcher can clone the repository, run the four planner variants on the same dynamic scenarios, reproduce the stored metrics and determine whether preserving escape options measurably reduces irreversible failures.
