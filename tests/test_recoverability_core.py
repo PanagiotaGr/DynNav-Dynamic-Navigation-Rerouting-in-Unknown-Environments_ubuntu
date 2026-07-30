@@ -8,7 +8,19 @@ from dynnav.recoverability import analyze_recoverability, escape_option_count
 
 
 def test_dead_end_has_one_escape_branch_and_high_irreversibility():
-    obstacles = {(0, 0), (0, 2), (1, 0), (1, 2), (2, 0), (2, 2), (3, 0), (3, 2)}
+    obstacles = {
+        (0, 0),
+        (0, 2),
+        (1, 0),
+        (1, 2),
+        (2, 0),
+        (2, 2),
+        (3, 0),
+        (3, 2),
+        (4, 0),
+        (4, 1),
+        (4, 2),
+    }
     grid = GridMap.from_obstacles(5, 3, obstacles)
 
     assert escape_option_count(grid, (3, 1)) == 1
@@ -22,7 +34,19 @@ def test_open_junction_has_more_escape_options_than_dead_end():
     dead_end_grid = GridMap.from_obstacles(
         5,
         3,
-        {(0, 0), (0, 2), (1, 0), (1, 2), (2, 0), (2, 2), (3, 0), (3, 2)},
+        {
+            (0, 0),
+            (0, 2),
+            (1, 0),
+            (1, 2),
+            (2, 0),
+            (2, 2),
+            (3, 0),
+            (3, 2),
+            (4, 0),
+            (4, 1),
+            (4, 2),
+        },
     )
 
     assert escape_option_count(open_grid, (2, 2)) >= escape_option_count(dead_end_grid, (3, 1))
