@@ -1,33 +1,59 @@
 # DynNav technical documentation
 
-This directory is the technical documentation index for the current DynNav research prototype.
+This directory documents the focused DynNav research program:
 
-DynNav investigates deterministic, grid-based navigation and rerouting under occupancy uncertainty, risk, recoverability constraints, and mission-level supervision. Documentation must be read together with executable source, tests, configurations and generated evidence. No formal safety guarantee, production Nav2 plugin, Gazebo validation, TurtleBot validation or hardware result is claimed by this index.
+> **Risk- and recoverability-aware online replanning under dynamic route invalidation.**
 
-## Documentation map
+The central question is whether explicit recoverability estimation can reduce irreversible navigation failures without unacceptable path-length or computation overhead.
 
-- [`REPOSITORY_AUDIT.md`](REPOSITORY_AUDIT.md): current capabilities, evidence gaps and implementation order.
-- [`MARKDOWN_AUDIT.md`](MARKDOWN_AUDIT.md): repository-wide Markdown review and remaining validation.
-- [`MARKDOWN_STYLE_GUIDE.md`](MARKDOWN_STYLE_GUIDE.md): maturity vocabulary, claim discipline and link policy.
-- [`RESEARCH_OVERVIEW.md`](RESEARCH_OVERVIEW.md): central research question, motivation and scope.
-- [`SYSTEM_ARCHITECTURE.md`](SYSTEM_ARCHITECTURE.md): current package and processing architecture.
-- [`NAVIGATION_PIPELINE.md`](NAVIGATION_PIPELINE.md): observation-to-planning and supervision flow.
-- [`MATHEMATICAL_FORMULATION.md`](MATHEMATICAL_FORMULATION.md): current objective, notation and assumptions.
-- [`UNCERTAINTY_MODEL.md`](UNCERTAINTY_MODEL.md): uncertainty representation and known limitations.
-- [`RISK_ESTIMATION.md`](RISK_ESTIMATION.md): risk terms, aggregation and evidence boundary.
-- [`EVALUATION_PROTOCOL.md`](EVALUATION_PROTOCOL.md): scenarios, baselines, metrics and fair-comparison rules.
-- [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md): seeds, commands, configurations and artifact traceability.
-- [`ROS2_NAV2_INTEGRATION.md`](ROS2_NAV2_INTEGRATION.md): prototype integration direction and unvalidated items.
+## Primary research thread
 
-## Maturity vocabulary
+The canonical reading order is:
 
-- **Implemented:** source exists and is exercised by tests or CI.
-- **Research Prototype:** executable or scaffolded, but not deployment-ready.
-- **Experimental:** evaluated only in limited or synthetic settings.
-- **Planned:** no complete implementation is claimed.
-- **Pending Validation:** implementation or command exists but required evidence is incomplete.
-- **Simulation Only:** evidence comes from simulation and is not a hardware result.
-- **Hardware Validation Required:** no physical-robot evidence is available.
+1. [`RESEARCH_OVERVIEW.md`](RESEARCH_OVERVIEW.md): problem, gap, research question and scope.
+2. [`MATHEMATICAL_FORMULATION.md`](MATHEMATICAL_FORMULATION.md): path cost, risk, irreversibility and assumptions.
+3. [`RISK_ESTIMATION.md`](RISK_ESTIMATION.md): occupancy-risk definitions and aggregation.
+4. [`EVALUATION_PROTOCOL.md`](EVALUATION_PROTOCOL.md): baselines, scenarios, metrics, ablations and fair-comparison rules.
+5. [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md): seeds, commands, configurations and artifact traceability.
+6. [`DYNNAV_V2_RESEARCH_ROADMAP.md`](DYNNAV_V2_RESEARCH_ROADMAP.md): implementation and evidence plan.
+
+## Architecture and implementation references
+
+- [`SYSTEM_ARCHITECTURE.md`](SYSTEM_ARCHITECTURE.md): package ownership and component boundaries.
+- [`NAVIGATION_PIPELINE.md`](NAVIGATION_PIPELINE.md): observation, planning, monitoring and replanning flow.
+- [`UNCERTAINTY_MODEL.md`](UNCERTAINTY_MODEL.md): uncertainty representation used by supporting experiments.
+- [`REPOSITORY_AUDIT.md`](REPOSITORY_AUDIT.md): verified capabilities, evidence gaps and implementation risks.
+- [`MARKDOWN_AUDIT.md`](MARKDOWN_AUDIT.md): repository-wide documentation review.
+- [`MARKDOWN_STYLE_GUIDE.md`](MARKDOWN_STYLE_GUIDE.md): maturity vocabulary and claim discipline.
+
+## Secondary extensions
+
+The repository also contains exploratory modules in learning, prediction, security, multi-robot coordination, semantic navigation, formal shields and neural scene representations. They are retained as extensions and demonstrations, not as equal parts of the central research claim.
+
+See [`CONTRIBUTION_FEATURE_CATALOG.md`](CONTRIBUTION_FEATURE_CATALOG.md) for the complete catalog.
+
+## Experimental contract
+
+The primary comparison is:
+
+| Variant | Objective |
+|---|---|
+| shortest | `length` |
+| risk-aware | `length + risk` |
+| recoverability-aware | `length + irreversibility` |
+| combined | `length + risk + irreversibility` |
+
+Every reported result should include:
+
+- exact commit and configuration;
+- deterministic seeds;
+- scenario and dynamic-obstacle trace;
+- metric definitions;
+- baseline outputs;
+- multi-seed summary;
+- limitations and failed cases.
+
+The principal outcome is irreversible failure rate, supported by mission success, recovery success, emergency stops, escape-option count, cumulative risk, path overhead, replans and runtime.
 
 ## Verified commands
 
@@ -40,17 +66,15 @@ python scripts/run_all.py --config configs/default.yaml --smoke --out-dir result
 python scripts/run_benchmarks.py --config configs/default.yaml --smoke --out-dir results/ci_benchmarks
 ```
 
-The website is checked separately:
+Dashboard:
 
 ```bash
-cd website
-npm install --no-audit --no-fund
-npm run typecheck
-npm run build
+python -m pip install -e ".[dashboard]"
+streamlit run app/dashboard.py
 ```
 
-## Documentation policy
+## Evidence policy
 
-A conceptual architecture diagram is not experimental evidence. Passing unit tests is not proof of navigation safety. Synthetic benchmarks must be labelled synthetic. Quantitative claims must link to generated results, configuration, seed and command. ROS2, Nav2, Gazebo, simulation and hardware status must be stated independently.
+DynNav is an implementation-driven research project, but implementation is not equivalent to experimental proof. Passing tests establishes consistency with the implemented contract. Synthetic benchmarks establish results only for the evaluated scenarios. Hardware reliability, production ROS 2/Nav2 integration, formal safety and broad generalization require separate evidence.
 
-See the [root README](../README.md), [`configs`](../configs/README.md), [`scripts`](../scripts/README.md) and [`tests`](../tests/README.md) guides.
+See the [root README](../README.md), the [Greek README](../README_GR.md), [`configs`](../configs/README.md), [`scripts`](../scripts/README.md) and [`tests`](../tests/README.md).
