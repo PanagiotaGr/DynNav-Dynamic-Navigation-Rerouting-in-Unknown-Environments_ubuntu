@@ -26,7 +26,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip uninstall -y dynnav || true
-          python -m pip install -e ".[dev]"
+          python -m pip install -e ".[dev,researcher]"
           cat > /tmp/verify_dynnav.py <<'PY'
           import dynnav
           import dynnav.mapping
@@ -150,6 +150,26 @@ jobs:
       - name: Type-check website
         run: npm run typecheck
       - name: Build website
+        run: npm run build
+
+  researcher-web:
+    name: Researcher web build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - name: Install researcher web dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Type-check researcher workspace
+        run: npm run typecheck
+      - name: Build researcher workspace
         run: npm run build
 
   markdown:

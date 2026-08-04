@@ -1,0 +1,1488 @@
+{
+  "edges": [
+    {
+      "source": ".pytest_cache/README.md",
+      "target": "https://docs.pytest.org/en/stable/how-to/cache.html"
+    },
+    {
+      "source": "assets/contributions/README.md",
+      "target": "../styleguide/README.md"
+    },
+    {
+      "source": "assets/README.md",
+      "target": "../README.md"
+    },
+    {
+      "source": "assets/README.md",
+      "target": "../results/README.md"
+    },
+    {
+      "source": "assets/README.md",
+      "target": "../scripts/README.md"
+    },
+    {
+      "source": "assets/styleguide/README.md",
+      "target": "../contributions/"
+    },
+    {
+      "source": "configs/README.md",
+      "target": "../README.md"
+    },
+    {
+      "source": "configs/README.md",
+      "target": "../docs/EVALUATION_PROTOCOL.md"
+    },
+    {
+      "source": "configs/README.md",
+      "target": "../docs/REPRODUCIBILITY.md"
+    },
+    {
+      "source": "configs/README.md",
+      "target": "benchmark.yaml"
+    },
+    {
+      "source": "configs/README.md",
+      "target": "default.yaml"
+    },
+    {
+      "source": "configs/README.md",
+      "target": "research_suite.yaml"
+    },
+    {
+      "source": "contributions/01_learned_astar/README.md",
+      "target": "assets/learned_astar_pipeline.svg"
+    },
+    {
+      "source": "contributions/01_learned_astar/README.md",
+      "target": "https://img.shields.io/badge/DynNav-Contribution%2001-6f42c1"
+    },
+    {
+      "source": "contributions/01_learned_astar/README.md",
+      "target": "https://img.shields.io/badge/Status-Research%20Prototype-2ea44f"
+    },
+    {
+      "source": "contributions/01_learned_astar/README.md",
+      "target": "https://img.shields.io/badge/Topic-Learning--Augmented%20Planning-0366d6"
+    },
+    {
+      "source": "contributions/01_learned_astar/README_GR.md",
+      "target": "assets/learned_astar_pipeline.svg"
+    },
+    {
+      "source": "contributions/01_learned_astar/README_GR.md",
+      "target": "https://img.shields.io/badge/DynNav-Contribution%2001-6f42c1"
+    },
+    {
+      "source": "contributions/01_learned_astar/README_GR.md",
+      "target": "https://img.shields.io/badge/Status-Research%20Prototype-2ea44f"
+    },
+    {
+      "source": "contributions/01_learned_astar/README_GR.md",
+      "target": "https://img.shields.io/badge/Topic-Learning--Augmented%20Planning-0366d6"
+    },
+    {
+      "source": "contributions/02_uncertainty_calibration/README.md",
+      "target": "assets/uncertainty_calibration_pipeline.svg"
+    },
+    {
+      "source": "contributions/02_uncertainty_calibration/README.md",
+      "target": "https://img.shields.io/badge/Module-02-purple"
+    },
+    {
+      "source": "contributions/02_uncertainty_calibration/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/02_uncertainty_calibration/README.md",
+      "target": "https://img.shields.io/badge/Type-Probabilistic%20Sensing-blue"
+    },
+    {
+      "source": "contributions/03_belief_risk_planning/README.md",
+      "target": "assets/belief_risk_planning_pipeline.svg"
+    },
+    {
+      "source": "contributions/03_belief_risk_planning/README.md",
+      "target": "https://img.shields.io/badge/DynNav-Contribution%2003-6f42c1"
+    },
+    {
+      "source": "contributions/03_belief_risk_planning/README.md",
+      "target": "https://img.shields.io/badge/Status-Research%20Prototype-2ea44f"
+    },
+    {
+      "source": "contributions/03_belief_risk_planning/README.md",
+      "target": "https://img.shields.io/badge/Topic-Risk--Aware%20Planning-0366d6"
+    },
+    {
+      "source": "contributions/03_belief_risk_planning/README_GR.md",
+      "target": "assets/belief_risk_planning_pipeline.svg"
+    },
+    {
+      "source": "contributions/03_belief_risk_planning/README_GR.md",
+      "target": "https://img.shields.io/badge/DynNav-Contribution%2003-6f42c1"
+    },
+    {
+      "source": "contributions/03_belief_risk_planning/README_GR.md",
+      "target": "https://img.shields.io/badge/Status-Research%20Prototype-2ea44f"
+    },
+    {
+      "source": "contributions/03_belief_risk_planning/README_GR.md",
+      "target": "https://img.shields.io/badge/Topic-Risk--Aware%20Planning-0366d6"
+    },
+    {
+      "source": "contributions/04_irreversibility_returnability/README.md",
+      "target": "assets/recoverability_pipeline.svg"
+    },
+    {
+      "source": "contributions/04_irreversibility_returnability/README.md",
+      "target": "https://img.shields.io/badge/DynNav-Contribution%2004-6f42c1"
+    },
+    {
+      "source": "contributions/04_irreversibility_returnability/README.md",
+      "target": "https://img.shields.io/badge/Status-Research%20Prototype-2ea44f"
+    },
+    {
+      "source": "contributions/04_irreversibility_returnability/README.md",
+      "target": "https://img.shields.io/badge/Topic-Recoverability--Aware%20Planning-0366d6"
+    },
+    {
+      "source": "contributions/04_irreversibility_returnability/README_GR.md",
+      "target": "assets/recoverability_pipeline.svg"
+    },
+    {
+      "source": "contributions/04_irreversibility_returnability/README_GR.md",
+      "target": "https://img.shields.io/badge/DynNav-Contribution%2004-6f42c1"
+    },
+    {
+      "source": "contributions/04_irreversibility_returnability/README_GR.md",
+      "target": "https://img.shields.io/badge/Status-Research%20Prototype-2ea44f"
+    },
+    {
+      "source": "contributions/04_irreversibility_returnability/README_GR.md",
+      "target": "https://img.shields.io/badge/Topic-Recoverability--Aware%20Planning-0366d6"
+    },
+    {
+      "source": "contributions/05_safe_mode_navigation/README.md",
+      "target": "README_GR.md"
+    },
+    {
+      "source": "contributions/05_safe_mode_navigation/README.md",
+      "target": "assets/safe_mode_navigation_pipeline.svg"
+    },
+    {
+      "source": "contributions/05_safe_mode_navigation/README.md",
+      "target": "https://img.shields.io/badge/DynNav-Contribution%2005-6f42c1"
+    },
+    {
+      "source": "contributions/05_safe_mode_navigation/README.md",
+      "target": "https://img.shields.io/badge/Status-Research%20Prototype-2ea44f"
+    },
+    {
+      "source": "contributions/05_safe_mode_navigation/README.md",
+      "target": "https://img.shields.io/badge/Topic-Runtime%20Safety%20Supervision-0366d6"
+    },
+    {
+      "source": "contributions/05_safe_mode_navigation/README_GR.md",
+      "target": "README.md"
+    },
+    {
+      "source": "contributions/05_safe_mode_navigation/README_GR.md",
+      "target": "assets/safe_mode_navigation_pipeline.svg"
+    },
+    {
+      "source": "contributions/05_safe_mode_navigation/README_GR.md",
+      "target": "https://img.shields.io/badge/DynNav-Contribution%2005-6f42c1"
+    },
+    {
+      "source": "contributions/05_safe_mode_navigation/README_GR.md",
+      "target": "https://img.shields.io/badge/Status-Research%20Prototype-2ea44f"
+    },
+    {
+      "source": "contributions/05_safe_mode_navigation/README_GR.md",
+      "target": "https://img.shields.io/badge/Topic-Runtime%20Safety%20Supervision-0366d6"
+    },
+    {
+      "source": "contributions/06_energy_connectivity/README.md",
+      "target": "README_GR.md"
+    },
+    {
+      "source": "contributions/06_energy_connectivity/README.md",
+      "target": "assets/energy_connectivity_pipeline.svg"
+    },
+    {
+      "source": "contributions/06_energy_connectivity/README.md",
+      "target": "https://img.shields.io/badge/DynNav-Contribution%2006-6f42c1"
+    },
+    {
+      "source": "contributions/06_energy_connectivity/README.md",
+      "target": "https://img.shields.io/badge/Status-Research%20Prototype-2ea44f"
+    },
+    {
+      "source": "contributions/06_energy_connectivity/README.md",
+      "target": "https://img.shields.io/badge/Topic-Resource--Aware%20Planning-0366d6"
+    },
+    {
+      "source": "contributions/06_energy_connectivity/README_GR.md",
+      "target": "README.md"
+    },
+    {
+      "source": "contributions/06_energy_connectivity/README_GR.md",
+      "target": "assets/energy_connectivity_pipeline.svg"
+    },
+    {
+      "source": "contributions/06_energy_connectivity/README_GR.md",
+      "target": "https://img.shields.io/badge/DynNav-Contribution%2006-6f42c1"
+    },
+    {
+      "source": "contributions/06_energy_connectivity/README_GR.md",
+      "target": "https://img.shields.io/badge/Status-Research%20Prototype-2ea44f"
+    },
+    {
+      "source": "contributions/06_energy_connectivity/README_GR.md",
+      "target": "https://img.shields.io/badge/Topic-Resource--Aware%20Planning-0366d6"
+    },
+    {
+      "source": "contributions/07_next_best_view/README.md",
+      "target": "README_GR.md"
+    },
+    {
+      "source": "contributions/07_next_best_view/README.md",
+      "target": "assets/next_best_view_pipeline.svg"
+    },
+    {
+      "source": "contributions/07_next_best_view/README.md",
+      "target": "https://img.shields.io/badge/DynNav-Contribution%2007-6f42c1"
+    },
+    {
+      "source": "contributions/07_next_best_view/README.md",
+      "target": "https://img.shields.io/badge/Status-Research%20Prototype-2ea44f"
+    },
+    {
+      "source": "contributions/07_next_best_view/README.md",
+      "target": "https://img.shields.io/badge/Topic-Active%20Exploration-0366d6"
+    },
+    {
+      "source": "contributions/07_next_best_view/README_GR.md",
+      "target": "README.md"
+    },
+    {
+      "source": "contributions/07_next_best_view/README_GR.md",
+      "target": "assets/next_best_view_pipeline.svg"
+    },
+    {
+      "source": "contributions/07_next_best_view/README_GR.md",
+      "target": "https://img.shields.io/badge/DynNav-Contribution%2007-6f42c1"
+    },
+    {
+      "source": "contributions/07_next_best_view/README_GR.md",
+      "target": "https://img.shields.io/badge/Status-Research%20Prototype-2ea44f"
+    },
+    {
+      "source": "contributions/07_next_best_view/README_GR.md",
+      "target": "https://img.shields.io/badge/Topic-Active%20Exploration-0366d6"
+    },
+    {
+      "source": "contributions/08_security_ids/README.md",
+      "target": "https://img.shields.io/badge/Module-08-purple"
+    },
+    {
+      "source": "contributions/08_security_ids/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/08_security_ids/README.md",
+      "target": "https://img.shields.io/badge/Type-Cybersecurity%20%2F%20IDS-blue"
+    },
+    {
+      "source": "contributions/09_multi_robot/README.md",
+      "target": "https://img.shields.io/badge/Module-09-purple"
+    },
+    {
+      "source": "contributions/09_multi_robot/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/09_multi_robot/README.md",
+      "target": "https://img.shields.io/badge/Type-Multi--Robot%20Systems-blue"
+    },
+    {
+      "source": "contributions/10_human_language_ethics/README.md",
+      "target": "https://img.shields.io/badge/Module-10-purple"
+    },
+    {
+      "source": "contributions/10_human_language_ethics/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/10_human_language_ethics/README.md",
+      "target": "https://img.shields.io/badge/Type-HRI%20%2F%20Ethics-blue"
+    },
+    {
+      "source": "contributions/11_vlm_navigation_agent/README.md",
+      "target": "https://img.shields.io/badge/Module-11-purple"
+    },
+    {
+      "source": "contributions/11_vlm_navigation_agent/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/11_vlm_navigation_agent/README.md",
+      "target": "https://img.shields.io/badge/Type-Perception%20%2F%20VLM-blue"
+    },
+    {
+      "source": "contributions/12_diffusion_occupancy/README.md",
+      "target": "https://img.shields.io/badge/Module-12-purple"
+    },
+    {
+      "source": "contributions/12_diffusion_occupancy/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/12_diffusion_occupancy/README.md",
+      "target": "https://img.shields.io/badge/Type-Probabilistic%20Planning-blue"
+    },
+    {
+      "source": "contributions/13_latent_world_model/README.md",
+      "target": "https://img.shields.io/badge/Module-13-purple"
+    },
+    {
+      "source": "contributions/13_latent_world_model/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/13_latent_world_model/README.md",
+      "target": "https://img.shields.io/badge/Type-Model--Based%20RL-blue"
+    },
+    {
+      "source": "contributions/14_causal_risk_attribution/README.md",
+      "target": "https://img.shields.io/badge/Module-14-purple"
+    },
+    {
+      "source": "contributions/14_causal_risk_attribution/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/14_causal_risk_attribution/README.md",
+      "target": "https://img.shields.io/badge/Type-Causal%20AI-blue"
+    },
+    {
+      "source": "contributions/15_neuromorphic_sensing/README.md",
+      "target": "https://img.shields.io/badge/Module-15-purple"
+    },
+    {
+      "source": "contributions/15_neuromorphic_sensing/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/15_neuromorphic_sensing/README.md",
+      "target": "https://img.shields.io/badge/Type-Neuromorphic%20%2F%20Bio--inspired-blue"
+    },
+    {
+      "source": "contributions/16_federated_nav_learning/README.md",
+      "target": "https://img.shields.io/badge/Module-16-purple"
+    },
+    {
+      "source": "contributions/16_federated_nav_learning/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/16_federated_nav_learning/README.md",
+      "target": "https://img.shields.io/badge/Type-Federated%20Learning-blue"
+    },
+    {
+      "source": "contributions/17_topological_semantic_maps/README.md",
+      "target": "https://img.shields.io/badge/Module-17-purple"
+    },
+    {
+      "source": "contributions/17_topological_semantic_maps/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/17_topological_semantic_maps/README.md",
+      "target": "https://img.shields.io/badge/Type-Mapping%20%2F%20Grounding-blue"
+    },
+    {
+      "source": "contributions/18_formal_safety_shields/README.md",
+      "target": "https://img.shields.io/badge/Module-18-purple"
+    },
+    {
+      "source": "contributions/18_formal_safety_shields/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/18_formal_safety_shields/README.md",
+      "target": "https://img.shields.io/badge/Type-Formal%20Methods-blue"
+    },
+    {
+      "source": "contributions/19_llm_mission_planner/README.md",
+      "target": "https://img.shields.io/badge/Module-19-purple"
+    },
+    {
+      "source": "contributions/19_llm_mission_planner/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/19_llm_mission_planner/README.md",
+      "target": "https://img.shields.io/badge/Type-LLM%20%2F%20NLP-blue"
+    },
+    {
+      "source": "contributions/20_multimodal_failure_explainer/README.md",
+      "target": "https://img.shields.io/badge/Module-20-purple"
+    },
+    {
+      "source": "contributions/20_multimodal_failure_explainer/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/20_multimodal_failure_explainer/README.md",
+      "target": "https://img.shields.io/badge/Type-XAI%20%2F%20Diagnostics-blue"
+    },
+    {
+      "source": "contributions/21_ppo_navigation_agent/README.md",
+      "target": "https://img.shields.io/badge/Module-21-purple"
+    },
+    {
+      "source": "contributions/21_ppo_navigation_agent/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/21_ppo_navigation_agent/README.md",
+      "target": "https://img.shields.io/badge/Type-Reinforcement%20Learning-blue"
+    },
+    {
+      "source": "contributions/22_curriculum_rl/README.md",
+      "target": "https://img.shields.io/badge/Module-22-purple"
+    },
+    {
+      "source": "contributions/22_curriculum_rl/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/22_curriculum_rl/README.md",
+      "target": "https://img.shields.io/badge/Type-Reinforcement%20Learning-blue"
+    },
+    {
+      "source": "contributions/23_gaussian_splatting_mapper/README.md",
+      "target": "https://img.shields.io/badge/Module-23-purple"
+    },
+    {
+      "source": "contributions/23_gaussian_splatting_mapper/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/23_gaussian_splatting_mapper/README.md",
+      "target": "https://img.shields.io/badge/Type-3D%20Mapping-blue"
+    },
+    {
+      "source": "contributions/24_nerf_uncertainty/README.md",
+      "target": "https://img.shields.io/badge/Module-24-purple"
+    },
+    {
+      "source": "contributions/24_nerf_uncertainty/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/24_nerf_uncertainty/README.md",
+      "target": "https://img.shields.io/badge/Type-3D%20Mapping%20%2F%20Uncertainty-blue"
+    },
+    {
+      "source": "contributions/25_adversarial_attack_simulator/README.md",
+      "target": "https://img.shields.io/badge/Module-25-purple"
+    },
+    {
+      "source": "contributions/25_adversarial_attack_simulator/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/25_adversarial_attack_simulator/README.md",
+      "target": "https://img.shields.io/badge/Type-Cybersecurity%20%2F%20Robustness-blue"
+    },
+    {
+      "source": "contributions/26_swarm_consensus/README.md",
+      "target": "https://img.shields.io/badge/Module-26-purple"
+    },
+    {
+      "source": "contributions/26_swarm_consensus/README.md",
+      "target": "https://img.shields.io/badge/Status-Core%20Upgraded-brightgreen"
+    },
+    {
+      "source": "contributions/26_swarm_consensus/README.md",
+      "target": "https://img.shields.io/badge/Type-Multi--Robot%20%2F%20Distributed-blue"
+    },
+    {
+      "source": "contributions/hybrid_learned_astar/README.md",
+      "target": "../../README.md"
+    },
+    {
+      "source": "contributions/README.md",
+      "target": "../README.md"
+    },
+    {
+      "source": "contributions/README.md",
+      "target": "../docs/REPOSITORY_AUDIT.md"
+    },
+    {
+      "source": "docs/CLAIMS_EVIDENCE.md",
+      "target": "EVALUATION_PROTOCOL.md"
+    },
+    {
+      "source": "docs/CLAIMS_EVIDENCE.md",
+      "target": "REPOSITORY_AUDIT.md"
+    },
+    {
+      "source": "docs/CLAIMS_EVIDENCE.md",
+      "target": "REPRODUCIBILITY.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_FEATURE_CATALOG.md",
+      "target": "../contributions/"
+    },
+    {
+      "source": "docs/CONTRIBUTION_FEATURE_CATALOG.md",
+      "target": "../contributions/CONTRIBUTIONS_README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_FEATURE_CATALOG.md",
+      "target": "../src/dynnav_dashboard/contribution_registry.yaml"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/01_learned_astar/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/02_uncertainty_calibration/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/03_belief_risk_planning/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/04_irreversibility_returnability/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/05_safe_mode_navigation/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/06_energy_connectivity/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/07_next_best_view/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/08_security_ids/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/09_multi_robot/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/10_human_language_ethics/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/11_vlm_navigation_agent/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/12_diffusion_occupancy/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/13_latent_world_model/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/14_causal_risk_attribution/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/15_neuromorphic_sensing/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/16_federated_nav_learning/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/17_topological_semantic_maps/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/18_formal_safety_shields/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/19_llm_mission_planner/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/20_multimodal_failure_explainer/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/21_ppo_navigation_agent/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/22_curriculum_rl/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/23_gaussian_splatting_mapper/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/24_nerf_uncertainty/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/25_adversarial_attack_simulator/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/26_swarm_consensus/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C01_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C02_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C03_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C04_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C05_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C06_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C07_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C08_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C09_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C10_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C11_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C12_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C13_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C14_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C15_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C16_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C17_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C18_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C19_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C20_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C21_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C22_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C23_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C24_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C25_overview.svg"
+    },
+    {
+      "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+      "target": "../assets/contributions/C26_overview.svg"
+    },
+    {
+      "source": "docs/DYNNAV_V2_RESEARCH_ROADMAP.md",
+      "target": "CONTRIBUTION_FEATURE_CATALOG.md"
+    },
+    {
+      "source": "docs/Irreversibility_Aware_Navigation_New_Contribution.md",
+      "target": "Proposition_Irreversibility_vs_Risk_Weighting.md"
+    },
+    {
+      "source": "docs/MARKDOWN_STYLE_GUIDE.md",
+      "target": "../README.md"
+    },
+    {
+      "source": "docs/MARKDOWN_STYLE_GUIDE.md",
+      "target": "MARKDOWN_AUDIT.md"
+    },
+    {
+      "source": "docs/Proposition_Irreversibility_vs_Risk_Weighting.md",
+      "target": "https://latex.codecogs.com/svg.image?%5Cmax%20I(%5Cpi)%20%5Capprox%200.95%20%5Cquad%20%5Cforall%20%5Clambda"
+    },
+    {
+      "source": "docs/Proposition_Irreversibility_vs_Risk_Weighting.md",
+      "target": "https://latex.codecogs.com/svg.image?%5Cmax_%7Bs%5Cin%5Cpi%7D%20I(s)%20%5Cle%20%5Ctau"
+    },
+    {
+      "source": "docs/Proposition_Irreversibility_vs_Risk_Weighting.md",
+      "target": "https://latex.codecogs.com/svg.image?%5Ctau%5E*%20%5Capprox%20%5Cmin_%7B%5Cpi%7D%20%5Cmax_%7Bs%5Cin%5Cpi%7D%20I(s)%20%5Capprox%20I(%5Ctext%7Bdoor%7D)"
+    },
+    {
+      "source": "docs/Proposition_Irreversibility_vs_Risk_Weighting.md",
+      "target": "https://latex.codecogs.com/svg.image?I(s)%5Cin%5B0,1%5D"
+    },
+    {
+      "source": "docs/Proposition_Irreversibility_vs_Risk_Weighting.md",
+      "target": "https://latex.codecogs.com/svg.image?J(%5Cpi)=%5Csum%20c(s)%2B%5Clambda%5Csum%20I(s)"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "../README.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "../README_GR.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "../configs/README.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "../scripts/README.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "../tests/README.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "CONTRIBUTION_FEATURE_CATALOG.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "DYNNAV_V2_RESEARCH_ROADMAP.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "EVALUATION_PROTOCOL.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "MARKDOWN_AUDIT.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "MARKDOWN_STYLE_GUIDE.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "MATHEMATICAL_FORMULATION.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "NAVIGATION_PIPELINE.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "REPOSITORY_AUDIT.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "REPRODUCIBILITY.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "RESEARCH_OVERVIEW.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "RISK_ESTIMATION.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "SYSTEM_ARCHITECTURE.md"
+    },
+    {
+      "source": "docs/README.md",
+      "target": "UNCERTAINTY_MODEL.md"
+    },
+    {
+      "source": "docs/README_Irreversibility_Aware_Planning results.md",
+      "target": "https://latex.codecogs.com/svg.image?%5Cmax%20I=0.95%20%5Cforall%20%5Clambda"
+    },
+    {
+      "source": "docs/README_Irreversibility_Aware_Planning results.md",
+      "target": "https://latex.codecogs.com/svg.image?%5Cmax_%7Bs%5Cin%5Cpi%7D%20I(s)%20%5Cle%20%5Ctau"
+    },
+    {
+      "source": "docs/README_Irreversibility_Aware_Planning results.md",
+      "target": "https://latex.codecogs.com/svg.image?%5Ctau%3CI_%7B%5Ctext%7Bdoor%7D%7D"
+    },
+    {
+      "source": "docs/README_Irreversibility_Aware_Planning results.md",
+      "target": "https://latex.codecogs.com/svg.image?%5Ctau%5Cin%5B0.30,1.00%5D"
+    },
+    {
+      "source": "docs/README_Irreversibility_Aware_Planning results.md",
+      "target": "https://latex.codecogs.com/svg.image?%5Ctau%5E*%5Capprox0.85"
+    },
+    {
+      "source": "docs/README_Irreversibility_Aware_Planning results.md",
+      "target": "https://latex.codecogs.com/svg.image?I(s)%5Cin%5B0,1%5D"
+    },
+    {
+      "source": "docs/README_Irreversibility_Aware_Planning results.md",
+      "target": "https://latex.codecogs.com/svg.image?I(s)=1"
+    },
+    {
+      "source": "docs/README_Irreversibility_Aware_Planning results.md",
+      "target": "https://latex.codecogs.com/svg.image?I(s)=w_u%5Ccdot%5Chat%7BU%7D(s)%2Bw_f%5Ccdot(1-%5Chat%7BF%7D(s))%2Bw_d%5Ccdot%5Chat%7BD%7D(s)"
+    },
+    {
+      "source": "docs/README_Irreversibility_Aware_Planning results.md",
+      "target": "https://latex.codecogs.com/svg.image?J(%5Cpi)=%5Csum%20c(s)%2B%5Clambda%5Csum%20I(s)"
+    },
+    {
+      "source": "lidar_ros2/readme",
+      "target": "../README.md"
+    },
+    {
+      "source": "paper/README.md",
+      "target": "../README.md"
+    },
+    {
+      "source": "paper/README.md",
+      "target": "../docs/EVALUATION_PROTOCOL.md"
+    },
+    {
+      "source": "paper/README.md",
+      "target": "../docs/REPOSITORY_AUDIT.md"
+    },
+    {
+      "source": "paper/README.md",
+      "target": "../results/README.md"
+    },
+    {
+      "source": "README.md",
+      "target": "LICENSE"
+    },
+    {
+      "source": "README.md",
+      "target": "app/README.md"
+    },
+    {
+      "source": "README.md",
+      "target": "contributions/CONTRIBUTIONS_README.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/CONTRIBUTION_FEATURE_CATALOG.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/DYNNAV_RESEARCHER_ARCHITECTURE.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/DYNNAV_V2_RESEARCH_ROADMAP.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/README.md"
+    },
+    {
+      "source": "README.md",
+      "target": "https://github.com/panagiotagrosdouli/DynNav/actions/workflows/ci.yml/badge.svg"
+    },
+    {
+      "source": "README.md",
+      "target": "https://img.shields.io/badge/License-Apache--2.0-4C1.svg"
+    },
+    {
+      "source": "README.md",
+      "target": "https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white"
+    },
+    {
+      "source": "README_GR.md",
+      "target": "README.md"
+    },
+    {
+      "source": "README_GR.md",
+      "target": "docs/CONTRIBUTION_FEATURE_CATALOG.md"
+    },
+    {
+      "source": "README_GR.md",
+      "target": "docs/DYNNAV_V2_RESEARCH_ROADMAP.md"
+    },
+    {
+      "source": "README_GR.md",
+      "target": "docs/README.md"
+    },
+    {
+      "source": "README_GR.md",
+      "target": "https://github.com/panagiotagrosdouli/DynNav/actions/workflows/ci.yml/badge.svg"
+    },
+    {
+      "source": "README_GR.md",
+      "target": "https://img.shields.io/badge/License-Apache--2.0-4C1.svg"
+    },
+    {
+      "source": "README_GR.md",
+      "target": "https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white"
+    },
+    {
+      "source": "README_GREEK.md",
+      "target": "README.md"
+    },
+    {
+      "source": "README_GREEK.md",
+      "target": "README_GR.md"
+    },
+    {
+      "source": "README_GREEK.md",
+      "target": "assets/readme/dynnav_living_map.svg"
+    },
+    {
+      "source": "READMEbig.md",
+      "target": "README.md"
+    },
+    {
+      "source": "READMEbig.md",
+      "target": "contributions/CONTRIBUTIONS_README.md"
+    },
+    {
+      "source": "READMEbig.md",
+      "target": "docs/"
+    },
+    {
+      "source": "READMEbig.md",
+      "target": "docs/EVALUATION_PROTOCOL.md"
+    },
+    {
+      "source": "READMEbig.md",
+      "target": "docs/MATHEMATICAL_FORMULATION.md"
+    },
+    {
+      "source": "READMEbig.md",
+      "target": "docs/README.md"
+    },
+    {
+      "source": "READMEbig.md",
+      "target": "docs/REPOSITORY_AUDIT.md"
+    },
+    {
+      "source": "READMEbig.md",
+      "target": "docs/REPRODUCIBILITY.md"
+    },
+    {
+      "source": "READMEbig.md",
+      "target": "docs/RESEARCH_OVERVIEW.md"
+    },
+    {
+      "source": "READMEbig.md",
+      "target": "paper/README.md"
+    },
+    {
+      "source": "results/README.md",
+      "target": "../README.md"
+    },
+    {
+      "source": "results/README.md",
+      "target": "../assets/README.md"
+    },
+    {
+      "source": "results/README.md",
+      "target": "../docs/EVALUATION_PROTOCOL.md"
+    },
+    {
+      "source": "results/README.md",
+      "target": "../docs/REPRODUCIBILITY.md"
+    },
+    {
+      "source": "ros2_ws/lidar_slam_tb3/readme",
+      "target": "../../README.md"
+    },
+    {
+      "source": "scripts/README.md",
+      "target": "../README.md"
+    },
+    {
+      "source": "scripts/README.md",
+      "target": "../assets/README.md"
+    },
+    {
+      "source": "scripts/README.md",
+      "target": "../configs/README.md"
+    },
+    {
+      "source": "scripts/README.md",
+      "target": "../docs/REPRODUCIBILITY.md"
+    },
+    {
+      "source": "scripts/README.md",
+      "target": "../results/README.md"
+    },
+    {
+      "source": "scripts/README.md",
+      "target": "../tests/README.md"
+    },
+    {
+      "source": "src/dynnav/README.md",
+      "target": "../../README.md"
+    },
+    {
+      "source": "src/dynnav/README.md",
+      "target": "../../docs/MATHEMATICAL_FORMULATION.md"
+    },
+    {
+      "source": "src/dynnav/README.md",
+      "target": "../../docs/REPOSITORY_AUDIT.md"
+    },
+    {
+      "source": "src/dynnav/README.md",
+      "target": "../../pyproject.toml"
+    },
+    {
+      "source": "src/README.md",
+      "target": "../README.md"
+    },
+    {
+      "source": "src/README.md",
+      "target": "../docs/SYSTEM_ARCHITECTURE.md"
+    },
+    {
+      "source": "src/README.md",
+      "target": "../pyproject.toml"
+    },
+    {
+      "source": "src/README.md",
+      "target": "dynnav/"
+    },
+    {
+      "source": "src/README.md",
+      "target": "dynnav/README.md"
+    },
+    {
+      "source": "tests/README.md",
+      "target": "../.github/workflows/ci.yml"
+    },
+    {
+      "source": "tests/README.md",
+      "target": "../README.md"
+    },
+    {
+      "source": "tests/README.md",
+      "target": "../docs/EVALUATION_PROTOCOL.md"
+    },
+    {
+      "source": "tests/README.md",
+      "target": "../docs/REPOSITORY_AUDIT.md"
+    },
+    {
+      "source": "website/README.md",
+      "target": "../README.md"
+    },
+    {
+      "source": "website/README.md",
+      "target": "../assets/README.md"
+    },
+    {
+      "source": "website/README.md",
+      "target": "../docs/README.md"
+    },
+    {
+      "source": "website/README.md",
+      "target": "../results/README.md"
+    },
+    {
+      "source": "website/README.md",
+      "target": "package.json"
+    }
+  ],
+  "findings": [],
+  "nodes": [
+    ".github/ISSUE_TEMPLATE/benchmark_result.md",
+    ".github/ISSUE_TEMPLATE/research_module_upgrade.md",
+    ".pytest_cache/README.md",
+    "app/README.md",
+    "assets/contributions/README.md",
+    "assets/README.md",
+    "assets/styleguide/README.md",
+    "AUDIT.md",
+    "benchmarks/dynamic_self_aware_astar/RANDOMIZED_DYNAMIC_README.md",
+    "benchmarks/dynamic_self_aware_astar/README.md",
+    "benchmarks/fragile_commitment/README.md",
+    "benchmarks/README.md",
+    "benchmarks/self_aware_astar/PLOTTING_README.md",
+    "benchmarks/self_aware_astar/RANDOMIZED_ABLATION_README.md",
+    "benchmarks/self_aware_astar/README.md",
+    "benchmarks/self_aware_astar/STATISTICAL_EVALUATION_README.md",
+    "benchmarks/self_aware_navigation/README.md",
+    "BLOCKERS.md",
+    "CODE_OF_CONDUCT.md",
+    "configs/README.md",
+    "CONTRIBUTING.md",
+    "contributions/01_learned_astar/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/01_learned_astar/README.md",
+    "contributions/01_learned_astar/README_GR.md",
+    "contributions/02_uncertainty_calibration/CLAIMS_EVIDENCE.md",
+    "contributions/02_uncertainty_calibration/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/02_uncertainty_calibration/README.md",
+    "contributions/02_uncertainty_calibration/readmegr.md",
+    "contributions/02_uncertainty_calibration/results/uncertainty_calibration_summary.md",
+    "contributions/03_belief_risk_planning/CLAIMS_EVIDENCE.md",
+    "contributions/03_belief_risk_planning/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/03_belief_risk_planning/README.md",
+    "contributions/03_belief_risk_planning/README_GR.md",
+    "contributions/03_belief_risk_planning/readmegr.md",
+    "contributions/03_belief_risk_planning/results/c03_belief_risk_summary.md",
+    "contributions/04_irreversibility_returnability/CLAIMS_EVIDENCE.md",
+    "contributions/04_irreversibility_returnability/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/04_irreversibility_returnability/README.md",
+    "contributions/04_irreversibility_returnability/README_GR.md",
+    "contributions/04_irreversibility_returnability/readmegr.md",
+    "contributions/04_irreversibility_returnability/results/c04_returnability_summary.md",
+    "contributions/05_safe_mode_navigation/CLAIMS_EVIDENCE.md",
+    "contributions/05_safe_mode_navigation/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/05_safe_mode_navigation/README.md",
+    "contributions/05_safe_mode_navigation/README_GR.md",
+    "contributions/05_safe_mode_navigation/results/c05_safe_mode_summary.md",
+    "contributions/06_energy_connectivity/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/06_energy_connectivity/README.md",
+    "contributions/06_energy_connectivity/README_GR.md",
+    "contributions/06_energy_connectivity/results/c06_energy_connectivity_summary.md",
+    "contributions/07_nbv_exploration/results/c07_nbv_summary.md",
+    "contributions/07_next_best_view/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/07_next_best_view/README.md",
+    "contributions/07_next_best_view/README_GR.md",
+    "contributions/08_security_ids/AUDIT.md",
+    "contributions/08_security_ids/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/08_security_ids/README.md",
+    "contributions/08_security_ids/results/c08_security_ids_summary.md",
+    "contributions/09_multi_robot/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/09_multi_robot/README.md",
+    "contributions/10_human_language_ethics/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/10_human_language_ethics/README.md",
+    "contributions/10_human_language_ethics/results/c10_language_ethics_summary.md",
+    "contributions/11_vlm_navigation_agent/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/11_vlm_navigation_agent/README.md",
+    "contributions/11_vlm_navigation_agent/results/c11_vlm_navigation_summary.md",
+    "contributions/12_diffusion_occupancy/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/12_diffusion_occupancy/README.md",
+    "contributions/13_latent_world_model/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/13_latent_world_model/README.md",
+    "contributions/14_causal_risk_attribution/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/14_causal_risk_attribution/README.md",
+    "contributions/15_neuromorphic_sensing/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/15_neuromorphic_sensing/README.md",
+    "contributions/16_federated_nav_learning/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/16_federated_nav_learning/README.md",
+    "contributions/17_topological_semantic_maps/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/17_topological_semantic_maps/README.md",
+    "contributions/18_formal_safety_shields/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/18_formal_safety_shields/README.md",
+    "contributions/19_llm_mission_planner/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/19_llm_mission_planner/README.md",
+    "contributions/20_multimodal_failure_explainer/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/20_multimodal_failure_explainer/README.md",
+    "contributions/21_ppo_navigation_agent/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/21_ppo_navigation_agent/README.md",
+    "contributions/22_curriculum_rl/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/22_curriculum_rl/README.md",
+    "contributions/23_gaussian_splatting_mapper/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/23_gaussian_splatting_mapper/README.md",
+    "contributions/24_nerf_uncertainty/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/24_nerf_uncertainty/README.md",
+    "contributions/25_adversarial_attack_simulator/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/25_adversarial_attack_simulator/README.md",
+    "contributions/26_swarm_consensus/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/26_swarm_consensus/README.md",
+    "contributions/27_Recoverability_Theory/README.md",
+    "contributions/CONTRIBUTIONS_README.md",
+    "contributions/hybrid_learned_astar/README.md",
+    "contributions/learned_uncertainty_astar/experiments/README.md",
+    "contributions/README.md",
+    "docs/Abstract_and_Contributions.md",
+    "docs/AUTONOMOUS_REPAIR_AUDIT.md",
+    "docs/BENCHMARK_PROTOCOL.md",
+    "docs/BENCHMARK_RESULTS_SUMMARY.md",
+    "docs/CLAIMS_EVIDENCE.md",
+    "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+    "docs/CONTRIBUTION_FEATURE_CATALOG.md",
+    "docs/CONTRIBUTION_INDEX.md",
+    "docs/CONTRIBUTION_MATURITY_MATRIX.md",
+    "docs/CONTRIBUTION_READINESS_CHECKLIST.md",
+    "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+    "docs/DYNNAV_RESEARCHER_ARCHITECTURE.md",
+    "docs/DYNNAV_V2_RESEARCH_ROADMAP.md",
+    "docs/ENGINEERING_AND_SCIENTIFIC_AUDIT.md",
+    "docs/EVALUATION_PROTOCOL.md",
+    "docs/Frontier-Restricted NBV Benchmark.md",
+    "docs/Human Preference\u2013Aware Risk Navigation.md",
+    "docs/Irreversibility_Aware_Navigation_New_Contribution.md",
+    "docs/MAPPING.md",
+    "docs/MARKDOWN_AUDIT.md",
+    "docs/MARKDOWN_STYLE_GUIDE.md",
+    "docs/MATHEMATICAL_FORMULATION.md",
+    "docs/Multi-Robot Safe Mode Navigation under Uncertainty.md",
+    "docs/NAVIGATION_PIPELINE.md",
+    "docs/PRESENTATION_GUIDE.md",
+    "docs/Proposition_Irreversibility_vs_Risk_Weighting.md",
+    "docs/README Irreversibility-Aware Navigation Planning.md",
+    "docs/README Self-Healing Navigation & Language-Driven Safety.md",
+    "docs/README-large info.md",
+    "docs/README.md",
+    "docs/README_Energy_Connectivity_SafeMode.md",
+    "docs/README_Innovation-Based_IDS_for_UKF_Sensor_Fusion.md",
+    "docs/README_Irreversibility_Aware_Planning results.md",
+    "docs/README_LAB_GRADE_UPGRADE.md",
+    "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "docs/README_safe_mode_experiments.md",
+    "docs/README_TF_Attack_Aware_IDS.md",
+    "docs/README_trust_navigation.md",
+    "docs/READMEResults: Self-Healing + Language Safety + Trust + Ethical Navigation.md",
+    "docs/REPOSITORY_AUDIT.md",
+    "docs/REPRODUCIBILITY.md",
+    "docs/RESEARCH_CONTRIBUTION.md",
+    "docs/RESEARCH_FOCUS.md",
+    "docs/RESEARCH_OVERVIEW.md",
+    "docs/Returnability- & Irreversibility-Aware Frontier NBV.md",
+    "docs/RISK_ESTIMATION.md",
+    "docs/ROADMAP.md",
+    "docs/ROS2_NAV2_INTEGRATION.md",
+    "docs/SelfHealing_LanguageSafety_README.md",
+    "docs/SYSTEM_ARCHITECTURE.md",
+    "docs/UNCERTAINTY_MODEL.md",
+    "lidar_ros2/readme",
+    "lidar_ros2/README (4).md",
+    "paper/abstract.md",
+    "paper/contributions.md",
+    "paper/dynnav_r/README.md",
+    "paper/future_work.md",
+    "paper/LITERATURE_GAP_ANALYSIS.md",
+    "paper/MANUSCRIPT_DRAFT.md",
+    "paper/README.md",
+    "paper/RECOVERABILITY_METRIC.md",
+    "paper/RESEARCH_PLAN.md",
+    "pytest-of-root/pytest-0/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-0/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-0/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "README.md",
+    "readme_full.md",
+    "README_GR.md",
+    "README_GREEK.md",
+    "READMEbig.md",
+    "RELEASE_NOTES.md",
+    "REPRODUCIBILITY_REPORT.md",
+    "research_experiments/trust_aware_cvar/paper/paper.md",
+    "research_experiments/trust_aware_cvar/README.md",
+    "results/README.md",
+    "ros2_ws/lidar_slam_tb3/readme",
+    "ros2_ws/lidar_slam_tb3/README (4).md",
+    "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "ros2_ws/src/dynnav_nav2/docs/NAV2_PLUGIN_ARCHITECTURE.md",
+    "ros2_ws/src/dynnav_nav2/docs/OCCUPANCY_GRID_CONVERSION.md",
+    "ros2_ws/src/dynnav_nav2/docs/PLANNING_REQUEST_INTERFACE.md",
+    "ros2_ws/src/dynnav_nav2/README.md",
+    "ros2_ws/src/dynnav_nav2_cpp/README.md",
+    "scripts/README.md",
+    "SECURITY.md",
+    "src/dynnav/README.md",
+    "src/README.md",
+    "STATUS.yaml",
+    "tests/README.md",
+    "website/README.md",
+    "WORK_LOG.md"
+  ],
+  "orphans": [
+    ".github/ISSUE_TEMPLATE/benchmark_result.md",
+    ".github/ISSUE_TEMPLATE/research_module_upgrade.md",
+    ".pytest_cache/README.md",
+    "AUDIT.md",
+    "BLOCKERS.md",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
+    "README_GREEK.md",
+    "READMEbig.md",
+    "RELEASE_NOTES.md",
+    "REPRODUCIBILITY_REPORT.md",
+    "SECURITY.md",
+    "STATUS.yaml",
+    "WORK_LOG.md",
+    "assets/contributions/README.md",
+    "benchmarks/README.md",
+    "benchmarks/dynamic_self_aware_astar/RANDOMIZED_DYNAMIC_README.md",
+    "benchmarks/dynamic_self_aware_astar/README.md",
+    "benchmarks/fragile_commitment/README.md",
+    "benchmarks/self_aware_astar/PLOTTING_README.md",
+    "benchmarks/self_aware_astar/RANDOMIZED_ABLATION_README.md",
+    "benchmarks/self_aware_astar/README.md",
+    "benchmarks/self_aware_astar/STATISTICAL_EVALUATION_README.md",
+    "benchmarks/self_aware_navigation/README.md",
+    "contributions/01_learned_astar/README_GR.md",
+    "contributions/01_learned_astar/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/02_uncertainty_calibration/CLAIMS_EVIDENCE.md",
+    "contributions/02_uncertainty_calibration/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/02_uncertainty_calibration/readmegr.md",
+    "contributions/02_uncertainty_calibration/results/uncertainty_calibration_summary.md",
+    "contributions/03_belief_risk_planning/CLAIMS_EVIDENCE.md",
+    "contributions/03_belief_risk_planning/README_GR.md",
+    "contributions/03_belief_risk_planning/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/03_belief_risk_planning/readmegr.md",
+    "contributions/03_belief_risk_planning/results/c03_belief_risk_summary.md",
+    "contributions/04_irreversibility_returnability/CLAIMS_EVIDENCE.md",
+    "contributions/04_irreversibility_returnability/README_GR.md",
+    "contributions/04_irreversibility_returnability/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/04_irreversibility_returnability/readmegr.md",
+    "contributions/04_irreversibility_returnability/results/c04_returnability_summary.md",
+    "contributions/05_safe_mode_navigation/CLAIMS_EVIDENCE.md",
+    "contributions/05_safe_mode_navigation/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/05_safe_mode_navigation/results/c05_safe_mode_summary.md",
+    "contributions/06_energy_connectivity/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/06_energy_connectivity/results/c06_energy_connectivity_summary.md",
+    "contributions/07_nbv_exploration/results/c07_nbv_summary.md",
+    "contributions/07_next_best_view/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/08_security_ids/AUDIT.md",
+    "contributions/08_security_ids/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/08_security_ids/results/c08_security_ids_summary.md",
+    "contributions/09_multi_robot/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/10_human_language_ethics/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/10_human_language_ethics/results/c10_language_ethics_summary.md",
+    "contributions/11_vlm_navigation_agent/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/11_vlm_navigation_agent/results/c11_vlm_navigation_summary.md",
+    "contributions/12_diffusion_occupancy/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/13_latent_world_model/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/14_causal_risk_attribution/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/15_neuromorphic_sensing/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/16_federated_nav_learning/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/17_topological_semantic_maps/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/18_formal_safety_shields/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/19_llm_mission_planner/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/20_multimodal_failure_explainer/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/21_ppo_navigation_agent/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/22_curriculum_rl/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/23_gaussian_splatting_mapper/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/24_nerf_uncertainty/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/25_adversarial_attack_simulator/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/26_swarm_consensus/docs/SCIENTIFIC_UPGRADE.md",
+    "contributions/27_Recoverability_Theory/README.md",
+    "contributions/README.md",
+    "contributions/hybrid_learned_astar/README.md",
+    "contributions/learned_uncertainty_astar/experiments/README.md",
+    "docs/AUTONOMOUS_REPAIR_AUDIT.md",
+    "docs/Abstract_and_Contributions.md",
+    "docs/BENCHMARK_PROTOCOL.md",
+    "docs/BENCHMARK_RESULTS_SUMMARY.md",
+    "docs/CLAIMS_EVIDENCE.md",
+    "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+    "docs/CONTRIBUTION_INDEX.md",
+    "docs/CONTRIBUTION_MATURITY_MATRIX.md",
+    "docs/CONTRIBUTION_READINESS_CHECKLIST.md",
+    "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+    "docs/ENGINEERING_AND_SCIENTIFIC_AUDIT.md",
+    "docs/Frontier-Restricted NBV Benchmark.md",
+    "docs/Human Preference\u2013Aware Risk Navigation.md",
+    "docs/Irreversibility_Aware_Navigation_New_Contribution.md",
+    "docs/MAPPING.md",
+    "docs/Multi-Robot Safe Mode Navigation under Uncertainty.md",
+    "docs/PRESENTATION_GUIDE.md",
+    "docs/README Irreversibility-Aware Navigation Planning.md",
+    "docs/README Self-Healing Navigation & Language-Driven Safety.md",
+    "docs/README-large info.md",
+    "docs/READMEResults: Self-Healing + Language Safety + Trust + Ethical Navigation.md",
+    "docs/README_Energy_Connectivity_SafeMode.md",
+    "docs/README_Innovation-Based_IDS_for_UKF_Sensor_Fusion.md",
+    "docs/README_Irreversibility_Aware_Planning results.md",
+    "docs/README_LAB_GRADE_UPGRADE.md",
+    "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "docs/README_TF_Attack_Aware_IDS.md",
+    "docs/README_safe_mode_experiments.md",
+    "docs/README_trust_navigation.md",
+    "docs/RESEARCH_CONTRIBUTION.md",
+    "docs/RESEARCH_FOCUS.md",
+    "docs/ROADMAP.md",
+    "docs/ROS2_NAV2_INTEGRATION.md",
+    "docs/Returnability- & Irreversibility-Aware Frontier NBV.md",
+    "docs/SelfHealing_LanguageSafety_README.md",
+    "lidar_ros2/README (4).md",
+    "lidar_ros2/readme",
+    "paper/LITERATURE_GAP_ANALYSIS.md",
+    "paper/MANUSCRIPT_DRAFT.md",
+    "paper/RECOVERABILITY_METRIC.md",
+    "paper/RESEARCH_PLAN.md",
+    "paper/abstract.md",
+    "paper/contributions.md",
+    "paper/dynnav_r/README.md",
+    "paper/future_work.md",
+    "pytest-of-root/pytest-0/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-0/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-0/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "readme_full.md",
+    "research_experiments/trust_aware_cvar/README.md",
+    "research_experiments/trust_aware_cvar/paper/paper.md",
+    "ros2_ws/lidar_slam_tb3/README (4).md",
+    "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "ros2_ws/lidar_slam_tb3/readme",
+    "ros2_ws/src/dynnav_nav2/README.md",
+    "ros2_ws/src/dynnav_nav2/docs/NAV2_PLUGIN_ARCHITECTURE.md",
+    "ros2_ws/src/dynnav_nav2/docs/OCCUPANCY_GRID_CONVERSION.md",
+    "ros2_ws/src/dynnav_nav2/docs/PLANNING_REQUEST_INTERFACE.md",
+    "ros2_ws/src/dynnav_nav2_cpp/README.md",
+    "src/README.md",
+    "website/README.md"
+  ]
+}

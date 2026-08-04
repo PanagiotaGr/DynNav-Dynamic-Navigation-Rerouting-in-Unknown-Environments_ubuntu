@@ -6,6 +6,22 @@ __pycache__/
 
 # Virtual environment
 venv/
+.venv/
+
+# Web applications
+node_modules/
+.next/
+*.tsbuildinfo
+
+# Local researcher execution artifacts
+artifacts/researcher/
+
+# Local verification and test outputs
+.coverage
+pytest-of-root/
+pip-*/
+assets/figures/
+assets/gifs/
 
 # Editor configs
 .vscode/

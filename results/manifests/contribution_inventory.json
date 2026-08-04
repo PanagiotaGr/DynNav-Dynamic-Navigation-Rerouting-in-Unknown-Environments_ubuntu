@@ -1,0 +1,464 @@
+{
+  "schema_version": 1,
+  "contributions": [
+    {
+      "id": "C01",
+      "slug": "learned_astar",
+      "title": "Learned A* Search",
+      "category": "planning",
+      "status": "Research Prototype",
+      "directory": "contributions/01_learned_astar",
+      "integrates_with": [
+        "C03",
+        "C04",
+        "C05"
+      ],
+      "readme": "contributions/01_learned_astar/README.md",
+      "readme_gr": "contributions/01_learned_astar/README_GR.md",
+      "renderer": "src/dynnav_dashboard/contributions/c01_learned_astar.py",
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C02",
+      "slug": "uncertainty_estimation",
+      "title": "Uncertainty Calibration",
+      "category": "uncertainty",
+      "status": "Research Prototype",
+      "directory": "contributions/02_uncertainty_calibration",
+      "integrates_with": [
+        "C03",
+        "C12",
+        "C24"
+      ],
+      "readme": "contributions/02_uncertainty_calibration/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C03",
+      "slug": "risk_aware_astar",
+      "title": "Belief and Risk Planning",
+      "category": "planning",
+      "status": "Research Prototype",
+      "directory": "contributions/03_belief_risk_planning",
+      "integrates_with": [
+        "C04",
+        "C05"
+      ],
+      "readme": "contributions/03_belief_risk_planning/README.md",
+      "readme_gr": "contributions/03_belief_risk_planning/README_GR.md",
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C04",
+      "slug": "returnability",
+      "title": "Irreversibility and Returnability",
+      "category": "safety",
+      "status": "Research Prototype",
+      "directory": "contributions/04_irreversibility_returnability",
+      "integrates_with": [
+        "C05"
+      ],
+      "readme": "contributions/04_irreversibility_returnability/README.md",
+      "readme_gr": "contributions/04_irreversibility_returnability/README_GR.md",
+      "renderer": "src/dynnav_dashboard/contributions/c04_returnability.py",
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C05",
+      "slug": "safe_mode_supervisor",
+      "title": "Safe-Mode Navigation",
+      "category": "safety",
+      "status": "Research Prototype",
+      "directory": "contributions/05_safe_mode_navigation",
+      "integrates_with": [],
+      "readme": "contributions/05_safe_mode_navigation/README.md",
+      "readme_gr": "contributions/05_safe_mode_navigation/README_GR.md",
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C06",
+      "slug": "energy_connectivity",
+      "title": "Energy and Connectivity",
+      "category": "resources",
+      "status": "Research Prototype",
+      "directory": "contributions/06_energy_connectivity",
+      "integrates_with": [
+        "C05",
+        "C07"
+      ],
+      "readme": "contributions/06_energy_connectivity/README.md",
+      "readme_gr": "contributions/06_energy_connectivity/README_GR.md",
+      "renderer": "src/dynnav_dashboard/contributions/c06_energy_connectivity.py",
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C07",
+      "slug": "safe_next_best_view",
+      "title": "Next-Best View",
+      "category": "active_perception",
+      "status": "Research Prototype",
+      "directory": "contributions/07_next_best_view",
+      "integrates_with": [
+        "C03",
+        "C06"
+      ],
+      "readme": "contributions/07_next_best_view/README.md",
+      "readme_gr": "contributions/07_next_best_view/README_GR.md",
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C08",
+      "slug": "security_ids",
+      "title": "Security IDS",
+      "category": "security",
+      "status": "Experimental",
+      "directory": "contributions/08_security_ids",
+      "integrates_with": [
+        "C05",
+        "C14",
+        "C25"
+      ],
+      "readme": "contributions/08_security_ids/README.md",
+      "readme_gr": null,
+      "renderer": "src/dynnav_dashboard/contributions/c08_security_ids.py",
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C09",
+      "slug": "multi_robot_navigation",
+      "title": "Multi-Robot Navigation",
+      "category": "multi_robot",
+      "status": "Experimental",
+      "directory": "contributions/09_multi_robot",
+      "integrates_with": [
+        "C16",
+        "C26"
+      ],
+      "readme": "contributions/09_multi_robot/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C10",
+      "slug": "human_language_ethics",
+      "title": "Human, Language, and Ethics",
+      "category": "human_robot_interaction",
+      "status": "Experimental",
+      "directory": "contributions/10_human_language_ethics",
+      "integrates_with": [
+        "C19",
+        "C20"
+      ],
+      "readme": "contributions/10_human_language_ethics/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C11",
+      "slug": "vlm_navigation_agent",
+      "title": "VLM Navigation Agent",
+      "category": "multimodal_learning",
+      "status": "Experimental",
+      "directory": "contributions/11_vlm_navigation_agent",
+      "integrates_with": [
+        "C19",
+        "C20"
+      ],
+      "readme": "contributions/11_vlm_navigation_agent/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C12",
+      "slug": "diffusion_occupancy",
+      "title": "Diffusion Occupancy",
+      "category": "prediction",
+      "status": "Experimental",
+      "directory": "contributions/12_diffusion_occupancy",
+      "integrates_with": [
+        "C02",
+        "C03"
+      ],
+      "readme": "contributions/12_diffusion_occupancy/README.md",
+      "readme_gr": null,
+      "renderer": "src/dynnav_dashboard/contributions/c12_diffusion_occupancy.py",
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C13",
+      "slug": "latent_world_model",
+      "title": "Latent World Model",
+      "category": "world_models",
+      "status": "Experimental",
+      "directory": "contributions/13_latent_world_model",
+      "integrates_with": [
+        "C03",
+        "C21"
+      ],
+      "readme": "contributions/13_latent_world_model/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C14",
+      "slug": "causal_risk_attribution",
+      "title": "Causal Risk Attribution",
+      "category": "explainability",
+      "status": "Experimental",
+      "directory": "contributions/14_causal_risk_attribution",
+      "integrates_with": [
+        "C05",
+        "C20"
+      ],
+      "readme": "contributions/14_causal_risk_attribution/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C15",
+      "slug": "neuromorphic_sensing",
+      "title": "Neuromorphic Sensing",
+      "category": "perception",
+      "status": "Experimental",
+      "directory": "contributions/15_neuromorphic_sensing",
+      "integrates_with": [
+        "C02"
+      ],
+      "readme": "contributions/15_neuromorphic_sensing/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C16",
+      "slug": "federated_navigation_learning",
+      "title": "Federated Navigation Learning",
+      "category": "distributed_learning",
+      "status": "Experimental",
+      "directory": "contributions/16_federated_nav_learning",
+      "integrates_with": [
+        "C09",
+        "C26"
+      ],
+      "readme": "contributions/16_federated_nav_learning/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C17",
+      "slug": "topological_semantic_maps",
+      "title": "Topological Semantic Maps",
+      "category": "mapping",
+      "status": "Experimental",
+      "directory": "contributions/17_topological_semantic_maps",
+      "integrates_with": [
+        "C19"
+      ],
+      "readme": "contributions/17_topological_semantic_maps/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C18",
+      "slug": "formal_safety_shields",
+      "title": "Formal Safety Shields",
+      "category": "formal_methods",
+      "status": "Experimental",
+      "directory": "contributions/18_formal_safety_shields",
+      "integrates_with": [
+        "C05"
+      ],
+      "readme": "contributions/18_formal_safety_shields/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C19",
+      "slug": "llm_mission_planner",
+      "title": "LLM Mission Planner",
+      "category": "language_planning",
+      "status": "Documentation Concept",
+      "directory": "contributions/19_llm_mission_planner",
+      "integrates_with": [
+        "C05",
+        "C20"
+      ],
+      "readme": "contributions/19_llm_mission_planner/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C20",
+      "slug": "multimodal_failure_explainer",
+      "title": "Multimodal Failure Explainer",
+      "category": "explainability",
+      "status": "Experimental",
+      "directory": "contributions/20_multimodal_failure_explainer",
+      "integrates_with": [],
+      "readme": "contributions/20_multimodal_failure_explainer/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C21",
+      "slug": "ppo_navigation_agent",
+      "title": "PPO Navigation Agent",
+      "category": "reinforcement_learning",
+      "status": "Experimental",
+      "directory": "contributions/21_ppo_navigation_agent",
+      "integrates_with": [
+        "C22"
+      ],
+      "readme": "contributions/21_ppo_navigation_agent/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C22",
+      "slug": "curriculum_rl",
+      "title": "Curriculum RL",
+      "category": "reinforcement_learning",
+      "status": "Experimental",
+      "directory": "contributions/22_curriculum_rl",
+      "integrates_with": [
+        "C21"
+      ],
+      "readme": "contributions/22_curriculum_rl/README.md",
+      "readme_gr": null,
+      "renderer": "src/dynnav_dashboard/contributions/c22_curriculum_rl.py",
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C23",
+      "slug": "gaussian_splatting_mapper",
+      "title": "Gaussian Splatting Mapper",
+      "category": "neural_mapping",
+      "status": "Documentation Concept",
+      "directory": "contributions/23_gaussian_splatting_mapper",
+      "integrates_with": [
+        "C03"
+      ],
+      "readme": "contributions/23_gaussian_splatting_mapper/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C24",
+      "slug": "nerf_uncertainty",
+      "title": "NeRF Uncertainty",
+      "category": "neural_mapping",
+      "status": "Documentation Concept",
+      "directory": "contributions/24_nerf_uncertainty",
+      "integrates_with": [
+        "C02",
+        "C03"
+      ],
+      "readme": "contributions/24_nerf_uncertainty/README.md",
+      "readme_gr": null,
+      "renderer": "src/dynnav_dashboard/contributions/c24_nerf_uncertainty.py",
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C25",
+      "slug": "adversarial_attack_simulator",
+      "title": "Adversarial Attack Simulator",
+      "category": "security",
+      "status": "Experimental",
+      "directory": "contributions/25_adversarial_attack_simulator",
+      "integrates_with": [
+        "C08",
+        "C05"
+      ],
+      "readme": "contributions/25_adversarial_attack_simulator/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    },
+    {
+      "id": "C26",
+      "slug": "swarm_consensus",
+      "title": "Swarm Consensus",
+      "category": "multi_robot",
+      "status": "Experimental",
+      "directory": "contributions/26_swarm_consensus",
+      "integrates_with": [
+        "C09",
+        "C16",
+        "C05"
+      ],
+      "readme": "contributions/26_swarm_consensus/README.md",
+      "readme_gr": null,
+      "renderer": null,
+      "directory_exists": true,
+      "blockers": [],
+      "validation_status": "registry_validated"
+    }
+  ]
+}

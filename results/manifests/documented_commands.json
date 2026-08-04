@@ -1,0 +1,1970 @@
+[
+  {
+    "classification": "required and executable",
+    "command": "python -m pip install -e \".[dashboard,dev]\"",
+    "document": "app/README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "streamlit run app/dashboard.py",
+    "document": "app/README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "streamlit run app/dashboard.py --server.headless true --server.address 0.0.0.0 --server.port 8501",
+    "document": "app/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "docker build -t dynnav-streamlit .",
+    "document": "app/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "docker run --rm -p 8501:8501 dynnav-streamlit",
+    "document": "app/README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "mkdir -p results",
+    "document": "app/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "docker run --rm -p 8501:8501 -v \"$(pwd)/results:/workspace/results\" dynnav-streamlit",
+    "document": "app/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/validate_streamlit_app.py",
+    "document": "app/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest tests/test_streamlit_lab_smoke.py",
+    "document": "app/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest",
+    "document": "app/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m pip install -e \".[dashboard]\"",
+    "document": "app/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/validate_streamlit_app.py",
+    "document": "app/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "docker logs <container-name-or-id>",
+    "document": "app/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/generate_research_assets.py",
+    "document": "assets/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/make_demo_gif.py",
+    "document": "assets/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest",
+    "document": "AUDIT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_all.py --config configs/default.yaml --smoke --out-dir results/ci_smoke",
+    "document": "AUDIT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_benchmarks.py --config configs/default.yaml --smoke --out-dir results/ci_benchmarks",
+    "document": "AUDIT.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "find . -type f -iname 'README*' | sort",
+    "document": "AUDIT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "docker build -t dynnav .",
+    "document": "AUDIT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "docker run --rm dynnav",
+    "document": "AUDIT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/dynamic_self_aware_astar/randomized_dynamic_benchmark.py --seeds 50",
+    "document": "benchmarks/dynamic_self_aware_astar/RANDOMIZED_DYNAMIC_README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/dynamic_self_aware_astar/run_dynamic_demo.py",
+    "document": "benchmarks/dynamic_self_aware_astar/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/fragile_commitment/validate_counterexample.py --seeds 100",
+    "document": "benchmarks/fragile_commitment/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/fragile_commitment/benchmark.py --seeds 100 --output results.csv",
+    "document": "benchmarks/fragile_commitment/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/fragile_commitment/statistical_analysis.py results.csv --summary-csv summary.csv --markdown summary.md",
+    "document": "benchmarks/fragile_commitment/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/fragile_commitment/random_benchmark.py --seeds 100 --output random_topology_results.csv",
+    "document": "benchmarks/fragile_commitment/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/fragile_commitment/random_benchmark.py --families bottleneck culdesac --seeds 250 --output focused_results.csv",
+    "document": "benchmarks/fragile_commitment/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/fragile_commitment/paired_tests.py random_topology_results.csv --baseline risk_only --candidate recoverability_aware --output-csv paired_tests.csv --markdown paired_tests.md",
+    "document": "benchmarks/fragile_commitment/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/fragile_commitment/paper_figures.py random_topology_results.csv --output-dir paper/figures/fragile_commitment --format pdf",
+    "document": "benchmarks/fragile_commitment/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python tools/generate_benchmark_summary.py --results 'results/**/*.csv' --output docs/BENCHMARK_RESULTS_SUMMARY.md",
+    "document": "benchmarks/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/self_aware_astar/randomized_ablation_benchmark.py --seeds 50",
+    "document": "benchmarks/self_aware_astar/PLOTTING_README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/self_aware_astar/statistical_analysis.py --bootstrap 1000",
+    "document": "benchmarks/self_aware_astar/PLOTTING_README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/self_aware_astar/plot_randomized_results.py",
+    "document": "benchmarks/self_aware_astar/PLOTTING_README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "pip install matplotlib",
+    "document": "benchmarks/self_aware_astar/PLOTTING_README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/self_aware_astar/randomized_ablation_benchmark.py --seeds 50",
+    "document": "benchmarks/self_aware_astar/RANDOMIZED_ABLATION_README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/self_aware_astar/compare_astar.py",
+    "document": "benchmarks/self_aware_astar/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/self_aware_astar/randomized_ablation_benchmark.py --seeds 50",
+    "document": "benchmarks/self_aware_astar/STATISTICAL_EVALUATION_README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/self_aware_astar/statistical_analysis.py --input results/self_aware_astar_randomized_ablation.csv --report results/self_aware_astar_statistical_report.md --bootstrap 1000",
+    "document": "benchmarks/self_aware_astar/STATISTICAL_EVALUATION_README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python benchmarks/self_aware_navigation/run_self_aware_demo.py",
+    "document": "benchmarks/self_aware_navigation/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_all.py --config configs/default.yaml --smoke --out-dir results/smoke",
+    "document": "configs/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_benchmarks.py --config configs/default.yaml --smoke --out-dir results/benchmarks",
+    "document": "configs/README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "dynnav-benchmark --config configs/benchmark.yaml --out-csv results/benchmarks/dynnav_benchmark.csv --summary results/benchmarks/summary.md",
+    "document": "configs/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m venv .venv",
+    "document": "CONTRIBUTING.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source .venv/bin/activate",
+    "document": "CONTRIBUTING.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "pip install -e .[dev]",
+    "document": "CONTRIBUTING.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest",
+    "document": "CONTRIBUTING.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/01_learned_astar/experiments/admissibility_audit.py",
+    "document": "contributions/01_learned_astar/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/01_learned_astar/experiments/eval_astar_learned.py --trials 100 --out contributions/01_learned_astar/results/astar_eval_results.csv",
+    "document": "contributions/01_learned_astar/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/01_learned_astar/experiments/statistical_validation.py --grid-size 40 --trials-per-density 100 --min-distance 20",
+    "document": "contributions/01_learned_astar/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/01_learned_astar/experiments/admissibility_audit.py",
+    "document": "contributions/01_learned_astar/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/01_learned_astar/experiments/eval_astar_learned.py --trials 100 --out contributions/01_learned_astar/results/astar_eval_results.csv",
+    "document": "contributions/01_learned_astar/README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/01_learned_astar/experiments/statistical_validation.py --grid-size 40 --trials-per-density 100 --min-distance 20",
+    "document": "contributions/01_learned_astar/README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/01_learned_astar/experiments/admissibility_audit.py",
+    "document": "contributions/01_learned_astar/README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/02_uncertainty_calibration/experiments/eval_uncertainty_calibration.py",
+    "document": "contributions/02_uncertainty_calibration/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/02_uncertainty_calibration/experiments/eval_uncertainty_calibration.py",
+    "document": "contributions/02_uncertainty_calibration/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/02_uncertainty_calibration/experiments/eval_uncertainty_calibration.py --input path/to/uncertainty_predictions.csv",
+    "document": "contributions/02_uncertainty_calibration/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/03_belief_risk_planning/experiments/eval_risk_tradeoff.py",
+    "document": "contributions/03_belief_risk_planning/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/03_belief_risk_planning/experiments/lambda_sweep_risk_length_demo.py",
+    "document": "contributions/03_belief_risk_planning/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/03_belief_risk_planning/experiments/eval_risk_tradeoff.py",
+    "document": "contributions/03_belief_risk_planning/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/03_belief_risk_planning/experiments/lambda_sweep_risk_length_demo.py",
+    "document": "contributions/03_belief_risk_planning/README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/03_belief_risk_planning/experiments/eval_risk_tradeoff.py",
+    "document": "contributions/03_belief_risk_planning/README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/04_irreversibility_returnability/experiments/eval_recoverability_metrics.py",
+    "document": "contributions/04_irreversibility_returnability/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/04_irreversibility_returnability/experiments/eval_recoverability_metrics.py",
+    "document": "contributions/04_irreversibility_returnability/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/04_irreversibility_returnability/experiments/eval_recoverability_metrics.py",
+    "document": "contributions/04_irreversibility_returnability/README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/05_safe_mode_navigation/experiments/eval_safe_mode_thresholds.py",
+    "document": "contributions/05_safe_mode_navigation/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/05_safe_mode_navigation/experiments/eval_safe_mode_thresholds.py",
+    "document": "contributions/05_safe_mode_navigation/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/05_safe_mode_navigation/experiments/eval_safe_mode_thresholds.py",
+    "document": "contributions/05_safe_mode_navigation/README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/06_energy_connectivity/experiments/eval_resource_feasibility.py",
+    "document": "contributions/06_energy_connectivity/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/06_energy_connectivity/experiments/eval_energy_connectivity.py",
+    "document": "contributions/06_energy_connectivity/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/06_energy_connectivity/experiments/eval_resource_feasibility.py",
+    "document": "contributions/06_energy_connectivity/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/06_energy_connectivity/experiments/eval_energy_connectivity.py",
+    "document": "contributions/06_energy_connectivity/README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/06_energy_connectivity/experiments/eval_resource_feasibility.py",
+    "document": "contributions/06_energy_connectivity/README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/07_next_best_view/experiments/eval_returnability_aware_nbv.py",
+    "document": "contributions/07_next_best_view/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/07_next_best_view/experiments/eval_returnability_aware_nbv.py",
+    "document": "contributions/07_next_best_view/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/07_next_best_view/experiments/eval_returnability_aware_nbv.py",
+    "document": "contributions/07_next_best_view/README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/08_security_ids/experiments/eval_ids_response_policy.py",
+    "document": "contributions/08_security_ids/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/08_security_ids/experiments/eval_ids_response_policy.py",
+    "document": "contributions/08_security_ids/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/09_multi_robot/experiments/eval_team_coordination.py",
+    "document": "contributions/09_multi_robot/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/09_multi_robot/experiments/eval_team_coordination.py",
+    "document": "contributions/09_multi_robot/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/10_human_language_ethics/experiments/eval_human_ethics_policy.py",
+    "document": "contributions/10_human_language_ethics/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/10_human_language_ethics/experiments/eval_human_ethics_policy.py",
+    "document": "contributions/10_human_language_ethics/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/11_vlm_navigation_agent/experiments/eval_vlm_goal_validation.py",
+    "document": "contributions/11_vlm_navigation_agent/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/11_vlm_navigation_agent/experiments/eval_vlm_planner.py --n_frames 20 --out_csv contributions/11_vlm_navigation_agent/results/vlm_eval.csv",
+    "document": "contributions/11_vlm_navigation_agent/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/11_vlm_navigation_agent/experiments/eval_vlm_goal_validation.py",
+    "document": "contributions/11_vlm_navigation_agent/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/12_diffusion_occupancy/experiments/eval_risk_map_quality.py",
+    "document": "contributions/12_diffusion_occupancy/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/12_diffusion_occupancy/experiments/eval_diffusion_occupancy.py --n_scenarios 30 --n_samples 10 --out_csv contributions/12_diffusion_occupancy/results/diffusion_eval.csv",
+    "document": "contributions/12_diffusion_occupancy/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/12_diffusion_occupancy/experiments/eval_risk_map_quality.py",
+    "document": "contributions/12_diffusion_occupancy/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/13_latent_world_model/experiments/eval_rollout_audit.py",
+    "document": "contributions/13_latent_world_model/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/13_latent_world_model/experiments/eval_rollout_audit.py",
+    "document": "contributions/13_latent_world_model/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/14_causal_risk_attribution/experiments/eval_root_cause_attribution.py",
+    "document": "contributions/14_causal_risk_attribution/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/14_causal_risk_attribution/experiments/eval_root_cause_attribution.py",
+    "document": "contributions/14_causal_risk_attribution/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/15_neuromorphic_sensing/experiments/eval_neuromorphic_latency.py",
+    "document": "contributions/15_neuromorphic_sensing/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/15_neuromorphic_sensing/experiments/eval_neuromorphic_latency.py",
+    "document": "contributions/15_neuromorphic_sensing/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/16_federated_nav_learning/experiments/eval_federated_tradeoffs.py",
+    "document": "contributions/16_federated_nav_learning/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/16_federated_nav_learning/experiments/eval_federated_tradeoffs.py",
+    "document": "contributions/16_federated_nav_learning/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/17_topological_semantic_maps/experiments/eval_topo_semantic_navigation.py",
+    "document": "contributions/17_topological_semantic_maps/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/17_topological_semantic_maps/experiments/eval_topo_semantic_navigation.py",
+    "document": "contributions/17_topological_semantic_maps/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/18_formal_safety_shields/experiments/eval_shield_stress_test.py",
+    "document": "contributions/18_formal_safety_shields/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/18_formal_safety_shields/experiments/eval_safety_shields.py --n_episodes 50 --out_csv contributions/18_formal_safety_shields/results/shield_eval.csv",
+    "document": "contributions/18_formal_safety_shields/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/18_formal_safety_shields/experiments/eval_shield_stress_test.py",
+    "document": "contributions/18_formal_safety_shields/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/19_llm_mission_planner/experiments/eval_mission_plan_quality.py",
+    "document": "contributions/19_llm_mission_planner/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/19_llm_mission_planner/experiments/eval_mission_plan_quality.py",
+    "document": "contributions/19_llm_mission_planner/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/20_multimodal_failure_explainer/experiments/eval_failure_report_quality.py",
+    "document": "contributions/20_multimodal_failure_explainer/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/20_multimodal_failure_explainer/experiments/eval_failure_report_quality.py",
+    "document": "contributions/20_multimodal_failure_explainer/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/21_ppo_navigation_agent/experiments/eval_policy_safety.py",
+    "document": "contributions/21_ppo_navigation_agent/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/21_ppo_navigation_agent/experiments/eval_policy_safety.py",
+    "document": "contributions/21_ppo_navigation_agent/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/22_curriculum_rl/experiments/eval_curriculum_strategies.py",
+    "document": "contributions/22_curriculum_rl/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/22_curriculum_rl/experiments/eval_curriculum_strategies.py",
+    "document": "contributions/22_curriculum_rl/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/23_gaussian_splatting_mapper/experiments/eval_gs_mapping_quality.py",
+    "document": "contributions/23_gaussian_splatting_mapper/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/23_gaussian_splatting_mapper/experiments/eval_gs_mapping_quality.py",
+    "document": "contributions/23_gaussian_splatting_mapper/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/24_nerf_uncertainty/experiments/eval_nerf_uncertainty.py",
+    "document": "contributions/24_nerf_uncertainty/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/24_nerf_uncertainty/experiments/eval_nerf_uncertainty.py",
+    "document": "contributions/24_nerf_uncertainty/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/25_adversarial_attack_simulator/experiments/eval_attack_impact.py",
+    "document": "contributions/25_adversarial_attack_simulator/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/25_adversarial_attack_simulator/experiments/eval_attack_impact.py",
+    "document": "contributions/25_adversarial_attack_simulator/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/26_swarm_consensus/experiments/eval_swarm_consensus.py",
+    "document": "contributions/26_swarm_consensus/docs/SCIENTIFIC_UPGRADE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/26_swarm_consensus/experiments/eval_swarm_consensus.py",
+    "document": "contributions/26_swarm_consensus/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest contributions/tests/test_new_contributions.py -v",
+    "document": "contributions/CONTRIBUTIONS_README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/12_diffusion_occupancy/experiments/eval_diffusion_occupancy.py",
+    "document": "contributions/CONTRIBUTIONS_README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/18_formal_safety_shields/experiments/eval_safety_shields.py",
+    "document": "contributions/CONTRIBUTIONS_README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python tools/generate_benchmark_summary.py --results 'results/**/*.csv' --output docs/BENCHMARK_RESULTS_SUMMARY.md",
+    "document": "docs/BENCHMARK_RESULTS_SUMMARY.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m pip install -e \".[dashboard]\"",
+    "document": "docs/CONTRIBUTION_FEATURE_CATALOG.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "streamlit run app/dashboard.py",
+    "document": "docs/CONTRIBUTION_FEATURE_CATALOG.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 simple_risk_planner.py",
+    "document": "docs/Human Preference\u2013Aware Risk Navigation.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 simple_risk_planner_human.py",
+    "document": "docs/Human Preference\u2013Aware Risk Navigation.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 save_simple_planner_results.py",
+    "document": "docs/Human Preference\u2013Aware Risk Navigation.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 analyze_simple_planner_results.py",
+    "document": "docs/Human Preference\u2013Aware Risk Navigation.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 run_human_preference_exp.py",
+    "document": "docs/Human Preference\u2013Aware Risk Navigation.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 run_real_human_preference_demo.py",
+    "document": "docs/Human Preference\u2013Aware Risk Navigation.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest tests/test_mapping_occupancy_grid.py",
+    "document": "docs/MAPPING.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "find . -type f -iname '*.md' -print | sort",
+    "document": "docs/MARKDOWN_AUDIT.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "git clone <repo-url>",
+    "document": "docs/Multi-Robot Safe Mode Navigation under Uncertainty.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "pip install -r requirements.txt",
+    "document": "docs/Multi-Robot Safe Mode Navigation under Uncertainty.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 multi_robot_safe_mode_experiment.py",
+    "document": "docs/Multi-Robot Safe Mode Navigation under Uncertainty.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 multi_robot_safe_mode_logged.py",
+    "document": "docs/Multi-Robot Safe Mode Navigation under Uncertainty.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 safe_mode_threshold_ablation.py",
+    "document": "docs/Multi-Robot Safe Mode Navigation under Uncertainty.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 analyze_lambda_sweep_risk_length.py",
+    "document": "docs/Multi-Robot Safe Mode Navigation under Uncertainty.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m pip install -e \".[dev,dashboard]\"",
+    "document": "docs/PRESENTATION_GUIDE.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "streamlit run app/presentation.py",
+    "document": "docs/PRESENTATION_GUIDE.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "streamlit run app/dashboard.py",
+    "document": "docs/PRESENTATION_GUIDE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/presentation_benchmark.py --seeds 1-20 --out-dir results/presentation/benchmark",
+    "document": "docs/PRESENTATION_GUIDE.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python run_irreversibility_tau_sweep.py",
+    "document": "docs/README Irreversibility-Aware Navigation Planning.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python run_irreversibility_bottleneck_sweep.py",
+    "document": "docs/README Irreversibility-Aware Navigation Planning.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 self_healing_demo.py",
+    "document": "docs/README Self-Healing Navigation & Language-Driven Safety.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 language_safety_demo.py",
+    "document": "docs/README Self-Healing Navigation & Language-Driven Safety.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 -m venv .venv",
+    "document": "docs/README Self-Healing Navigation & Language-Driven Safety.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source .venv/bin/activate   # Linux / macOS",
+    "document": "docs/README Self-Healing Navigation & Language-Driven Safety.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 self_healing_demo.py",
+    "document": "docs/README Self-Healing Navigation & Language-Driven Safety.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 language_safety_demo.py",
+    "document": "docs/README Self-Healing Navigation & Language-Driven Safety.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m venv venv",
+    "document": "docs/README-large info.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source venv/bin/activate      # Linux / macOS",
+    "document": "docs/README-large info.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "pip install -r requirements.txt",
+    "document": "docs/README-large info.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "pip install -e .",
+    "document": "docs/README-large info.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python train_heuristic.py",
+    "document": "docs/README-large info.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python eval_astar_learned.py",
+    "document": "docs/README-large info.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python ig_planners_demo.py",
+    "document": "docs/README-large info.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python multiobj_planner.py",
+    "document": "docs/README-large info.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python sweep_lambda_fused_risk.py",
+    "document": "docs/README-large info.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python plot_belief_risk_lambda_sweep.py",
+    "document": "docs/README-large info.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python drift_aware_nbv_experiment.py",
+    "document": "docs/README-large info.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python drift_aware_nbv_multistep.py",
+    "document": "docs/README-large info.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m pip install -e \".[dev]\"",
+    "document": "docs/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest",
+    "document": "docs/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_all.py --config configs/default.yaml --smoke --out-dir results/ci_smoke",
+    "document": "docs/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_benchmarks.py --config configs/default.yaml --smoke --out-dir results/ci_benchmarks",
+    "document": "docs/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m pip install -e \".[dashboard]\"",
+    "document": "docs/README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "streamlit run app/dashboard.py",
+    "document": "docs/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python run_irreversibility_tau_sweep.py",
+    "document": "docs/README_Irreversibility_Aware_Planning results.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python run_irreversibility_bottleneck_sweep.py",
+    "document": "docs/README_Irreversibility_Aware_Planning results.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python run_risk_weighted_lambda_sweep.py",
+    "document": "docs/README_Irreversibility_Aware_Planning results.md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "sudo apt install ros-jazzy-turtlebot3-gazebo",
+    "document": "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source ~/.bashrc",
+    "document": "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "sudo apt install ros-jazzy-slam-toolbox",
+    "document": "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "sudo apt install ros-jazzy-nav2-bringup",
+    "document": "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "sudo apt install ros-jazzy-turtlebot3-navigation2",
+    "document": "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "export TURTLEBOT3_MODEL=burger",
+    "document": "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py",
+    "document": "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 launch slam_toolbox online_async_launch.py",
+    "document": "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "ros2 run turtlebot3_teleop teleop_keyboard",
+    "document": "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "mkdir -p ~/maps",
+    "document": "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 run nav2_map_server map_saver_cli -f ~/maps/tb3_world_map",
+    "document": "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "export TURTLEBOT3_MODEL=burger",
+    "document": "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py",
+    "document": "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 launch nav2_bringup bringup_launch.py use_sim_time:=True map:=/home/YOUR_USER/maps/tb3_world_map.yaml",
+    "document": "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 bag record /scan /map /tf /cmd_vel /odom",
+    "document": "docs/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "git clone <YOUR_REPO_URL>.git",
+    "document": "docs/README_trust_navigation.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 -m venv .venv",
+    "document": "docs/README_trust_navigation.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source .venv/bin/activate        # On Windows: .venv\\Scripts\\activate",
+    "document": "docs/README_trust_navigation.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "pip install -r requirements.txt  # if provided",
+    "document": "docs/README_trust_navigation.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 run_trust_dynamics_demo.py",
+    "document": "docs/README_trust_navigation.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 run_trust_and_preferences_demo.py",
+    "document": "docs/README_trust_navigation.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python3 save_trust_preference_results.py",
+    "document": "docs/README_trust_navigation.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m venv .venv",
+    "document": "docs/REPRODUCIBILITY.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source .venv/bin/activate",
+    "document": "docs/REPRODUCIBILITY.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "pip install -e .[dev]",
+    "document": "docs/REPRODUCIBILITY.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "docker build -t dynnav .",
+    "document": "docs/REPRODUCIBILITY.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "docker run --rm dynnav",
+    "document": "docs/REPRODUCIBILITY.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "dynnav-benchmark --config configs/benchmark.yaml --out-csv results/benchmarks/dynnav_benchmark.csv --summary results/benchmarks/summary.md",
+    "document": "docs/REPRODUCIBILITY.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/generate_research_assets.py",
+    "document": "docs/REPRODUCIBILITY.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/make_demo_gif.py",
+    "document": "docs/REPRODUCIBILITY.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python run_nbv_frontier_demo.py",
+    "document": "docs/Returnability- & Irreversibility-Aware Frontier NBV.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python plot_nbv_frontier_top10_overlay.py",
+    "document": "docs/Returnability- & Irreversibility-Aware Frontier NBV.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 bag record /map /scan /odom /tf /plan /cmd_vel /dynnav/risk_grid /dynnav/uncertainty_grid /dynnav/recoverability_grid /dynnav/safety_mode /dynnav/reroute_events",
+    "document": "docs/ROS2_NAV2_INTEGRATION.md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "find lidar_ros2 -maxdepth 3 -type f -print",
+    "document": "lidar_ros2/readme",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "sudo apt install ros-jazzy-turtlebot3-gazebo",
+    "document": "lidar_ros2/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source ~/.bashrc",
+    "document": "lidar_ros2/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "sudo apt install ros-jazzy-slam-toolbox",
+    "document": "lidar_ros2/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "sudo apt install ros-jazzy-nav2-bringup",
+    "document": "lidar_ros2/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "sudo apt install ros-jazzy-turtlebot3-navigation2",
+    "document": "lidar_ros2/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "export TURTLEBOT3_MODEL=burger",
+    "document": "lidar_ros2/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py",
+    "document": "lidar_ros2/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 launch slam_toolbox online_async_launch.py",
+    "document": "lidar_ros2/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "ros2 run turtlebot3_teleop teleop_keyboard",
+    "document": "lidar_ros2/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "mkdir -p ~/maps",
+    "document": "lidar_ros2/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 run nav2_map_server map_saver_cli -f ~/maps/tb3_world_map",
+    "document": "lidar_ros2/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "export TURTLEBOT3_MODEL=burger",
+    "document": "lidar_ros2/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py",
+    "document": "lidar_ros2/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 launch nav2_bringup bringup_launch.py use_sim_time:=True map:=/home/YOUR_USER/maps/tb3_world_map.yaml",
+    "document": "lidar_ros2/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 bag record /scan /map /tf /cmd_vel /odom",
+    "document": "lidar_ros2/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python ../../benchmarks/fragile_commitment/random_benchmark.py --seeds 100 --output random_topology_results.csv",
+    "document": "paper/dynnav_r/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python ../../benchmarks/fragile_commitment/paired_tests.py random_topology_results.csv --baseline risk_only --candidate recoverability_aware --output-csv paired_tests.csv --markdown paired_tests.md",
+    "document": "paper/dynnav_r/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python ../../benchmarks/fragile_commitment/paper_figures.py random_topology_results.csv --output-dir ../figures/fragile_commitment --format pdf",
+    "document": "paper/dynnav_r/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python ../../benchmarks/fragile_commitment/paper_tables.py random_topology_results.csv paired_tests.csv --output-dir ../tables/fragile_commitment",
+    "document": "paper/dynnav_r/README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "git clone https://github.com/panagiotagrosdouli/DynNav.git",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m venv .venv",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source .venv/bin/activate",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m pip install --upgrade pip",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m pip install -e \".[dev,dashboard]\"",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m pip install -e \".[researcher]\"",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m uvicorn apps.api.main:app --reload --port 8000",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "npm install",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "npm run dev",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "streamlit run app/dashboard.py",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "dynnav-benchmark",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_all.py",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_benchmarks.py",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "git clone https://github.com/panagiotagrosdouli/DynNav.git",
+    "document": "README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m venv .venv",
+    "document": "README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source .venv/bin/activate",
+    "document": "README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m pip install --upgrade pip",
+    "document": "README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m pip install -e \".[dev,dashboard]\"",
+    "document": "README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest",
+    "document": "README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "streamlit run app/dashboard.py",
+    "document": "README_GR.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "git clone https://github.com/panagiotagrosdouli/DynNav-Dynamic-Navigation-Rerouting-in-Unknown-Environments.git dynnav_repo",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m venv .venv",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source .venv/bin/activate",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m pip install --upgrade pip",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m pip install -e \".[dev]\"",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m compileall src scripts tests",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest -q",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_all.py --mode smoke",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_all.py --mode validate",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "docker build -t dynnav .",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "docker run --rm dynnav",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "docker run --rm -v \"$(pwd)/results:/app/results\" dynnav",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "npm ci",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "npm run lint",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "npm run typecheck",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "npm run test",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "npm run build",
+    "document": "REPRODUCIBILITY_REPORT.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m benchmark.run_experiments --n_maps 50 --size 26 --episodes_per_map 12",
+    "document": "research_experiments/trust_aware_cvar/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m benchmark.run_experiments --n_maps 50 --size 26 --episodes_per_map 100",
+    "document": "research_experiments/trust_aware_cvar/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m analysis.stats_analysis",
+    "document": "research_experiments/trust_aware_cvar/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m analysis.plots",
+    "document": "research_experiments/trust_aware_cvar/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m analysis.latex_tables",
+    "document": "research_experiments/trust_aware_cvar/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_all.py --config configs/default.yaml --smoke --out-dir results/ci_smoke",
+    "document": "results/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_benchmarks.py --config configs/default.yaml --smoke --out-dir results/ci_benchmarks",
+    "document": "results/README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "dynnav-benchmark --config configs/benchmark.yaml --out-csv results/benchmarks/dynnav_benchmark.csv --summary results/benchmarks/summary.md",
+    "document": "results/README.md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "find ros2_ws/lidar_slam_tb3 -maxdepth 4 -type f -print",
+    "document": "ros2_ws/lidar_slam_tb3/readme",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "sudo apt install ros-jazzy-turtlebot3-gazebo",
+    "document": "ros2_ws/lidar_slam_tb3/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source ~/.bashrc",
+    "document": "ros2_ws/lidar_slam_tb3/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "sudo apt install ros-jazzy-slam-toolbox",
+    "document": "ros2_ws/lidar_slam_tb3/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "sudo apt install ros-jazzy-nav2-bringup",
+    "document": "ros2_ws/lidar_slam_tb3/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "sudo apt install ros-jazzy-turtlebot3-navigation2",
+    "document": "ros2_ws/lidar_slam_tb3/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "export TURTLEBOT3_MODEL=burger",
+    "document": "ros2_ws/lidar_slam_tb3/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py",
+    "document": "ros2_ws/lidar_slam_tb3/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 launch slam_toolbox online_async_launch.py",
+    "document": "ros2_ws/lidar_slam_tb3/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "ros2 run turtlebot3_teleop teleop_keyboard",
+    "document": "ros2_ws/lidar_slam_tb3/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "mkdir -p ~/maps",
+    "document": "ros2_ws/lidar_slam_tb3/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 run nav2_map_server map_saver_cli -f ~/maps/tb3_world_map",
+    "document": "ros2_ws/lidar_slam_tb3/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "export TURTLEBOT3_MODEL=burger",
+    "document": "ros2_ws/lidar_slam_tb3/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py",
+    "document": "ros2_ws/lidar_slam_tb3/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 launch nav2_bringup bringup_launch.py use_sim_time:=True map:=/home/YOUR_USER/maps/tb3_world_map.yaml",
+    "document": "ros2_ws/lidar_slam_tb3/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 bag record /scan /map /tf /cmd_vel /odom",
+    "document": "ros2_ws/lidar_slam_tb3/README (4).md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "sudo apt install ros-jazzy-turtlebot3-gazebo",
+    "document": "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source ~/.bashrc",
+    "document": "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "sudo apt install ros-jazzy-slam-toolbox",
+    "document": "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "sudo apt install ros-jazzy-nav2-bringup",
+    "document": "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "sudo apt install ros-jazzy-turtlebot3-navigation2",
+    "document": "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "export TURTLEBOT3_MODEL=burger",
+    "document": "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py",
+    "document": "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 launch slam_toolbox online_async_launch.py",
+    "document": "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "ros2 run turtlebot3_teleop teleop_keyboard",
+    "document": "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "mkdir -p ~/maps",
+    "document": "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 run nav2_map_server map_saver_cli -f ~/maps/tb3_world_map",
+    "document": "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "export TURTLEBOT3_MODEL=burger",
+    "document": "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "hardware-only",
+    "command": "ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py",
+    "document": "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 launch nav2_bringup bringup_launch.py use_sim_time:=True map:=/home/YOUR_USER/maps/tb3_world_map.yaml",
+    "document": "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 bag record /scan /map /tf /cmd_vel /odom",
+    "document": "ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "colcon build --packages-select dynnav_nav2",
+    "document": "ros2_ws/src/dynnav_nav2/README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source install/setup.bash",
+    "document": "ros2_ws/src/dynnav_nav2/README.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 launch dynnav_nav2 dynnav_planner_bridge.launch.py",
+    "document": "ros2_ws/src/dynnav_nav2/README.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "colcon build --packages-select dynnav_nav2_cpp",
+    "document": "ros2_ws/src/dynnav_nav2_cpp/README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source install/setup.bash",
+    "document": "ros2_ws/src/dynnav_nav2_cpp/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_all.py --config configs/default.yaml --smoke --out-dir results/ci_smoke",
+    "document": "scripts/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_benchmarks.py --config configs/default.yaml --smoke --out-dir results/ci_benchmarks",
+    "document": "scripts/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_research_suite.py --out-dir results/research_suite",
+    "document": "scripts/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/generate_research_assets.py",
+    "document": "scripts/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/make_demo_gif.py",
+    "document": "scripts/README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "dynnav-benchmark --help",
+    "document": "src/dynnav/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest tests/test_mapping_occupancy_grid.py",
+    "document": "src/dynnav/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest tests/test_planning.py",
+    "document": "src/dynnav/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest tests/test_research_modules.py",
+    "document": "src/dynnav/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest tests/test_research_pipeline_phase2.py",
+    "document": "src/dynnav/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m pip install -e \".[dev]\"",
+    "document": "src/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -c \"import dynnav; print(dynnav.__file__)\"",
+    "document": "src/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest",
+    "document": "src/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest",
+    "document": "tests/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest tests/test_mapping_occupancy_grid.py",
+    "document": "tests/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest tests/test_planning.py",
+    "document": "tests/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest tests/test_realtime_replanning.py",
+    "document": "tests/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest tests/test_research_modules.py",
+    "document": "tests/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "pytest tests/test_research_pipeline_phase2.py",
+    "document": "tests/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "npm install --no-audit --no-fund",
+    "document": "website/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "npm run dev",
+    "document": "website/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "npm run typecheck",
+    "document": "website/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "npm run build",
+    "document": "website/README.md",
+    "verified": false
+  }
+]

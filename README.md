@@ -232,6 +232,28 @@ python -m pip install -e ".[dev,dashboard]"
 
 ## Run the project
 
+Launch the evidence-bound DynNav Researcher vertical slice:
+
+```bash
+python -m pip install -e ".[researcher]"
+python -m uvicorn apps.api.main:app --reload --port 8000
+```
+
+In a second terminal:
+
+```bash
+cd apps/web
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000`. The Researcher compiles a natural-language request into an editable typed protocol, then
+runs the existing four-planner Python experiment only after explicit confirmation. Numerical results, statistics, and the
+downloadable Markdown report remain unavailable until real execution artifacts exist. See the
+[Researcher architecture and roadmap](docs/DYNNAV_RESEARCHER_ARCHITECTURE.md).
+
+The Streamlit laboratory remains available as the legacy research interface:
+
 Launch the interactive laboratory:
 
 ```bash
