@@ -1,0 +1,56 @@
+name: Web portal
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "website/**"
+      - "apps/web/**"
+      - "scripts/build_web_portal.sh"
+      - "vercel.json"
+      - ".github/workflows/web-portal.yml"
+  pull_request:
+    paths:
+      - "website/**"
+      - "apps/web/**"
+      - "scripts/build_web_portal.sh"
+      - "vercel.json"
+      - ".github/workflows/web-portal.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build both web interfaces
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            website/package-lock.json
+            apps/web/package-lock.json
+      - name: Install locked dependencies
+        run: |
+          npm --prefix website ci --no-audit --no-fund
+          npm --prefix apps/web ci --no-audit --no-fund
+      - name: Audit dependency trees
+        run: |
+          npm --prefix website audit --audit-level=high
+          npm --prefix apps/web audit --audit-level=high
+      - name: Build combined portal
+        run: bash scripts/build_web_portal.sh
+      - name: Verify both entry points
+        run: |
+          test -s .web-dist/index.html
+          test -s .web-dist/researcher/index.html
+          test -s .web-dist/.nojekyll
+      - name: Upload deployment-ready portal
+        uses: actions/upload-artifact@v4
+        with:
+          name: dynnav-web-portal
+          path: .web-dist
+          include-hidden-files: true
+          if-no-files-found: error

@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const basePath = process.env.DYNNAV_RESEARCHER_BASE_PATH ?? "";
+const basePath = process.env.DYNNAV_SITE_BASE_PATH ?? "";
 
 const nextConfig: NextConfig = {
   output: "export",

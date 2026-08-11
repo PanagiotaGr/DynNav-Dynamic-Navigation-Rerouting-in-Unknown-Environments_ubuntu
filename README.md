@@ -21,7 +21,33 @@
 
 [![Animated DynNav technical overview](assets/dynnav_system_overview.gif)](assets/dynnav_system_overview.mp4)
 
-This deterministic animation explains the executable architecture, evidence tiers, and C01–C26 audit trail. It is deliberately labelled as a **synthetic technical overview**, not as recorded Gazebo or real-robot evidence. [Open the MP4 version](assets/dynnav_system_overview.mp4) or regenerate both assets with `python scripts/generate_readme_video.py`.
+This 12-second deterministic walkthrough shows the implemented research landing
+page, the DynNav Researcher workspace, the executable architecture, evidence
+tiers, and the C01–C26 audit trail. The GIF plays directly in GitHub's README;
+click it or [open the H.264 MP4 version](assets/dynnav_system_overview.mp4) for
+the full-resolution video. Regenerate both assets with
+`python scripts/generate_readme_video.py`.
+
+The walkthrough is deliberately labelled as a **synthetic technical overview**.
+It is generated from the repository's interface and architecture definitions;
+it is not presented as recorded Gazebo or real-robot evidence.
+
+### Current validation boundary
+
+| Evidence tier | Current status | Reproducible location |
+|---|---|---|
+| Python research core | Verified by the regression and contribution suites | [`tests/`](tests/) and [`results/manifests/`](results/manifests/) |
+| ROS 2 Jazzy / Nav2 plugin | CI build, grid tests, plugin discovery and install verified | [`ros2_ws/src/dynnav_nav2_cpp`](ros2_ws/src/dynnav_nav2_cpp/) |
+| C01–C26 programme | 26 registered experiment contracts; dependency-aware execution | [`docs/CONTRIBUTIONS_26_EXPERIMENTS.md`](docs/CONTRIBUTIONS_26_EXPERIMENTS.md) |
+| Static Gazebo benchmark | Executable protocol; measured workflow artifact pending | [`docs/GAZEBO_BENCHMARK_PROTOCOL.md`](docs/GAZEBO_BENCHMARK_PROTOCOL.md) |
+| Frozen dynamic Gazebo benchmark | Executable protocol; measured workflow artifact pending | [`docs/DYNAMIC_EXECUTION_PROTOCOL.md`](docs/DYNAMIC_EXECUTION_PROTOCOL.md) |
+| Physical robot | Pending traceable rosbag/log evidence from named hardware | [`docs/PHD_APPLICATION_READINESS.md`](docs/PHD_APPLICATION_READINESS.md) |
+
+The two web interfaces are built into one deployable portal: the research site
+at `/` and the actual Researcher frontend at `/researcher`. The Researcher
+frontend requires the FastAPI service for protocol compilation and experiment
+execution; a static deployment alone is a presentation surface, not an
+execution result.
 
 ---
 
@@ -260,6 +286,19 @@ Open `http://localhost:3000`. The Researcher compiles a natural-language request
 runs the existing four-planner Python experiment only after explicit confirmation. Numerical results, statistics, and the
 downloadable Markdown report remain unavailable until real execution artifacts exist. See the
 [Researcher architecture and roadmap](docs/DYNNAV_RESEARCHER_ARCHITECTURE.md).
+
+Build both web interfaces as one static deployment artifact:
+
+```bash
+npm --prefix website ci --no-audit --no-fund
+npm --prefix apps/web ci --no-audit --no-fund
+bash scripts/build_web_portal.sh
+python -m http.server 4173 --directory .web-dist
+```
+
+Open `http://localhost:4173/` for the research site and
+`http://localhost:4173/researcher/` for the Researcher frontend. The root
+[`vercel.json`](vercel.json) uses the same deterministic build.
 
 The Streamlit laboratory remains available as the legacy research interface:
 

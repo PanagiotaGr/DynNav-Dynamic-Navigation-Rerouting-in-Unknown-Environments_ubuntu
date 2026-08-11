@@ -18,6 +18,7 @@ GIF_SIZE = (640, 360)
 GIF_FRAME_STEP = 2
 FPS = 5
 FRAMES_PER_SCENE = 10
+TOTAL_SCENES = 6
 COLORS = {
     "background": "#07111f",
     "panel": "#0d2037",
@@ -62,8 +63,8 @@ def base_frame(scene: int, progress: float) -> tuple[Image.Image, ImageDraw.Imag
     draw = ImageDraw.Draw(image)
     draw.rectangle((0, 0, WIDTH, 7), fill=COLORS["cyan"])
     draw.text((36, 25), "DynNav", font=FONTS["heading"], fill=COLORS["text"])
-    draw.text((850, 31), f"0{scene + 1}/04", font=FONTS["small"], fill=COLORS["muted"])
-    bar_width = int((scene + progress) / 4 * (WIDTH - 72))
+    draw.text((850, 31), f"{scene + 1:02d}/{TOTAL_SCENES:02d}", font=FONTS["small"], fill=COLORS["muted"])
+    bar_width = int((scene + progress) / TOTAL_SCENES * (WIDTH - 72))
     draw.rounded_rectangle((36, 66, WIDTH - 36, 70), radius=2, fill=COLORS["grid"])
     draw.rounded_rectangle((36, 66, 36 + bar_width, 70), radius=2, fill=COLORS["cyan"])
     draw.rectangle((0, HEIGHT - 34, WIDTH, HEIGHT), fill="#050b14")
@@ -74,6 +75,112 @@ def base_frame(scene: int, progress: float) -> tuple[Image.Image, ImageDraw.Imag
         fill=COLORS["muted"],
     )
     return image, draw
+
+
+def scene_landing(draw: ImageDraw.ImageDraw, progress: float) -> None:
+    """Render a deterministic representation of the deployed research landing page."""
+    rounded(draw, (30, 90, 930, 490), "#080f18", COLORS["grid"])
+    draw.rectangle((30, 90, 930, 132), fill="#0b141f")
+    draw.ellipse((48, 105, 62, 119), fill=COLORS["cyan"])
+    draw.text((72, 101), "DynNav", font=FONTS["label"], fill=COLORS["text"])
+    draw.text((405, 103), "ARCHITECTURE     EVIDENCE     INTERFACES", font=FONTS["small"], fill=COLORS["muted"])
+    rounded(draw, (782, 99, 910, 124), COLORS["panel_alt"], COLORS["cyan"])
+    draw.text((798, 105), "OPEN RESEARCHER", font=font(9, bold=True), fill=COLORS["cyan"])
+
+    draw.text((58, 165), "RECOVERABILITY-AWARE AUTONOMOUS NAVIGATION", font=font(10, bold=True), fill=COLORS["cyan"])
+    draw.text((58, 197), "Plan toward the goal.", font=font(30, bold=True), fill=COLORS["text"])
+    draw.text((58, 235), "Preserve a way back.", font=font(30, bold=True), fill=COLORS["cyan"])
+    draw.text((58, 291), "ROS 2 + Python research programme for risk,", font=FONTS["small"], fill=COLORS["muted"])
+    draw.text((58, 313), "recoverability and online replanning.", font=FONTS["small"], fill=COLORS["muted"])
+    rounded(draw, (58, 348, 218, 384), COLORS["cyan"])
+    draw.text((79, 359), "EXPLORE RESEARCHER", font=font(10, bold=True), fill=COLORS["background"])
+    draw.text(
+        (58, 426),
+        "26 contributions     4 objectives     ROS 2 Jazzy verified",
+        font=FONTS["small"],
+        fill=COLORS["muted"],
+    )
+
+    rounded(draw, (565, 158, 898, 433), COLORS["panel"], COLORS["grid"])
+    draw.text((584, 175), "Synthetic route vignette", font=font(10, bold=True), fill=COLORS["muted"])
+    for row in range(5):
+        for col in range(6):
+            x, y = 584 + col * 48, 207 + row * 40
+            draw.rectangle((x, y, x + 48, y + 40), outline=COLORS["grid"])
+    risky = [(600, 375), (600, 294), (742, 294), (742, 240), (860, 240), (860, 213)]
+    safe = [(600, 375), (742, 375), (742, 345), (860, 345), (860, 213)]
+    draw.line(risky, fill=COLORS["amber"], width=4)
+    draw.line(safe, fill=COLORS["cyan"], width=6)
+    robot_index = min(int(progress * (len(safe) - 1)), len(safe) - 2)
+    fraction = progress * (len(safe) - 1) - robot_index
+    ax, ay = safe[robot_index]
+    bx, by = safe[robot_index + 1]
+    rx = int(ax + (bx - ax) * fraction)
+    ry = int(ay + (by - ay) * fraction)
+    draw.ellipse((rx - 9, ry - 9, rx + 9, ry + 9), fill=COLORS["blue"], outline="white", width=2)
+
+
+def scene_researcher(draw: ImageDraw.ImageDraw, progress: float) -> None:
+    """Render the real Researcher workspace structure in the README walkthrough."""
+    rounded(draw, (24, 88, 936, 490), "#080c12", COLORS["grid"])
+    draw.rectangle((24, 88, 936, 130), fill="#0d141d")
+    draw.text((45, 101), "DynNav Researcher", font=FONTS["label"], fill=COLORS["text"])
+    draw.text((362, 103), "researcher  |  commit  |  Python  |  idle", font=font(10), fill=COLORS["muted"])
+    rounded(draw, (794, 98, 914, 122), COLORS["panel_alt"], COLORS["grid"])
+    draw.text((814, 104), "EXPORT REPORT", font=font(9, bold=True), fill=COLORS["muted"])
+    draw.rectangle((24, 130, 936, 158), fill="#0a1017")
+    draw.text(
+        (45, 139),
+        "RESEARCH WORKSPACE     EXPERIMENTS     SCENARIOS     RESULTS     REPRODUCIBILITY",
+        font=font(9, bold=True),
+        fill=COLORS["muted"],
+    )
+
+    draw.rectangle((24, 158, 188, 490), fill="#0d141d", outline=COLORS["grid"])
+    rounded(draw, (39, 176, 173, 205), COLORS["panel_alt"], COLORS["cyan"])
+    draw.text((62, 185), "+  NEW SESSION", font=font(9, bold=True), fill=COLORS["cyan"])
+    draw.text((40, 229), "SAVED SESSIONS", font=font(9, bold=True), fill=COLORS["muted"])
+    rounded(draw, (39, 246, 173, 292), COLORS["panel_alt"], COLORS["grid"])
+    draw.text((51, 256), "Four-planner study", font=font(10, bold=True), fill=COLORS["text"])
+    draw.text((51, 275), "Configured · unexecuted", font=font(8), fill=COLORS["muted"])
+    draw.text((40, 322), "RESEARCH ASSETS", font=font(9, bold=True), fill=COLORS["muted"])
+    for index, label in enumerate(("Recent experiments", "Scenario library", "Planner presets", "Report history")):
+        draw.text((49, 349 + index * 26), label, font=font(9), fill=COLORS["muted"])
+
+    draw.rectangle((188, 158, 714, 490), fill="#090e14", outline=COLORS["grid"])
+    draw.text(
+        (220, 178),
+        "01 DEFINE    02 DESIGN    03 EXECUTE    04 ANALYSE    05 REPORT",
+        font=font(9, bold=True),
+        fill=COLORS["muted"],
+    )
+    draw.text((228, 237), "EVIDENCE-BOUND PROTOCOL COMPILER", font=font(10, bold=True), fill=COLORS["cyan"])
+    draw.text((228, 273), "What should DynNav investigate?", font=font(25, bold=True), fill=COLORS["text"])
+    draw.text((228, 313), "Describe a comparison. The researcher makes the", font=font(11), fill=COLORS["muted"])
+    draw.text((228, 333), "protocol explicit before any simulation executes.", font=font(11), fill=COLORS["muted"])
+    prompts = (
+        "Compare all four planners",
+        "Test irreversibility weight",
+        "Analyse escape options",
+        "Generate benchmark report",
+    )
+    for index, label in enumerate(prompts):
+        x = 228 + (index % 2) * 220
+        y = 367 + (index // 2) * 51
+        active = index <= int(progress * len(prompts))
+        rounded(draw, (x, y, x + 205, y + 40), COLORS["panel_alt"], COLORS["cyan"] if active else COLORS["grid"])
+        draw.text((x + 12, y + 13), label, font=font(9), fill=COLORS["text"])
+
+    draw.rectangle((714, 158, 936, 490), fill="#0d141d", outline=COLORS["grid"])
+    draw.text((735, 180), "EXPERIMENT INSPECTOR", font=font(9, bold=True), fill=COLORS["muted"])
+    draw.text((735, 226), "Evidence boundary", font=FONTS["label"], fill=COLORS["amber"])
+    draw.text((735, 257), "Synthetic software", font=font(11), fill=COLORS["muted"])
+    draw.text((735, 276), "experiments only.", font=font(11), fill=COLORS["muted"])
+    draw.text((735, 313), "4 planners", font=font(11), fill=COLORS["cyan"])
+    draw.text((735, 337), "paired seeds", font=font(11), fill=COLORS["cyan"])
+    draw.text((735, 361), "provenance bundle", font=font(11), fill=COLORS["cyan"])
+    rounded(draw, (735, 428, 913, 466), COLORS["cyan"])
+    draw.text((782, 440), "RUN EXPERIMENT", font=font(10, bold=True), fill=COLORS["background"])
 
 
 def draw_route_vignette(draw: ImageDraw.ImageDraw, progress: float) -> None:
@@ -219,7 +326,14 @@ def scene_contributions(draw: ImageDraw.ImageDraw, progress: float) -> None:
 
 
 def render_frames() -> list[Image.Image]:
-    scenes = [scene_research, scene_pipeline, scene_evidence, scene_contributions]
+    scenes = [
+        scene_landing,
+        scene_researcher,
+        scene_research,
+        scene_pipeline,
+        scene_evidence,
+        scene_contributions,
+    ]
     frames: list[Image.Image] = []
     for scene_index, render in enumerate(scenes):
         for frame_index in range(FRAMES_PER_SCENE):
