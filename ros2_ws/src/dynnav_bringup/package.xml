@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>dynnav_bringup</name>
+  <version>0.1.0</version>
+  <description>Bringup package for DynNav with ROS 2 Jazzy, Nav2 and TurtleBot3.</description>
+  <maintainer email="maintainer@todo.invalid">DynNav Team</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>nav2_bringup</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
