@@ -12,12 +12,14 @@ def generate_launch_description():
 
     use_sim_time = LaunchConfiguration('use_sim_time')
     params_file = LaunchConfiguration('params_file')
+    model = LaunchConfiguration('model')
 
     args = [
+        DeclareLaunchArgument('use_sim_time', default_value='true'),
         DeclareLaunchArgument(
-            'use_sim_time',
-            default_value='true',
-            description='Use Gazebo simulation clock'
+            'model',
+            default_value='burger',
+            description='TurtleBot3 model'
         ),
         DeclareLaunchArgument(
             'params_file',
@@ -25,8 +27,7 @@ def generate_launch_description():
                 FindPackageShare('dynnav_turtlebot3'),
                 'config',
                 'turtlebot3_dynnav_nav2.yaml'
-            ]),
-            description='Nav2 and DynNav parameters'
+            ])
         ),
     ]
 
@@ -37,7 +38,10 @@ def generate_launch_description():
                 'launch',
                 'turtlebot3_world.launch.py'
             ])
-        )
+        ),
+        launch_arguments={
+            'model': model,
+        }.items()
     )
 
     nav2 = IncludeLaunchDescription(
@@ -65,12 +69,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription(args + [
-        # 1. Gazebo start
         gazebo,
-        # 2. TurtleBot3 spawn handled by turtlebot3_gazebo
-        # 3. Nav2 params load
         nav2,
-        # 4. DynNav activation via planner plugin params
-        # 5. RViz startup
         rviz,
     ])
