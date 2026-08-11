@@ -1,0 +1,4 @@
+# DynNav ROS2 Jazzy RViz configuration
+# Will be extended with Nav2 panels and robot visualization
+Visualization Manager:
+  Class: ""
