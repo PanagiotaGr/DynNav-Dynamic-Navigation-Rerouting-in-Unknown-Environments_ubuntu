@@ -91,7 +91,9 @@ def install_document_discovery_filter() -> None:
         if path.name in _GENERATED_DOCUMENTS:
             return False
         if any(
-            part in _TRANSIENT_DIRECTORY_NAMES or part.startswith("pip-")
+            part in _TRANSIENT_DIRECTORY_NAMES
+            or part.startswith("pip-")
+            or part.startswith("pytest-of-root")
             for part in path.parts
         ):
             return False

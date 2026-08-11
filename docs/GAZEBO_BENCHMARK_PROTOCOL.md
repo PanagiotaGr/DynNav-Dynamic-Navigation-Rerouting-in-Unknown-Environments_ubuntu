@@ -11,9 +11,12 @@ The executable package is
 [`dynnav_nav2_benchmark`](../ros2_ws/src/dynnav_nav2_benchmark/README.md).
 
 Implementation status: the launch, runner, schema, package-level tests, and
-manual GitHub Actions workflow are committed. No Gazebo measurement is treated
-as evidence until that workflow passes on a named commit and its raw artifact is
-retained.
+manual GitHub Actions workflow are committed. The commissioning workflow passed
+as [run 31488640827](https://github.com/panagiotagrosdouli/DynNav/actions/runs/31488640827)
+on branch head `253e3b3`; its complete result set is retained under
+[`results/ros2_gazebo/static_run_31488640827/`](../results/ros2_gazebo/static_run_31488640827/).
+All 36 measured planner-server requests succeeded. The run is integration and
+path/latency evidence, not a dynamic-safety result or a powered comparison.
 
 ## Map and query provenance
 
@@ -86,8 +89,9 @@ Every planner receives the identical event trace. The current primary endpoint
 is whether an independent grid path to a predefined safe region still exists on
 the post-event inflated costmap within a distance budget. A failed static path
 request remains `planning_failure`, not `operational_irreversible_failure`.
-This implementation is still awaiting a valid retained Gazebo run and does not
-yet include a kinodynamic or collision-contact oracle.
+The Stage 3 implementation now has a valid retained `n=1` commissioning run.
+It does not yet include a kinodynamic or collision-contact oracle and is not a
+powered confirmatory study.
 
 ## Evidence tiers
 

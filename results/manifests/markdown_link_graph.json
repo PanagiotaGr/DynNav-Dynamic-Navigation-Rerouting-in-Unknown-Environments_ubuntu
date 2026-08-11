@@ -529,6 +529,78 @@
       "target": "REPRODUCIBILITY.md"
     },
     {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/02_uncertainty_calibration/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/03_belief_risk_planning/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/04_irreversibility_returnability/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/05_safe_mode_navigation/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/06_energy_connectivity/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/07_next_best_view/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/08_security_ids/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/09_multi_robot/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/12_diffusion_occupancy/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/14_causal_risk_attribution/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/16_federated_nav_learning/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/19_llm_mission_planner/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/20_multimodal_failure_explainer/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/21_ppo_navigation_agent/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/22_curriculum_rl/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/24_nerf_uncertainty/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/25_adversarial_attack_simulator/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
+      "target": "../contributions/26_swarm_consensus/README.md"
+    },
+    {
       "source": "docs/CONTRIBUTION_FEATURE_CATALOG.md",
       "target": "../contributions/"
     },
@@ -546,6 +618,10 @@
     },
     {
       "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/01_learned_astar/README_GR.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
       "target": "../contributions/02_uncertainty_calibration/README.md"
     },
     {
@@ -554,7 +630,15 @@
     },
     {
       "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/03_belief_risk_planning/README_GR.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
       "target": "../contributions/04_irreversibility_returnability/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/04_irreversibility_returnability/README_GR.md"
     },
     {
       "source": "docs/CONTRIBUTION_INDEX.md",
@@ -562,11 +646,23 @@
     },
     {
       "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/05_safe_mode_navigation/README_GR.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
       "target": "../contributions/06_energy_connectivity/README.md"
     },
     {
       "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/06_energy_connectivity/README_GR.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
       "target": "../contributions/07_next_best_view/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../contributions/07_next_best_view/README_GR.md"
     },
     {
       "source": "docs/CONTRIBUTION_INDEX.md",
@@ -643,6 +739,34 @@
     {
       "source": "docs/CONTRIBUTION_INDEX.md",
       "target": "../contributions/26_swarm_consensus/README.md"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../src/dynnav_dashboard/contributions/c01_learned_astar.py"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../src/dynnav_dashboard/contributions/c04_returnability.py"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../src/dynnav_dashboard/contributions/c06_energy_connectivity.py"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../src/dynnav_dashboard/contributions/c08_security_ids.py"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../src/dynnav_dashboard/contributions/c12_diffusion_occupancy.py"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../src/dynnav_dashboard/contributions/c22_curriculum_rl.py"
+    },
+    {
+      "source": "docs/CONTRIBUTION_INDEX.md",
+      "target": "../src/dynnav_dashboard/contributions/c24_nerf_uncertainty.py"
     },
     {
       "source": "docs/CONTRIBUTION_VISUAL_GALLERY.md",
@@ -1098,6 +1222,10 @@
     },
     {
       "source": "README.md",
+      "target": "docs/DYNAMIC_EXECUTION_PROTOCOL.md"
+    },
+    {
+      "source": "README.md",
       "target": "docs/DYNNAV_RESEARCHER_ARCHITECTURE.md"
     },
     {
@@ -1134,7 +1262,23 @@
     },
     {
       "source": "README.md",
+      "target": "results/manifests/"
+    },
+    {
+      "source": "README.md",
+      "target": "ros2_ws/src/dynnav_nav2_cpp/"
+    },
+    {
+      "source": "README.md",
       "target": "ros2_ws/src/dynnav_nav2_cpp/README.md"
+    },
+    {
+      "source": "README.md",
+      "target": "tests/"
+    },
+    {
+      "source": "README.md",
+      "target": "vercel.json"
     },
     {
       "source": "README_GR.md",
@@ -1274,23 +1418,11 @@
     },
     {
       "source": "src/README.md",
-      "target": "../README.md"
-    },
-    {
-      "source": "src/README.md",
-      "target": "../docs/SYSTEM_ARCHITECTURE.md"
+      "target": "../dynnav"
     },
     {
       "source": "src/README.md",
       "target": "../pyproject.toml"
-    },
-    {
-      "source": "src/README.md",
-      "target": "dynnav/"
-    },
-    {
-      "source": "src/README.md",
-      "target": "dynnav/README.md"
     },
     {
       "source": "tests/README.md",
@@ -1334,6 +1466,8 @@
     ".github/ISSUE_TEMPLATE/benchmark_result.md",
     ".github/ISSUE_TEMPLATE/research_module_upgrade.md",
     "app/README.md",
+    "apps/web/AGENTS.md",
+    "apps/web/CLAUDE.md",
     "assets/contributions/README.md",
     "assets/README.md",
     "assets/styleguide/README.md",
@@ -1497,6 +1631,60 @@
     "paper/README.md",
     "paper/RECOVERABILITY_METRIC.md",
     "paper/RESEARCH_PLAN.md",
+    "pytest-of-root/pytest-14/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-14/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-14/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-14/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-14/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-14/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
+    "pytest-of-root/pytest-16/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-16/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-16/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-16/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-16/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-16/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
+    "pytest-of-root/pytest-2/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-24/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-24/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-24/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-24/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-24/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-24/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
+    "pytest-of-root/pytest-26/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-26/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-26/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-26/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-26/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-26/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
+    "pytest-of-root/pytest-26/test_suite_runs_mixed_schema_a0/summary.md",
+    "pytest-of-root/pytest-27/test_generated_and_transient_d0/README.md",
+    "pytest-of-root/pytest-28/test_generated_and_transient_d0/README.md",
+    "pytest-of-root/pytest-3/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-3/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-5/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-5/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-5/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-5/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-5/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-5/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
+    "pytest-of-root/pytest-6/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-6/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-6/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-6/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-6/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-6/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
+    "pytest-of-root/pytest-7/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-7/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-7/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-7/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-7/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-7/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
+    "pytest-of-root/pytest-8/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-8/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-8/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-8/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-8/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-8/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
     "README.md",
     "readme_full.md",
     "README_GR.md",
@@ -1522,6 +1710,8 @@
     "src/README.md",
     "STATUS.yaml",
     "tests/README.md",
+    "website/AGENTS.md",
+    "website/CLAUDE.md",
     "website/README.md",
     "WORK_LOG.md"
   ],
@@ -1539,6 +1729,8 @@
     "SECURITY.md",
     "STATUS.yaml",
     "WORK_LOG.md",
+    "apps/web/AGENTS.md",
+    "apps/web/CLAUDE.md",
     "assets/contributions/README.md",
     "benchmarks/README.md",
     "benchmarks/dynamic_self_aware_astar/RANDOMIZED_DYNAMIC_README.md",
@@ -1549,19 +1741,16 @@
     "benchmarks/self_aware_astar/README.md",
     "benchmarks/self_aware_astar/STATISTICAL_EVALUATION_README.md",
     "benchmarks/self_aware_navigation/README.md",
-    "contributions/01_learned_astar/README_GR.md",
     "contributions/01_learned_astar/docs/SCIENTIFIC_UPGRADE.md",
     "contributions/02_uncertainty_calibration/CLAIMS_EVIDENCE.md",
     "contributions/02_uncertainty_calibration/docs/SCIENTIFIC_UPGRADE.md",
     "contributions/02_uncertainty_calibration/readmegr.md",
     "contributions/02_uncertainty_calibration/results/uncertainty_calibration_summary.md",
     "contributions/03_belief_risk_planning/CLAIMS_EVIDENCE.md",
-    "contributions/03_belief_risk_planning/README_GR.md",
     "contributions/03_belief_risk_planning/docs/SCIENTIFIC_UPGRADE.md",
     "contributions/03_belief_risk_planning/readmegr.md",
     "contributions/03_belief_risk_planning/results/c03_belief_risk_summary.md",
     "contributions/04_irreversibility_returnability/CLAIMS_EVIDENCE.md",
-    "contributions/04_irreversibility_returnability/README_GR.md",
     "contributions/04_irreversibility_returnability/docs/SCIENTIFIC_UPGRADE.md",
     "contributions/04_irreversibility_returnability/readmegr.md",
     "contributions/04_irreversibility_returnability/results/c04_returnability_summary.md",
@@ -1644,6 +1833,60 @@
     "paper/contributions.md",
     "paper/dynnav_r/README.md",
     "paper/future_work.md",
+    "pytest-of-root/pytest-14/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-14/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-14/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-14/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-14/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-14/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
+    "pytest-of-root/pytest-16/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-16/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-16/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-16/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-16/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-16/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
+    "pytest-of-root/pytest-2/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-24/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-24/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-24/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-24/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-24/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-24/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
+    "pytest-of-root/pytest-26/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-26/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-26/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-26/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-26/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-26/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
+    "pytest-of-root/pytest-26/test_suite_runs_mixed_schema_a0/summary.md",
+    "pytest-of-root/pytest-27/test_generated_and_transient_d0/README.md",
+    "pytest-of-root/pytest-28/test_generated_and_transient_d0/README.md",
+    "pytest-of-root/pytest-3/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-3/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-5/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-5/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-5/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-5/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-5/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-5/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
+    "pytest-of-root/pytest-6/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-6/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-6/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-6/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-6/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-6/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
+    "pytest-of-root/pytest-7/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-7/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-7/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-7/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-7/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-7/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
+    "pytest-of-root/pytest-8/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
+    "pytest-of-root/pytest-8/test_benchmark_writes_outputs0/summary.md",
+    "pytest-of-root/pytest-8/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-8/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
+    "pytest-of-root/pytest-8/test_run_all_smoke_outputs0/reports/evaluation_report.md",
+    "pytest-of-root/pytest-8/test_run_all_smoke_outputs0/reports/reproducibility_report.md",
     "readme_full.md",
     "research_experiments/trust_aware_cvar/README.md",
     "research_experiments/trust_aware_cvar/paper/paper.md",
@@ -1655,6 +1898,9 @@
     "ros2_ws/src/dynnav_nav2/docs/OCCUPANCY_GRID_CONVERSION.md",
     "ros2_ws/src/dynnav_nav2/docs/PLANNING_REQUEST_INTERFACE.md",
     "src/README.md",
+    "src/dynnav/README.md",
+    "website/AGENTS.md",
+    "website/CLAUDE.md",
     "website/README.md"
   ]
 }

@@ -136,7 +136,9 @@ jobs:
         with:
           node-version: 22
       - name: Install website dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
+      - name: Audit website dependencies
+        run: npm audit --audit-level=high
       - name: Type-check website
         run: npm run typecheck
       - name: Build website
@@ -157,6 +159,8 @@ jobs:
           cache-dependency-path: apps/web/package-lock.json
       - name: Install researcher web dependencies
         run: npm ci --no-audit --no-fund
+      - name: Audit researcher dependencies
+        run: npm audit --audit-level=high
       - name: Type-check researcher workspace
         run: npm run typecheck
       - name: Build researcher workspace

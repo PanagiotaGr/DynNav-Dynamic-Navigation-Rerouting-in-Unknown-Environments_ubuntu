@@ -1,8 +1,13 @@
 import type { NextConfig } from "next";
 
+const basePath = process.env.DYNNAV_RESEARCHER_BASE_PATH ?? "";
+
 const nextConfig: NextConfig = {
-  output: "standalone",
-  outputFileTracingRoot: process.cwd(),
+  output: "export",
+  basePath,
+  assetPrefix: basePath || undefined,
+  images: { unoptimized: true },
+  turbopack: { root: process.cwd() },
 };
 
 export default nextConfig;

@@ -35,7 +35,12 @@ def _launch_setup(context):
     blocker_sdf = LaunchConfiguration("blocker_sdf").perform(context)
     output = LaunchConfiguration("output_dir").perform(context)
     repetitions = LaunchConfiguration("repetitions").perform(context)
-    headless = LaunchConfiguration("headless").perform(context)
+    headless_requested = LaunchConfiguration("headless").perform(context)
+    headless = (
+        "True"
+        if headless_requested.lower() in {"1", "true", "yes", "on"}
+        else "False"
+    )
 
     suite = load_dynamic_suite(scenario_path)
     payload = yaml.safe_load(base_params.read_text(encoding="utf-8"))
@@ -59,11 +64,11 @@ def _launch_setup(context):
             "map": map_file,
             "robot_name": suite.robot_entity,
             "headless": headless,
-            "use_rviz": "false",
-            "use_simulator": "true",
-            "use_composition": "false",
-            "autostart": "true",
-            "use_sim_time": "true",
+            "use_rviz": "False",
+            "use_simulator": "True",
+            "use_composition": "False",
+            "autostart": "True",
+            "use_sim_time": "True",
         }.items(),
     )
 

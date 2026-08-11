@@ -11,17 +11,17 @@ and honest evidence boundaries.
 | Item | Current status | Evidence |
 |---|---|---|
 | Canonical installable Python package | Implemented | Wheel contains mapping, experiments, and researcher modules |
-| Python regression suite | Implemented | 501 passing and 32 environment-dependent skips locally on Python 3.12; commit CI pending |
+| Python regression suite | Implemented | Multi-version CI and contribution suites configured; cite the exact passing run used in an application |
 | Static benchmark failure semantics | Corrected | Planning failure is no longer labeled irreversible failure |
 | Synthetic pipeline artifacts | Corrected | Planned paths are stored; plots represent their stated signals |
 | Costmap-backed Nav2 planner | Implemented | C++17 A* core plus Jazzy `GlobalPlanner` adapter |
 | Standalone C++ validation | Implemented | Strict compilation and known-answer executable tests |
-| ROS 2 Jazzy build and plugin discovery | CI configured | Must pass on the exact pushed commit |
+| ROS 2 Jazzy build and plugin discovery | Verified | Build, grid tests, plugin discovery, and install passed on the evaluated branch |
 | Static Gazebo benchmark harness | Implemented | Six planners, paired blocks, raw records, hashes, and environment manifest |
-| Gazebo Harmonic execution | CI configured | Manual workflow must pass on the exact commit; no result claimed yet |
-| TurtleBot3 simulation | CI configured | Official minimal TB3 launch; no retained run claimed yet |
+| Gazebo Harmonic execution | Verified commissioning run | 36/36 static requests passed; retained artifact and checksums |
+| TurtleBot3 simulation | Verified commissioning runs | Official minimal TB3 launch exercised by retained static and dynamic artifacts |
 | Dynamic route-invalidation harness | Implemented | Frozen events, real Nav2 execution, costmap oracle, raw traces, invalid-trial guards |
-| Dynamic experimental result | Pending | No quantitative claim until a passing retained artifact exists |
+| Dynamic experimental result | Valid smoke result | 8/8 valid `n=1` trials; one genuine timeout, no operational-irreversibility failures; no H1 claim |
 | Physical-robot experiment | Pending | No claim yet |
 
 Local test counts are development evidence, not a permanent scientific result.
@@ -67,15 +67,15 @@ cause. This definition must be frozen before comparing planners.
 
 ## Remaining application-grade exit criteria
 
-1. The Jazzy plugin CI and manual Gazebo workflow pass on the application commit.
-2. The generated Gazebo artifact, parameter snapshots, and installed-package
-   manifest are archived with a stable identifier.
-3. Dynamic scenario event traces are serialized and replayed identically across planners.
-4. The dynamic four-way ablation runs from one command and writes raw per-seed records.
-5. Every reported figure is generated from those raw records by a committed script.
-6. The report includes confidence intervals, effect sizes, negative results, and
+1. Pin the application package to a passing commit or release containing the
+   retained commissioning artifacts.
+2. Expand the dynamic scenario/event suite to at least 30 paired seeds per
+   mechanism after power analysis.
+3. Visually inspect and record the frozen blocker mechanisms in Gazebo/RViz.
+4. Generate every reported figure from raw per-seed records with a committed script.
+5. Report confidence intervals, effect sizes, negative results, and
    at least two inspected failure cases.
-7. A two-to-three minute video shows the same scenario under a baseline and
+6. Produce a two-to-three minute recorded Gazebo comparison showing the same scenario under a baseline and
    DynNav, with the map, costmap, global path, and failure reason visible.
 
 The first committed dynamic suite is a smoke protocol, not the final powered

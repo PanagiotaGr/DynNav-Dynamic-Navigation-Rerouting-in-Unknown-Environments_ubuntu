@@ -36,15 +36,25 @@ jobs:
       - name: Validate documented command paths
         run: python scripts/validate_documented_commands.py --root .
 
-      - name: Verify generated inventory is deterministic and committed
+      - name: Verify clean-runner generation is deterministic
         run: |
-          git diff --exit-code -- \
-            docs/MARKDOWN_INVENTORY.md \
-            docs/DOCUMENTATION_MAP.md \
-            results/manifests/markdown_inventory.json \
-            results/manifests/markdown_inventory.csv \
-            results/manifests/markdown_link_graph.json \
-            results/manifests/documented_commands.json
+          snapshot="$(mktemp -d)"
+          mkdir -p "${snapshot}/docs" "${snapshot}/results/manifests"
+          cp docs/MARKDOWN_INVENTORY.md "${snapshot}/docs/"
+          cp docs/DOCUMENTATION_MAP.md "${snapshot}/docs/"
+          cp results/manifests/markdown_inventory.json "${snapshot}/results/manifests/"
+          cp results/manifests/markdown_inventory.csv "${snapshot}/results/manifests/"
+          cp results/manifests/markdown_link_graph.json "${snapshot}/results/manifests/"
+          cp results/manifests/documented_commands.json "${snapshot}/results/manifests/"
+          python scripts/audit_markdown_tree.py \
+            --root . \
+            --output results/manifests/markdown_inventory.json
+          cmp "${snapshot}/docs/MARKDOWN_INVENTORY.md" docs/MARKDOWN_INVENTORY.md
+          cmp "${snapshot}/docs/DOCUMENTATION_MAP.md" docs/DOCUMENTATION_MAP.md
+          cmp "${snapshot}/results/manifests/markdown_inventory.json" results/manifests/markdown_inventory.json
+          cmp "${snapshot}/results/manifests/markdown_inventory.csv" results/manifests/markdown_inventory.csv
+          cmp "${snapshot}/results/manifests/markdown_link_graph.json" results/manifests/markdown_link_graph.json
+          cmp "${snapshot}/results/manifests/documented_commands.json" results/manifests/documented_commands.json
 
       - name: Upload documentation manifests
         if: always()

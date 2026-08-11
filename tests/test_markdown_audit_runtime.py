@@ -24,6 +24,12 @@ def test_generated_and_transient_documents_are_not_discovered(tmp_path: Path) ->
     transient = tmp_path / "pip-metadata-example"
     transient.mkdir()
     (transient / "METADATA").write_text("# Package\n\n[missing](AUTHORS.md)\n", encoding="utf-8")
+    pytest_output = tmp_path / "pytest-of-root" / "pytest-7" / "case"
+    pytest_output.mkdir(parents=True)
+    (pytest_output / "README.md").write_text(
+        "# Generated test report\n",
+        encoding="utf-8",
+    )
     install_document_discovery_filter()
     discovered = {
         path.relative_to(tmp_path).as_posix()
