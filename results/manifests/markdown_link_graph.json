@@ -1,10 +1,6 @@
 {
   "edges": [
     {
-      "source": ".pytest_cache/README.md",
-      "target": "https://docs.pytest.org/en/stable/how-to/cache.html"
-    },
-    {
       "source": "assets/contributions/README.md",
       "target": "../styleguide/README.md"
     },
@@ -753,8 +749,156 @@
       "target": "../assets/contributions/C26_overview.svg"
     },
     {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/01_learned_astar/experiments/eval_astar_learned.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/02_uncertainty_calibration/experiments/eval_uncertainty_calibration.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/03_belief_risk_planning/experiments/eval_risk_tradeoff.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/04_irreversibility_returnability/experiments/eval_recoverability_metrics.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/05_safe_mode_navigation/experiments/eval_safe_mode_thresholds.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/06_energy_connectivity/experiments/eval_resource_feasibility.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/07_next_best_view/experiments/eval_returnability_aware_nbv.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/08_security_ids/experiments/eval_ids_response_policy.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/09_multi_robot/experiments/eval_team_coordination.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/10_human_language_ethics/experiments/eval_human_ethics_policy.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/11_vlm_navigation_agent/experiments/eval_vlm_goal_validation.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/12_diffusion_occupancy/experiments/eval_risk_map_quality.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/13_latent_world_model/experiments/eval_rollout_audit.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/14_causal_risk_attribution/experiments/eval_root_cause_attribution.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/15_neuromorphic_sensing/experiments/eval_neuromorphic_latency.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/16_federated_nav_learning/experiments/eval_federated_tradeoffs.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/17_topological_semantic_maps/experiments/eval_topo_semantic_navigation.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/18_formal_safety_shields/experiments/eval_shield_stress_test.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/19_llm_mission_planner/experiments/eval_mission_plan_quality.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/20_multimodal_failure_explainer/experiments/eval_failure_report_quality.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/21_ppo_navigation_agent/experiments/eval_policy_safety.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/22_curriculum_rl/experiments/eval_curriculum_strategies.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/23_gaussian_splatting_mapper/experiments/eval_gs_mapping_quality.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/24_nerf_uncertainty/experiments/eval_nerf_uncertainty.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/25_adversarial_attack_simulator/experiments/eval_attack_impact.py"
+    },
+    {
+      "source": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+      "target": "../contributions/26_swarm_consensus/experiments/eval_swarm_consensus.py"
+    },
+    {
+      "source": "docs/DYNAMIC_EXECUTION_PROTOCOL.md",
+      "target": "https://github.com/gazebosim/ros_gz/blob/jazzy/ros_gz_bridge/CHANGELOG.rst"
+    },
+    {
+      "source": "docs/DYNAMIC_EXECUTION_PROTOCOL.md",
+      "target": "https://github.com/ros-navigation/navigation2/blob/jazzy/nav2_msgs/action/ComputePathToPose.action"
+    },
+    {
+      "source": "docs/DYNAMIC_EXECUTION_PROTOCOL.md",
+      "target": "https://github.com/ros-navigation/navigation2/blob/jazzy/nav2_msgs/action/FollowPath.action"
+    },
+    {
+      "source": "docs/DYNAMIC_EXECUTION_PROTOCOL.md",
+      "target": "https://github.com/ros-navigation/navigation2/blob/jazzy/nav2_msgs/action/NavigateToPose.action"
+    },
+    {
       "source": "docs/DYNNAV_V2_RESEARCH_ROADMAP.md",
       "target": "CONTRIBUTION_FEATURE_CATALOG.md"
+    },
+    {
+      "source": "docs/GAZEBO_BENCHMARK_PROTOCOL.md",
+      "target": "../ros2_ws/src/dynnav_nav2_benchmark/README.md"
+    },
+    {
+      "source": "docs/GAZEBO_BENCHMARK_PROTOCOL.md",
+      "target": "DYNAMIC_EXECUTION_PROTOCOL.md"
+    },
+    {
+      "source": "docs/GAZEBO_BENCHMARK_PROTOCOL.md",
+      "target": "https://docs.nav2.org/configuration/packages/configuring-navfn.html"
+    },
+    {
+      "source": "docs/GAZEBO_BENCHMARK_PROTOCOL.md",
+      "target": "https://docs.nav2.org/configuration/packages/configuring-planner-server.html"
+    },
+    {
+      "source": "docs/GAZEBO_BENCHMARK_PROTOCOL.md",
+      "target": "https://docs.nav2.org/configuration/packages/smac/configuring-smac-2d.html"
+    },
+    {
+      "source": "docs/GAZEBO_BENCHMARK_PROTOCOL.md",
+      "target": "https://docs.nav2.org/setup_guides/gazebo.html"
+    },
+    {
+      "source": "docs/GAZEBO_BENCHMARK_PROTOCOL.md",
+      "target": "https://github.com/ros-navigation/nav2_minimal_turtlebot_simulation"
     },
     {
       "source": "docs/Irreversibility_Aware_Navigation_New_Contribution.md",
@@ -897,6 +1041,14 @@
       "target": "https://latex.codecogs.com/svg.image?J(%5Cpi)=%5Csum%20c(s)%2B%5Clambda%5Csum%20I(s)"
     },
     {
+      "source": "docs/ROS2_NAV2_INTEGRATION.md",
+      "target": "../ros2_ws/src/dynnav_nav2_cpp/README.md"
+    },
+    {
+      "source": "docs/ROS2_NAV2_INTEGRATION.md",
+      "target": "GAZEBO_BENCHMARK_PROTOCOL.md"
+    },
+    {
       "source": "lidar_ros2/readme",
       "target": "../README.md"
     },
@@ -926,7 +1078,19 @@
     },
     {
       "source": "README.md",
+      "target": "assets/dynnav_system_overview.gif"
+    },
+    {
+      "source": "README.md",
+      "target": "assets/dynnav_system_overview.mp4"
+    },
+    {
+      "source": "README.md",
       "target": "contributions/CONTRIBUTIONS_README.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md"
     },
     {
       "source": "README.md",
@@ -942,6 +1106,14 @@
     },
     {
       "source": "README.md",
+      "target": "docs/GAZEBO_BENCHMARK_PROTOCOL.md"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/PHD_APPLICATION_READINESS.md"
+    },
+    {
+      "source": "README.md",
       "target": "docs/README.md"
     },
     {
@@ -950,11 +1122,19 @@
     },
     {
       "source": "README.md",
+      "target": "https://github.com/panagiotagrosdouli/DynNav/actions/workflows/contribution-experiments.yml/badge.svg"
+    },
+    {
+      "source": "README.md",
       "target": "https://img.shields.io/badge/License-Apache--2.0-4C1.svg"
     },
     {
       "source": "README.md",
       "target": "https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white"
+    },
+    {
+      "source": "README.md",
+      "target": "ros2_ws/src/dynnav_nav2_cpp/README.md"
     },
     {
       "source": "README_GR.md",
@@ -1057,6 +1237,14 @@
       "target": "../../README.md"
     },
     {
+      "source": "ros2_ws/src/dynnav_nav2_benchmark/README.md",
+      "target": "../../../docs/DYNAMIC_EXECUTION_PROTOCOL.md"
+    },
+    {
+      "source": "ros2_ws/src/dynnav_nav2_cpp/README.md",
+      "target": "config/nav2_params.yaml"
+    },
+    {
       "source": "scripts/README.md",
       "target": "../README.md"
     },
@@ -1082,19 +1270,7 @@
     },
     {
       "source": "src/dynnav/README.md",
-      "target": "../../README.md"
-    },
-    {
-      "source": "src/dynnav/README.md",
-      "target": "../../docs/MATHEMATICAL_FORMULATION.md"
-    },
-    {
-      "source": "src/dynnav/README.md",
-      "target": "../../docs/REPOSITORY_AUDIT.md"
-    },
-    {
-      "source": "src/dynnav/README.md",
-      "target": "../../pyproject.toml"
+      "target": "../../dynnav"
     },
     {
       "source": "src/README.md",
@@ -1157,7 +1333,6 @@
   "nodes": [
     ".github/ISSUE_TEMPLATE/benchmark_result.md",
     ".github/ISSUE_TEMPLATE/research_module_upgrade.md",
-    ".pytest_cache/README.md",
     "app/README.md",
     "assets/contributions/README.md",
     "assets/README.md",
@@ -1267,11 +1442,14 @@
     "docs/CONTRIBUTION_MATURITY_MATRIX.md",
     "docs/CONTRIBUTION_READINESS_CHECKLIST.md",
     "docs/CONTRIBUTION_VISUAL_GALLERY.md",
+    "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "docs/DYNAMIC_EXECUTION_PROTOCOL.md",
     "docs/DYNNAV_RESEARCHER_ARCHITECTURE.md",
     "docs/DYNNAV_V2_RESEARCH_ROADMAP.md",
     "docs/ENGINEERING_AND_SCIENTIFIC_AUDIT.md",
     "docs/EVALUATION_PROTOCOL.md",
     "docs/Frontier-Restricted NBV Benchmark.md",
+    "docs/GAZEBO_BENCHMARK_PROTOCOL.md",
     "docs/Human Preference\u2013Aware Risk Navigation.md",
     "docs/Irreversibility_Aware_Navigation_New_Contribution.md",
     "docs/MAPPING.md",
@@ -1280,6 +1458,7 @@
     "docs/MATHEMATICAL_FORMULATION.md",
     "docs/Multi-Robot Safe Mode Navigation under Uncertainty.md",
     "docs/NAVIGATION_PIPELINE.md",
+    "docs/PHD_APPLICATION_READINESS.md",
     "docs/PRESENTATION_GUIDE.md",
     "docs/Proposition_Irreversibility_vs_Risk_Weighting.md",
     "docs/README Irreversibility-Aware Navigation Planning.md",
@@ -1318,9 +1497,6 @@
     "paper/README.md",
     "paper/RECOVERABILITY_METRIC.md",
     "paper/RESEARCH_PLAN.md",
-    "pytest-of-root/pytest-0/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
-    "pytest-of-root/pytest-0/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
-    "pytest-of-root/pytest-0/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
     "README.md",
     "readme_full.md",
     "README_GR.md",
@@ -1338,6 +1514,7 @@
     "ros2_ws/src/dynnav_nav2/docs/OCCUPANCY_GRID_CONVERSION.md",
     "ros2_ws/src/dynnav_nav2/docs/PLANNING_REQUEST_INTERFACE.md",
     "ros2_ws/src/dynnav_nav2/README.md",
+    "ros2_ws/src/dynnav_nav2_benchmark/README.md",
     "ros2_ws/src/dynnav_nav2_cpp/README.md",
     "scripts/README.md",
     "SECURITY.md",
@@ -1351,7 +1528,6 @@
   "orphans": [
     ".github/ISSUE_TEMPLATE/benchmark_result.md",
     ".github/ISSUE_TEMPLATE/research_module_upgrade.md",
-    ".pytest_cache/README.md",
     "AUDIT.md",
     "BLOCKERS.md",
     "CODE_OF_CONDUCT.md",
@@ -1468,9 +1644,6 @@
     "paper/contributions.md",
     "paper/dynnav_r/README.md",
     "paper/future_work.md",
-    "pytest-of-root/pytest-0/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md",
-    "pytest-of-root/pytest-0/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md",
-    "pytest-of-root/pytest-0/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md",
     "readme_full.md",
     "research_experiments/trust_aware_cvar/README.md",
     "research_experiments/trust_aware_cvar/paper/paper.md",
@@ -1481,7 +1654,6 @@
     "ros2_ws/src/dynnav_nav2/docs/NAV2_PLUGIN_ARCHITECTURE.md",
     "ros2_ws/src/dynnav_nav2/docs/OCCUPANCY_GRID_CONVERSION.md",
     "ros2_ws/src/dynnav_nav2/docs/PLANNING_REQUEST_INTERFACE.md",
-    "ros2_ws/src/dynnav_nav2_cpp/README.md",
     "src/README.md",
     "website/README.md"
   ]

@@ -4,7 +4,6 @@
 
 ## Canonical and index documents
 
-- [`.pytest_cache/README.md`](../.pytest_cache/README.md) — Directory or subsystem overview; maturity: **Unclassified**
 - [`app/README.md`](../app/README.md) — Contribution guidance; maturity: **Unclassified**
 - [`assets/contributions/README.md`](../assets/contributions/README.md) — Contribution guidance; maturity: **Unclassified**
 - [`assets/README.md`](../assets/README.md) — Experiment documentation; maturity: **Experimental**
@@ -65,11 +64,14 @@
 - [`docs/CONTRIBUTION_MATURITY_MATRIX.md`](../docs/CONTRIBUTION_MATURITY_MATRIX.md) — Contribution guidance; maturity: **Documentation Concept**
 - [`docs/CONTRIBUTION_READINESS_CHECKLIST.md`](../docs/CONTRIBUTION_READINESS_CHECKLIST.md) — Contribution guidance; maturity: **Planned**
 - [`docs/CONTRIBUTION_VISUAL_GALLERY.md`](../docs/CONTRIBUTION_VISUAL_GALLERY.md) — Contribution guidance; maturity: **Experimental**
+- [`docs/CONTRIBUTIONS_26_EXPERIMENTS.md`](../docs/CONTRIBUTIONS_26_EXPERIMENTS.md) — Contribution guidance; maturity: **Documentation Concept**
+- [`docs/DYNAMIC_EXECUTION_PROTOCOL.md`](../docs/DYNAMIC_EXECUTION_PROTOCOL.md) — Technical documentation; maturity: **Experimental**
 - [`docs/DYNNAV_RESEARCHER_ARCHITECTURE.md`](../docs/DYNNAV_RESEARCHER_ARCHITECTURE.md) — Audit report; maturity: **Unclassified**
 - [`docs/DYNNAV_V2_RESEARCH_ROADMAP.md`](../docs/DYNNAV_V2_RESEARCH_ROADMAP.md) — Roadmap; maturity: **Experimental**
 - [`docs/ENGINEERING_AND_SCIENTIFIC_AUDIT.md`](../docs/ENGINEERING_AND_SCIENTIFIC_AUDIT.md) — Audit report; maturity: **Planned**
 - [`docs/EVALUATION_PROTOCOL.md`](../docs/EVALUATION_PROTOCOL.md) — Reproducibility report; maturity: **Unclassified**
 - [`docs/Frontier-Restricted NBV Benchmark.md`](../docs/Frontier-Restricted%20NBV%20Benchmark.md) — Technical documentation; maturity: **Unclassified**
+- [`docs/GAZEBO_BENCHMARK_PROTOCOL.md`](../docs/GAZEBO_BENCHMARK_PROTOCOL.md) — ROS2 integration documentation; maturity: **Experimental**
 - [`docs/Human Preference–Aware Risk Navigation.md`](../docs/Human%20Preference%E2%80%93Aware%20Risk%20Navigation.md) — Technical documentation; maturity: **Unclassified**
 - [`docs/Irreversibility_Aware_Navigation_New_Contribution.md`](../docs/Irreversibility_Aware_Navigation_New_Contribution.md) — Contribution guidance; maturity: **Experimental**
 - [`docs/MAPPING.md`](../docs/MAPPING.md) — Technical documentation; maturity: **Unclassified**
@@ -78,6 +80,7 @@
 - [`docs/MATHEMATICAL_FORMULATION.md`](../docs/MATHEMATICAL_FORMULATION.md) — Experiment documentation; maturity: **Unclassified**
 - [`docs/Multi-Robot Safe Mode Navigation under Uncertainty.md`](../docs/Multi-Robot%20Safe%20Mode%20Navigation%20under%20Uncertainty.md) — Reproducibility report; maturity: **Experimental**
 - [`docs/NAVIGATION_PIPELINE.md`](../docs/NAVIGATION_PIPELINE.md) — Technical documentation; maturity: **Unclassified**
+- [`docs/PHD_APPLICATION_READINESS.md`](../docs/PHD_APPLICATION_READINESS.md) — Experiment documentation; maturity: **Planned**
 - [`docs/PRESENTATION_GUIDE.md`](../docs/PRESENTATION_GUIDE.md) — Reproducibility report; maturity: **Documentation Concept**
 - [`docs/Proposition_Irreversibility_vs_Risk_Weighting.md`](../docs/Proposition_Irreversibility_vs_Risk_Weighting.md) — Technical documentation; maturity: **Unclassified**
 - [`docs/README Irreversibility-Aware Navigation Planning.md`](../docs/README%20Irreversibility-Aware%20Navigation%20Planning.md) — Directory or subsystem overview; maturity: **Unclassified**
@@ -101,7 +104,7 @@
 - [`docs/Returnability- & Irreversibility-Aware Frontier NBV.md`](../docs/Returnability-%20&%20Irreversibility-Aware%20Frontier%20NBV.md) — Technical documentation; maturity: **Unclassified**
 - [`docs/RISK_ESTIMATION.md`](../docs/RISK_ESTIMATION.md) — Technical documentation; maturity: **Planned**
 - [`docs/ROADMAP.md`](../docs/ROADMAP.md) — Roadmap; maturity: **Implemented**
-- [`docs/ROS2_NAV2_INTEGRATION.md`](../docs/ROS2_NAV2_INTEGRATION.md) — Reproducibility report; maturity: **Unclassified**
+- [`docs/ROS2_NAV2_INTEGRATION.md`](../docs/ROS2_NAV2_INTEGRATION.md) — ROS2 integration documentation; maturity: **Implemented**
 - [`docs/SelfHealing_LanguageSafety_README.md`](../docs/SelfHealing_LanguageSafety_README.md) — Directory or subsystem overview; maturity: **Unclassified**
 - [`docs/SYSTEM_ARCHITECTURE.md`](../docs/SYSTEM_ARCHITECTURE.md) — Experiment documentation; maturity: **Unclassified**
 - [`docs/UNCERTAINTY_MODEL.md`](../docs/UNCERTAINTY_MODEL.md) — Reproducibility report; maturity: **Unclassified**
@@ -120,9 +123,10 @@
 - [`ros2_ws/lidar_slam_tb3/README (4).md`](../ros2_ws/lidar_slam_tb3/README%20%284%29.md) — LiDAR integration documentation; maturity: **Unclassified**
 - [`ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md`](../ros2_ws/lidar_slam_tb3/README_LiDAR_SLAM_TurtleBot3_ROS2.md) — ROS2 integration documentation; maturity: **Unclassified**
 - [`ros2_ws/src/dynnav_nav2/README.md`](../ros2_ws/src/dynnav_nav2/README.md) — Directory or subsystem overview; maturity: **Planned**
-- [`ros2_ws/src/dynnav_nav2_cpp/README.md`](../ros2_ws/src/dynnav_nav2_cpp/README.md) — ROS2 integration documentation; maturity: **Implemented**
+- [`ros2_ws/src/dynnav_nav2_benchmark/README.md`](../ros2_ws/src/dynnav_nav2_benchmark/README.md) — ROS2 integration documentation; maturity: **Unclassified**
+- [`ros2_ws/src/dynnav_nav2_cpp/README.md`](../ros2_ws/src/dynnav_nav2_cpp/README.md) — Directory or subsystem overview; maturity: **Implemented**
 - [`scripts/README.md`](../scripts/README.md) — Experiment documentation; maturity: **Implemented**
-- [`src/dynnav/README.md`](../src/dynnav/README.md) — Experiment documentation; maturity: **Research Prototype**
+- [`src/dynnav/README.md`](../src/dynnav/README.md) — Directory or subsystem overview; maturity: **Unclassified**
 - [`src/README.md`](../src/README.md) — Directory or subsystem overview; maturity: **Implemented**
 - [`tests/README.md`](../tests/README.md) — ROS2 integration documentation; maturity: **Implemented**
 - [`website/README.md`](../website/README.md) — Reproducibility report; maturity: **Experimental**
@@ -131,7 +135,6 @@
 
 - `.github/ISSUE_TEMPLATE/benchmark_result.md`
 - `.github/ISSUE_TEMPLATE/research_module_upgrade.md`
-- `.pytest_cache/README.md`
 - `AUDIT.md`
 - `BLOCKERS.md`
 - `CODE_OF_CONDUCT.md`
@@ -248,9 +251,6 @@
 - `paper/contributions.md`
 - `paper/dynnav_r/README.md`
 - `paper/future_work.md`
-- `pytest-of-root/pytest-0/test_api_protocol_execution_re0/exp_21a073981ecab7e3/report.md`
-- `pytest-of-root/pytest-0/test_partial_run_failure_is_is0/exp_74c179b1d6350849/report.md`
-- `pytest-of-root/pytest-0/test_real_four_planner_run_gen0/exp_74c179b1d6350849/report.md`
 - `readme_full.md`
 - `research_experiments/trust_aware_cvar/README.md`
 - `research_experiments/trust_aware_cvar/paper/paper.md`
@@ -261,6 +261,5 @@
 - `ros2_ws/src/dynnav_nav2/docs/NAV2_PLUGIN_ARCHITECTURE.md`
 - `ros2_ws/src/dynnav_nav2/docs/OCCUPANCY_GRID_CONVERSION.md`
 - `ros2_ws/src/dynnav_nav2/docs/PLANNING_REQUEST_INTERFACE.md`
-- `ros2_ws/src/dynnav_nav2_cpp/README.md`
 - `src/README.md`
 - `website/README.md`
