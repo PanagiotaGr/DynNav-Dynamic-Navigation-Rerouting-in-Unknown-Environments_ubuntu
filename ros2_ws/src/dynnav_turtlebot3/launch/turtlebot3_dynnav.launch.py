@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
+from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
@@ -16,11 +16,7 @@ def generate_launch_description():
 
     args = [
         DeclareLaunchArgument('use_sim_time', default_value='true'),
-        DeclareLaunchArgument(
-            'model',
-            default_value='burger',
-            description='TurtleBot3 model'
-        ),
+        DeclareLaunchArgument('model', default_value='burger'),
         DeclareLaunchArgument(
             'params_file',
             default_value=PathJoinSubstitution([
@@ -39,9 +35,7 @@ def generate_launch_description():
                 'turtlebot3_world.launch.py'
             ])
         ),
-        launch_arguments={
-            'model': model,
-        }.items()
+        launch_arguments={'model': model}.items()
     )
 
     nav2 = IncludeLaunchDescription(
@@ -69,6 +63,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription(args + [
+        SetEnvironmentVariable('TURTLEBOT3_MODEL', model),
         gazebo,
         nav2,
         rviz,
