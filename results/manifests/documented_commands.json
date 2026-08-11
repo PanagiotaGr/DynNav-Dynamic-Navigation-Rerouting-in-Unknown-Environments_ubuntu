@@ -739,6 +739,186 @@
   },
   {
     "classification": "required and executable",
+    "command": "python scripts/run_contribution_suite.py --output-dir results/contribution_suite",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/01_learned_astar/experiments/eval_astar_learned.py --trials 8 --min-goal-distance 8 --out results/contribution_suite/artifacts/c01_learned_astar.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/02_uncertainty_calibration/experiments/eval_uncertainty_calibration.py --n 200 --seed 13 --out results/contribution_suite/artifacts/c02_uncertainty_calibration.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/03_belief_risk_planning/experiments/eval_risk_tradeoff.py --alpha 0.95 --objective-risk cvar --out results/contribution_suite/artifacts/c03_belief_risk_tradeoff.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/04_irreversibility_returnability/experiments/eval_recoverability_metrics.py --out results/contribution_suite/artifacts/c04_recoverability_profile.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/05_safe_mode_navigation/experiments/eval_safe_mode_thresholds.py --n-steps 20 --out results/contribution_suite/artifacts/c05_safe_mode_thresholds.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/06_energy_connectivity/experiments/eval_resource_feasibility.py --battery-budget 26 --reserve-energy 2 --min-connectivity 0.35 --out results/contribution_suite/artifacts/c06_resource_feasibility.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/07_next_best_view/experiments/eval_returnability_aware_nbv.py --risk-weight 1.0 --returnability-weight 1.0 --connectivity-weight 0.25 --out results/contribution_suite/artifacts/c07_returnability_aware_nbv.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/08_security_ids/experiments/eval_ids_response_policy.py --out results/contribution_suite/artifacts/c08_ids_response_policy.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/09_multi_robot/experiments/eval_team_coordination.py --out results/contribution_suite/artifacts/c09_team_coordination.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/10_human_language_ethics/experiments/eval_human_ethics_policy.py --out results/contribution_suite/artifacts/c10_human_ethics_policy.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/11_vlm_navigation_agent/experiments/eval_vlm_goal_validation.py --out results/contribution_suite/artifacts/c11_vlm_goal_validation.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/12_diffusion_occupancy/experiments/eval_risk_map_quality.py --n-scenarios 4 --out results/contribution_suite/artifacts/c12_risk_map_quality.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/13_latent_world_model/experiments/eval_rollout_audit.py --horizon 6 --out results/contribution_suite/artifacts/c13_rollout_audit.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/14_causal_risk_attribution/experiments/eval_root_cause_attribution.py --n-samples 30 --out results/contribution_suite/artifacts/c14_root_cause_attribution.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/15_neuromorphic_sensing/experiments/eval_neuromorphic_latency.py --out results/contribution_suite/artifacts/c15_neuromorphic_latency.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/16_federated_nav_learning/experiments/eval_federated_tradeoffs.py --rounds 3 --n-clients 4 --out results/contribution_suite/artifacts/c16_federated_tradeoffs.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/17_topological_semantic_maps/experiments/eval_topo_semantic_navigation.py --out results/contribution_suite/artifacts/c17_topological_semantic_navigation.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/18_formal_safety_shields/experiments/eval_shield_stress_test.py --out results/contribution_suite/artifacts/c18_shield_stress_test.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/19_llm_mission_planner/experiments/eval_mission_plan_quality.py --out results/contribution_suite/artifacts/c19_mission_plan_quality.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/20_multimodal_failure_explainer/experiments/eval_failure_report_quality.py --out results/contribution_suite/artifacts/c20_failure_report_quality.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/21_ppo_navigation_agent/experiments/eval_policy_safety.py --episodes 8 --out results/contribution_suite/artifacts/c21_policy_safety.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/22_curriculum_rl/experiments/eval_curriculum_strategies.py --episodes 40 --out results/contribution_suite/artifacts/c22_curriculum_strategies.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/23_gaussian_splatting_mapper/experiments/eval_gs_mapping_quality.py --frames 4 --out results/contribution_suite/artifacts/c23_gaussian_mapping_quality.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/24_nerf_uncertainty/experiments/eval_nerf_uncertainty.py --out results/contribution_suite/artifacts/c24_nerf_uncertainty.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/25_adversarial_attack_simulator/experiments/eval_attack_impact.py --out results/contribution_suite/artifacts/c25_attack_impact.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python contributions/26_swarm_consensus/experiments/eval_swarm_consensus.py --out results/contribution_suite/artifacts/c26_swarm_consensus.csv",
+    "document": "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source /opt/ros/jazzy/setup.bash",
+    "document": "docs/DYNAMIC_EXECUTION_PROTOCOL.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source install/setup.bash",
+    "document": "docs/DYNAMIC_EXECUTION_PROTOCOL.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 launch dynnav_nav2_benchmark tb3_dynamic_execution_benchmark.launch.py headless:=true repetitions:=1 output_dir:=$PWD/results/nav2_dynamic",
+    "document": "docs/DYNAMIC_EXECUTION_PROTOCOL.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
     "command": "python3 simple_risk_planner.py",
     "document": "docs/Human Preference\u2013Aware Risk Navigation.md",
     "verified": false
@@ -1212,8 +1392,32 @@
     "verified": false
   },
   {
+    "classification": "illustrative",
+    "command": "source /opt/ros/jazzy/setup.bash",
+    "document": "docs/ROS2_NAV2_INTEGRATION.md",
+    "verified": false
+  },
+  {
     "classification": "ROS2-only",
-    "command": "ros2 bag record /map /scan /odom /tf /plan /cmd_vel /dynnav/risk_grid /dynnav/uncertainty_grid /dynnav/recoverability_grid /dynnav/safety_mode /dynnav/reroute_events",
+    "command": "colcon build --base-paths ros2_ws/src/dynnav_nav2_cpp --packages-select dynnav_nav2_cpp --event-handlers console_direct+",
+    "document": "docs/ROS2_NAV2_INTEGRATION.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source install/setup.bash",
+    "document": "docs/ROS2_NAV2_INTEGRATION.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "colcon test --packages-select dynnav_nav2_cpp --event-handlers console_direct+",
+    "document": "docs/ROS2_NAV2_INTEGRATION.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "colcon test-result --verbose",
     "document": "docs/ROS2_NAV2_INTEGRATION.md",
     "verified": false
   },
@@ -1417,7 +1621,55 @@
   },
   {
     "classification": "required and executable",
-    "command": "pytest",
+    "command": "python -m pytest -q",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source /opt/ros/jazzy/setup.bash",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "colcon build --base-paths ros2_ws/src/dynnav_nav2_cpp --packages-select dynnav_nav2_cpp",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source install/setup.bash",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "colcon test --packages-select dynnav_nav2_cpp",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "colcon test-result --verbose",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 launch dynnav_nav2_benchmark tb3_static_planner_benchmark.launch.py headless:=true repetitions:=10 output_dir:=$PWD/results/nav2_static",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/validate_contribution_registry.py",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python scripts/run_contribution_suite.py --output-dir results/contribution_suite",
     "document": "README.md",
     "verified": false
   },
@@ -1818,14 +2070,62 @@
     "verified": false
   },
   {
+    "classification": "illustrative",
+    "command": "source /opt/ros/jazzy/setup.bash",
+    "document": "ros2_ws/src/dynnav_nav2_benchmark/README.md",
+    "verified": false
+  },
+  {
     "classification": "ROS2-only",
-    "command": "colcon build --packages-select dynnav_nav2_cpp",
+    "command": "colcon build --base-paths ros2_ws/src/dynnav_nav2_cpp ros2_ws/src/dynnav_nav2_benchmark --packages-select dynnav_nav2_cpp dynnav_nav2_benchmark",
+    "document": "ros2_ws/src/dynnav_nav2_benchmark/README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source install/setup.bash",
+    "document": "ros2_ws/src/dynnav_nav2_benchmark/README.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 launch dynnav_nav2_benchmark tb3_static_planner_benchmark.launch.py headless:=true repetitions:=10 output_dir:=$PWD/results/nav2_static",
+    "document": "ros2_ws/src/dynnav_nav2_benchmark/README.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "ros2 launch dynnav_nav2_benchmark tb3_dynamic_execution_benchmark.launch.py headless:=true repetitions:=1 output_dir:=$PWD/results/nav2_dynamic",
+    "document": "ros2_ws/src/dynnav_nav2_benchmark/README.md",
+    "verified": false
+  },
+  {
+    "classification": "illustrative",
+    "command": "source /opt/ros/jazzy/setup.bash",
+    "document": "ros2_ws/src/dynnav_nav2_cpp/README.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "colcon build --base-paths ros2_ws/src/dynnav_nav2_cpp --packages-select dynnav_nav2_cpp",
     "document": "ros2_ws/src/dynnav_nav2_cpp/README.md",
     "verified": false
   },
   {
     "classification": "illustrative",
     "command": "source install/setup.bash",
+    "document": "ros2_ws/src/dynnav_nav2_cpp/README.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "colcon test --packages-select dynnav_nav2_cpp",
+    "document": "ros2_ws/src/dynnav_nav2_cpp/README.md",
+    "verified": false
+  },
+  {
+    "classification": "ROS2-only",
+    "command": "colcon test-result --verbose",
     "document": "ros2_ws/src/dynnav_nav2_cpp/README.md",
     "verified": false
   },
@@ -1860,32 +2160,14 @@
     "verified": false
   },
   {
-    "classification": "illustrative",
-    "command": "dynnav-benchmark --help",
+    "classification": "required and executable",
+    "command": "python -m pip install -e \".[dev]\"",
     "document": "src/dynnav/README.md",
     "verified": false
   },
   {
     "classification": "required and executable",
-    "command": "pytest tests/test_mapping_occupancy_grid.py",
-    "document": "src/dynnav/README.md",
-    "verified": false
-  },
-  {
-    "classification": "required and executable",
-    "command": "pytest tests/test_planning.py",
-    "document": "src/dynnav/README.md",
-    "verified": false
-  },
-  {
-    "classification": "required and executable",
-    "command": "pytest tests/test_research_modules.py",
-    "document": "src/dynnav/README.md",
-    "verified": false
-  },
-  {
-    "classification": "required and executable",
-    "command": "pytest tests/test_research_pipeline_phase2.py",
+    "command": "python -c \"import dynnav; print(dynnav.__file__)\"",
     "document": "src/dynnav/README.md",
     "verified": false
   },

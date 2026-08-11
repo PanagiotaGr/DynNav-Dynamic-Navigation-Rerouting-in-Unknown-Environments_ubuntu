@@ -66,7 +66,7 @@ class PredictiveRiskMap:
         values = [self.risk_at(cell, start_time + offset) for offset, cell in enumerate(path)]
         return sum(values) / len(values)
 
-    def with_risk(self, cell: GridCell, time_step: int, risk: float) -> "PredictiveRiskMap":
+    def with_risk(self, cell: GridCell, time_step: int, risk: float) -> PredictiveRiskMap:
         """Return a new map with one risk value updated."""
         if time_step < 0:
             raise ValueError("time_step must be non-negative")

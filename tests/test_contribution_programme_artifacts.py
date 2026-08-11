@@ -21,6 +21,7 @@ def test_generator_runs_and_emits_required_artifacts() -> None:
         ROOT / "docs/CONTRIBUTION_INDEX.md",
         ROOT / "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md",
         ROOT / "docs/CONTRIBUTION_MATURITY_MATRIX.md",
+        ROOT / "docs/CONTRIBUTIONS_26_EXPERIMENTS.md",
         ROOT / "results/manifests/contribution_inventory.json",
         ROOT / "results/manifests/contribution_inventory.csv",
         ROOT / "results/manifests/contribution_dependency_graph.json",
@@ -58,3 +59,16 @@ def test_dependency_manifest_has_only_registered_nodes() -> None:
     assert set(graph["nodes"]) == registered
     assert graph["edges"]
     assert all(edge["source"] in registered and edge["target"] in registered for edge in graph["edges"])
+
+
+def test_generated_experiment_catalogue_covers_every_contribution() -> None:
+    catalogue = ROOT / "docs/CONTRIBUTIONS_26_EXPERIMENTS.md"
+    if not catalogue.exists():
+        subprocess.run(
+            [sys.executable, str(ROOT / "scripts/generate_contribution_programme_artifacts.py")],
+            cwd=ROOT,
+            check=True,
+        )
+    text = catalogue.read_text(encoding="utf-8")
+    assert all(f"## C{i:02d} —" in text for i in range(1, 27))
+    assert text.count("```bash") == 27

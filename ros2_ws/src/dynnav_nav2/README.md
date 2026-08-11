@@ -1,6 +1,8 @@
-# DynNav ROS 2 / Nav2 Integration Scaffold
+# DynNav Python ROS 2 Diagnostic Bridge
 
-This package is the first ROS 2 integration layer for DynNav.
+This package exposes selected Python research-planner outputs as ROS 2 topics.
+The production Nav2 planner interface lives in the sibling
+`dynnav_nav2_cpp` package.
 
 ## Purpose
 
@@ -8,7 +10,7 @@ The existing DynNav algorithms are intentionally dependency-light Python researc
 
 ## Current status
 
-Readiness: **Scaffold / prototype**
+Readiness: **Diagnostic prototype**
 
 Implemented:
 
@@ -21,9 +23,9 @@ Implemented:
 - `nav_msgs/Path` publisher on `/dynnav/path`,
 - grid-cell to map-frame coordinate conversion.
 
-Not implemented yet:
+This package deliberately does not implement:
 
-- full Nav2 global planner plugin,
+- the `nav2_core::GlobalPlanner` interface,
 - costmap conversion,
 - action server integration,
 - TF frame handling beyond configurable `frame_id`,
@@ -74,10 +76,6 @@ dynnav_planner_bridge:
     frame_id: "map"
 ```
 
-## Next milestone
-
-The next integration milestone is to add:
-
-- occupancy-grid to `GridMap` conversion,
-- a service or action interface,
-- eventually a Nav2-compatible planner plugin.
+For Nav2 integration, build and configure `dynnav_nav2_cpp`. This Python bridge
+should be used for research diagnostics only; it currently plans on a
+parameter-defined grid rather than the live Nav2 costmap.

@@ -33,13 +33,33 @@ from topo_semantic_evaluator import (  # noqa: E402
 RESULTS_DIR = Path("contributions/17_topological_semantic_maps/results")
 DEFAULT_OUT = RESULTS_DIR / "c17_topo_semantic_navigation.csv"
 
+CSV_FIELDS = [
+    "row_type",
+    "scenario",
+    "query",
+    "expected_label",
+    "predicted_label",
+    "top1_correct",
+    "topk_correct",
+    "best_similarity",
+    "start_label",
+    "goal_label",
+    "path_found",
+    "path_length_nodes",
+    "path_cost",
+    "expanded_graph_nodes",
+    "blocked_edges",
+]
+
 
 def write_csv(path: Path, rows: list[dict[str, str | bool | int | float]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        # Grounding and planning rows intentionally carry different metrics.
+        # A fixed union schema keeps the mixed benchmark machine-readable.
+        writer = csv.DictWriter(f, fieldnames=CSV_FIELDS)
         writer.writeheader()
-        writer.writerows(rows)
+        writer.writerows({field: row.get(field, "") for field in CSV_FIELDS} for row in rows)
 
 
 def main() -> None:
@@ -72,7 +92,18 @@ def main() -> None:
     for row in grounding_rows:
         rows.append({"row_type": "grounding", **row.to_dict(), "scenario": "semantic_query"})
     for row in planning_rows:
-        rows.append({"row_type": "planning", **row.to_dict(), "query": "", "expected_label": "", "predicted_label": "", "top1_correct": False, "topk_correct": False, "best_similarity": 0.0})
+        rows.append(
+            {
+                "row_type": "planning",
+                **row.to_dict(),
+                "query": "",
+                "expected_label": "",
+                "predicted_label": "",
+                "top1_correct": False,
+                "topk_correct": False,
+                "best_similarity": 0.0,
+            }
+        )
 
     write_csv(args.out, rows)
     print(f"Saved C17 topological-semantic benchmark to {args.out}")

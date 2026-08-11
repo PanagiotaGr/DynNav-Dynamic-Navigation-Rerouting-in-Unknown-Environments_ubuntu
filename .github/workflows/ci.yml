@@ -8,8 +8,8 @@ on:
 jobs:
   python:
     name: Python ${{ matrix.python-version }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
@@ -21,118 +21,108 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
       - name: Install package
-        env:
-          PYTHONPATH: ${{ github.workspace }}/src
         run: |
           python -m pip install --upgrade pip
-          python -m pip uninstall -y dynnav || true
           python -m pip install -e ".[dev,researcher]"
-          cat > /tmp/verify_dynnav.py <<'PY'
-          import dynnav
-          import dynnav.mapping
-          import dynnav.benchmarks
-          import dynnav.lab_grade
-          import dynnav.planning
-          import dynnav.research_modules
-          import dynnav.research_pipeline
 
-          print("dynnav:", dynnav.__file__)
-          print("mapping:", dynnav.mapping.__file__)
-          print("benchmarks:", dynnav.benchmarks.__file__)
-          print("lab_grade:", dynnav.lab_grade.__file__)
-          print("planning:", dynnav.planning.__file__)
-          print("research_modules:", dynnav.research_modules.__file__)
-          print("research_pipeline:", dynnav.research_pipeline.__file__)
+      - name: Verify canonical package layout
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          import dynnav
+          import dynnav.experiments
+          import dynnav.mapping
+          import dynnav.researcher
+
+          package = Path(dynnav.__file__).resolve()
+          expected = Path.cwd().resolve() / "dynnav"
+          assert package.is_relative_to(expected), (package, expected)
+          print(f"canonical dynnav package: {package}")
           PY
-          python /tmp/verify_dynnav.py
-      - name: Verify research-grade mapping lint
-        run: ruff check src/dynnav/mapping tests/test_mapping_occupancy_grid.py
+
+      - name: Lint canonical Python package
+        run: >-
+          ruff check
+          dynnav
+          ros2_ws/src/dynnav_nav2_benchmark
+
       - name: Type-check mapping core
         run: >-
-          mypy src/dynnav/mapping
+          mypy dynnav/mapping
           --strict
           --no-warn-unused-ignores
           --show-error-codes
-      - name: Src package tests
-        env:
-          PYTHONPATH: ${{ github.workspace }}/src
-        run: |
-          cat > /tmp/run_src_tests.py <<'PY'
-          import pytest
 
-          raise SystemExit(
-              pytest.main(
-                  [
-                      "-c",
-                      "pyproject.toml",
-                      "-q",
-                      "tests/test_mapping_occupancy_grid.py",
-                      "tests/test_dynnav_smoke.py",
-                      "tests/test_lab_grade.py",
-                      "tests/test_planning.py",
-                      "tests/test_research_modules.py",
-                      "tests/test_research_pipeline_phase2.py",
-                  ]
-              )
-          )
-          PY
-          python /tmp/run_src_tests.py
-      - name: Legacy regression suite
-        shell: bash
-        env:
-          PYTHONPATH: ${{ github.workspace }}
-        run: |
-          set -o pipefail
-          excluded_tests=(
-            tests/test_mapping_occupancy_grid.py
-            tests/test_dynnav_smoke.py
-            tests/test_lab_grade.py
-            tests/test_planning.py
-            tests/test_research_modules.py
-            tests/test_research_pipeline_phase2.py
-            tests/test_streamlit_lab_smoke.py
-          )
+      - name: Unified regression suite
+        run: python -m pytest -q --tb=short
 
-          is_excluded_test() {
-            local candidate="$1"
-            for item in "${excluded_tests[@]}"; do
-              if [[ "$candidate" == "$item" ]]; then
-                return 0
-              fi
-            done
-            return 1
-          }
-
-          for test_file in $(find tests -maxdepth 1 -name 'test_*.py' | sort); do
-            if is_excluded_test "$test_file"; then
-              continue
-            fi
-
-            echo "::group::Running $test_file"
-            set +e
-            timeout --signal=TERM --kill-after=15s 5m \
-              python -m pytest -q --tb=short "$test_file"
-            status=$?
-            set -e
-            echo "::endgroup::"
-
-            if [[ "$status" -ne 0 ]]; then
-              if [[ "$status" -eq 124 || "$status" -eq 137 || "$status" -eq 143 ]]; then
-                echo "::error title=Pytest timeout (Python ${{ matrix.python-version }})::$test_file exceeded 5 minutes"
-              else
-                echo "::error title=Pytest failure (Python ${{ matrix.python-version }})::$test_file failed with exit code $status"
-              fi
-              exit "$status"
-            fi
-          done
-      - name: Run all smoke test
-        env:
-          PYTHONPATH: ${{ github.workspace }}/src
+      - name: Reproducibility smoke tests
+        if: matrix.python-version == '3.12'
         run: python scripts/run_all.py --config configs/default.yaml --smoke --out-dir results/ci_smoke
+
       - name: Benchmark smoke test
-        env:
-          PYTHONPATH: ${{ github.workspace }}/src
-        run: python scripts/run_benchmarks.py --config configs/default.yaml --smoke --out-dir results/ci_benchmarks
+        if: matrix.python-version == '3.12'
+        run: >-
+          python scripts/run_benchmarks.py
+          --config configs/default.yaml
+          --smoke
+          --out-dir results/ci_benchmarks
+
+  ros2-jazzy:
+    name: ROS 2 Jazzy / Nav2 plugin
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    container: ros:jazzy-ros-base-noble
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ROS build dependencies
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends \
+            python3-colcon-common-extensions \
+            python3-rosdep
+          rosdep init 2>/dev/null || true
+          rosdep update
+          rosdep install \
+            --from-paths ros2_ws/src/dynnav_nav2_cpp \
+            --ignore-src \
+            --rosdistro jazzy \
+            -r -y
+
+      - name: Build Nav2 plugin
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          colcon --log-base /tmp/dynnav_ros2/log build \
+            --base-paths ros2_ws/src/dynnav_nav2_cpp \
+            --build-base /tmp/dynnav_ros2/build \
+            --install-base /tmp/dynnav_ros2/install \
+            --packages-select dynnav_nav2_cpp \
+            --event-handlers console_direct+
+
+      - name: Test path search and plugin discovery
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          source /tmp/dynnav_ros2/install/setup.bash
+          colcon --log-base /tmp/dynnav_ros2/test-log test \
+            --build-base /tmp/dynnav_ros2/build \
+            --install-base /tmp/dynnav_ros2/install \
+            --packages-select dynnav_nav2_cpp \
+            --event-handlers console_direct+
+          colcon test-result \
+            --test-result-base /tmp/dynnav_ros2/build \
+            --verbose
+
+      - name: Verify installed package and configuration
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          source /tmp/dynnav_ros2/install/setup.bash
+          ros2 pkg prefix dynnav_nav2_cpp
+          test -f /tmp/dynnav_ros2/install/dynnav_nav2_cpp/share/dynnav_nav2_cpp/config/nav2_params.yaml
 
   website:
     name: Website build

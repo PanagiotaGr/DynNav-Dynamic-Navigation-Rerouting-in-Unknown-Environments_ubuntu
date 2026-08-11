@@ -8,8 +8,8 @@ integration.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, replace
-from typing import Callable, Iterable
+from collections.abc import Callable, Iterable
+from dataclasses import dataclass, field
 
 from dynnav.core.information_gain import expected_information_gain
 from dynnav.planners.grid_map import GridCell, GridMap
@@ -162,7 +162,9 @@ def dynamic_self_aware_astar(
             total_nodes_expanded += plan.nodes_expanded
             total_planning_time_ms += plan.planning_time_ms
             if not plan.success:
-                mean_risk, max_risk, information_gain, recoverability = _metrics(grid, executed_path, config.sensor_radius)
+                mean_risk, max_risk, information_gain, recoverability = _metrics(
+                    grid, executed_path, config.sensor_radius
+                )
                 return DynamicReplanningResult(
                     path=executed_path,
                     success=False,

@@ -1,124 +1,124 @@
-# ROS 2 / Nav2 Integration
+# ROS 2 / Nav2 integration
 
-Status: **Prototype**
+DynNav now contains a real C++ Nav2 global-planner plugin targeting ROS 2
+Jazzy on Ubuntu 24.04. The integration boundary is intentionally narrow: the
+plugin consumes Nav2's global costmap and returns a collision-checked global
+path, while the Python package remains the broader research environment.
 
-DynNav is structured so that risk-aware planning, uncertainty fields, recoverability scores, and mission supervision can be adapted to ROS 2 and Nav2. This document is deliberately conservative: no compiled Nav2 plugin or hardware-validated deployment is claimed until it exists in CI or a reproducible ROS workspace.
-
-## Target integration architecture
-
-```text
-/map, /scan, /odom, /tf
-        |
-        v
-Occupancy belief adapter
-        |
-        +--> uncertainty field
-        +--> risk field
-        +--> recoverability field
-        |
-        v
-DynNav planner adapter  <---- Nav2 ComputePathToPose
-        |
-        v
-Nav2 controller / behavior tree
-        |
-        v
-Safety supervisor: nominal / replan / safe-mode / safe-stop
-```
-
-## Prototype package layout
-
-Recommended future ROS workspace layout:
+## Architecture
 
 ```text
-ros2_ws/src/dynnav_nav2/
-  package.xml
-  CMakeLists.txt
-  plugin.xml
-  include/dynnav_nav2/risk_aware_planner.hpp
-  src/risk_aware_planner.cpp
-  launch/dynnav_nav2.launch.py
-  config/nav2_params.yaml
-  behavior_trees/dynnav_recovery.xml
-  rviz/dynnav.rviz
+Nav2 ComputePathToPose
+          |
+          v
+DynNavGlobalPlanner
+          |
+          +-- costmap risk proxy
+          +-- local escape-option proxy
+          |
+          v
+deterministic four-connected A*
+          |
+          v
+nav_msgs/msg/Path -> Nav2 controller
 ```
 
-## Topic contract
+The implementation is in
+[`ros2_ws/src/dynnav_nav2_cpp`](../ros2_ws/src/dynnav_nav2_cpp/README.md).
+The older `dynnav_nav2` Python node is retained as a diagnostic research bridge;
+it is not the Nav2 planner plugin.
 
-| Interface | Direction | Status | Purpose |
-|---|---|---|---|
-| `/map` | input | Prototype | Occupancy grid source |
-| `/odom` | input | Prototype | Robot state estimate |
-| `/tf` | input | Prototype | Frame transforms |
-| `/dynnav/risk_grid` | output | Prototype | Risk visualization |
-| `/dynnav/uncertainty_grid` | output | Prototype | Uncertainty visualization |
-| `/dynnav/recoverability_grid` | output | Prototype | Recoverability visualization |
-| `/dynnav/safety_mode` | output | Prototype | Supervisor state |
-| `/dynnav/reroute_events` | output | Prototype | Rerouting diagnostics |
+## Evidence status
 
-## Nav2 plugin scaffold requirements
+| Capability | Evidence |
+|---|---|
+| Costmap-backed A* core | Pure C++ compilation and deterministic known-answer tests |
+| Jazzy `GlobalPlanner` API | Three-argument `createPlan` with cancellation checker |
+| Plugin discovery | pluginlib instantiation test in the ROS CI job |
+| ROS 2 Jazzy build | Automated in `ros:jazzy-ros-base-noble` after the branch is pushed |
+| Static Gazebo benchmark harness | Implemented with paired requests and provenance artifacts |
+| Gazebo Harmonic execution | Manual CI configured; not demonstrated until a commit run passes |
+| TurtleBot3 Burger simulation | Official minimal simulation configured; no retained run yet |
+| Dynamic route-invalidation harness | Implemented with Gazebo entity services and a costmap recovery oracle |
+| Dynamic result | Not demonstrated until the manual workflow produces a fully valid retained artifact |
+| Physical-robot safety | Not claimed |
 
-A complete Nav2 planner plugin should:
+The ROS CI result should be cited only after the workflow has completed on the
+commit being evaluated.
 
-1. implement `nav2_core::GlobalPlanner`;
-2. convert `nav_msgs::msg::OccupancyGrid` into DynNav's `GridMap` or a C++ equivalent;
-3. expose risk, uncertainty, and recoverability weights as ROS parameters;
-4. publish debug grids for RViz;
-5. return `nav_msgs::msg::Path`;
-6. provide deterministic tests with a fixed occupancy grid;
-7. be compiled in CI using a ROS 2 Docker image.
+## Planner contract
 
-## Behavior tree scaffold
+For each traversable destination cell `s`, the planner applies
 
-The behavior tree should expose a condition/action pair:
-
-- `DynNavRiskAcceptable`: returns success when risk and uncertainty remain under thresholds.
-- `DynNavTriggerReroute`: requests replanning when path blockage, high risk, high uncertainty, or low recoverability is detected.
-
-## Parameter example
-
-```yaml
-dynnav_planner:
-  ros__parameters:
-    planner_id: dynnav_risk_aware_astar
-    risk_weight: 4.0
-    uncertainty_weight: 2.0
-    recoverability_weight: 1.5
-    risk_threshold: 0.55
-    uncertainty_threshold: 0.70
-    recoverability_threshold: 0.30
-    reroute_cooldown_s: 1.0
-    publish_debug_grids: true
+```text
+c(s) = c_neutral + lambda_r * R(s) + lambda_irr * I_local(s)
 ```
 
-## RViz visualization plan
+where `R(s)` is normalized from the Nav2 costmap value and `I_local(s)` combines
+escape-option deficit and bottleneck exposure. The A* heuristic is Manhattan
+distance multiplied by `c_neutral`, so the additional non-negative terms do not
+invalidate admissibility.
 
-RViz should display:
+This `I_local` term is a deterministic structural proxy. It must not be reported
+as return-failure probability, CVaR, or formal recoverability without a separate
+calibration and validation experiment.
 
-- map and local costmap;
-- current global path;
-- executed trajectory;
-- risk heatmap;
-- uncertainty heatmap;
-- recoverability heatmap;
-- dynamic obstacles;
-- safety mode text marker;
-- reroute event markers.
-
-## Bag playback protocol
-
-Future bag-based experiments should record:
+## Reproducible build
 
 ```bash
-ros2 bag record /map /scan /odom /tf /plan /cmd_vel \
-  /dynnav/risk_grid /dynnav/uncertainty_grid \
-  /dynnav/recoverability_grid /dynnav/safety_mode \
-  /dynnav/reroute_events
+source /opt/ros/jazzy/setup.bash
+rosdep install \
+  --from-paths ros2_ws/src/dynnav_nav2_cpp \
+  --ignore-src --rosdistro jazzy -r -y
+
+colcon build \
+  --base-paths ros2_ws/src/dynnav_nav2_cpp \
+  --packages-select dynnav_nav2_cpp \
+  --event-handlers console_direct+
+source install/setup.bash
+
+colcon test \
+  --packages-select dynnav_nav2_cpp \
+  --event-handlers console_direct+
+colcon test-result --verbose
 ```
 
-## Current limitations
+The standalone grid-search library deliberately has no ROS dependency. This
+lets algorithmic tests run independently while ROS CI verifies the ABI,
+dependencies, plugin manifest, and runtime discovery.
 
-- No compiled C++ Nav2 planner plugin is claimed in this branch.
-- No Gazebo, Isaac Sim, or hardware experiment is claimed as completed unless results are generated and committed.
-- The Python implementation is the reference prototype for algorithms and tests.
-- Real robot deployment requires additional safety validation, robot-specific dynamics, and emergency-stop integration.
+## Nav2 parameters
+
+```yaml
+planner_server:
+  ros__parameters:
+    expected_planner_frequency: 5.0
+    planner_plugins: ["DynNav"]
+    DynNav:
+      plugin: "dynnav_nav2_cpp::DynNavGlobalPlanner"
+      allow_unknown: true
+      lethal_cost_threshold: 253
+      neutral_cost: 1.0
+      risk_weight: 4.0
+      irreversibility_weight: 4.0
+      unknown_risk: 0.5
+      max_iterations: 0
+```
+
+## Next validation milestones
+
+1. Run the Jazzy CI job on the pushed commit and retain its logs.
+2. Run the [static Gazebo benchmark](GAZEBO_BENCHMARK_PROTOCOL.md) and retain its
+   raw result, parameter snapshots, and environment manifest.
+3. Run and visually inspect the implemented frozen Gazebo obstacle-event timelines.
+4. Validate the implemented [dynamic route-invalidation
+   protocol](DYNAMIC_EXECUTION_PROTOCOL.md), then compare NavFn, Smac 2D,
+   risk-only DynNav, and joint DynNav on identical dynamic runs.
+5. Record success, path length, replanning latency, clearances, safety stops, and
+   structured failure causes over multiple seeds.
+6. Run TurtleBot3 Burger simulation before any physical-robot trial.
+7. Add velocity/dynamics constraints and an independent emergency-stop layer
+   before hardware claims.
+
+The Python simulation, ROS integration, Gazebo study, and physical-robot study
+must remain separate evidence tiers in papers and PhD application material.

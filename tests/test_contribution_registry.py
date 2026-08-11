@@ -15,6 +15,7 @@ def test_registry_contains_exactly_c01_to_c26() -> None:
 def test_registry_is_valid() -> None:
     report = validate(ROOT, REGISTRY)
     assert report["errors"] == [], report
+    assert report["experiment_count"] == 26
 
 
 def test_dependency_targets_are_registered() -> None:

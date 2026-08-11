@@ -23,6 +23,8 @@ _EXECUTABLE_PREFIXES = {
 _FENCE_OPEN = re.compile(r"^\s*```\s*([^\s`]*)\s*$")
 _ORIGINAL_IS_DOCUMENT = markdown_audit_core.is_document
 _ORIGINAL_SHLEX_SPLIT = shlex.split
+_GENERATED_DOCUMENTS = {"DOCUMENTATION_MAP.md", "MARKDOWN_INVENTORY.md"}
+_TRANSIENT_DIRECTORY_NAMES = {".pytest_cache"}
 
 
 def _safe_shlex_split(command: str, comments: bool = False, posix: bool = True) -> list[str]:
@@ -82,6 +84,17 @@ def install_document_discovery_filter() -> None:
     """Install source exclusion and resilient documentation command parsing."""
 
     def filtered(path: Path) -> bool:
+        # Generated inventories must not inventory themselves: their hashes and
+        # last-commit fields otherwise make deterministic regeneration
+        # impossible. Transient installer/test metadata is not repository
+        # documentation and can contain links that only resolve inside wheels.
+        if path.name in _GENERATED_DOCUMENTS:
+            return False
+        if any(
+            part in _TRANSIENT_DIRECTORY_NAMES or part.startswith("pip-")
+            for part in path.parts
+        ):
+            return False
         if path.suffix.lower() in _SOURCE_SUFFIXES:
             return False
         return _ORIGINAL_IS_DOCUMENT(path)

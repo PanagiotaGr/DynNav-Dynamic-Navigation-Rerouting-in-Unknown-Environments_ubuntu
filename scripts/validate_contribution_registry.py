@@ -11,10 +11,34 @@ from typing import Any
 import yaml
 
 ALLOWED_STATUS = {
-    "Implemented", "Research Prototype", "Experimental", "Synthetic Validation",
-    "Dataset Validation", "Simulation Validation", "Documentation Concept", "Planned",
-    "Missing Implementation", "Deprecated", "Duplicate", "ROS 2 Validation Pending",
+    "Implemented",
+    "Research Prototype",
+    "Experimental",
+    "Synthetic Validation",
+    "Dataset Validation",
+    "Simulation Validation",
+    "Documentation Concept",
+    "Planned",
+    "Missing Implementation",
+    "Deprecated",
+    "Duplicate",
+    "ROS 2 Validation Pending",
     "Hardware Validation Required",
+}
+ALLOWED_EVIDENCE_LEVEL = {"synthetic", "simulation", "dataset", "hardware", "real_robot", "formal"}
+EXPERIMENT_REQUIRED_FIELDS = {
+    "contribution_id",
+    "experiment_id",
+    "hypothesis",
+    "runner",
+    "smoke_arguments",
+    "output_argument",
+    "artifact",
+    "optional_dependencies",
+    "baselines",
+    "primary_metrics",
+    "evidence_level",
+    "limitation",
 }
 
 
@@ -26,7 +50,8 @@ def load_registry(path: Path) -> dict[str, Any]:
 
 
 def validate(root: Path, registry_path: Path) -> dict[str, Any]:
-    entries = load_registry(registry_path)["contributions"]
+    registry = load_registry(registry_path)
+    entries = registry["contributions"]
     errors: list[str] = []
     warnings: list[str] = []
     ids: set[str] = set()
@@ -58,10 +83,60 @@ def validate(root: Path, registry_path: Path) -> dict[str, Any]:
             if target not in ids:
                 errors.append(f"{entry['id']}: unknown dependency {target}")
 
+    experiment_count = 0
+    experiment_registry = root / str(registry.get("experiment_registry", "configs/contributions/experiments.yaml"))
+    if not experiment_registry.is_file():
+        errors.append(f"missing experiment registry: {experiment_registry.relative_to(root)}")
+    else:
+        experiment_data = yaml.safe_load(experiment_registry.read_text(encoding="utf-8"))
+        experiments = experiment_data.get("experiments", []) if isinstance(experiment_data, dict) else []
+        if not isinstance(experiments, list):
+            errors.append("experiment registry must contain an experiments list")
+            experiments = []
+        experiment_count = len(experiments)
+        experiment_ids: set[str] = set()
+        contribution_ids: set[str] = set()
+        for experiment in experiments:
+            if not isinstance(experiment, dict):
+                errors.append("experiment entries must be mappings")
+                continue
+            missing_fields = sorted(EXPERIMENT_REQUIRED_FIELDS - set(experiment))
+            cid = str(experiment.get("contribution_id", "unknown"))
+            if missing_fields:
+                errors.append(f"{cid}: missing experiment fields {missing_fields}")
+            experiment_id = str(experiment.get("experiment_id", ""))
+            if experiment_id in experiment_ids:
+                errors.append(f"duplicate experiment id: {experiment_id}")
+            if cid in contribution_ids:
+                errors.append(f"{cid}: more than one canonical smoke experiment")
+            experiment_ids.add(experiment_id)
+            contribution_ids.add(cid)
+            runner = root / str(experiment.get("runner", ""))
+            if not runner.is_file():
+                errors.append(f"{cid}: missing experiment runner {runner.relative_to(root)}")
+            if not isinstance(experiment.get("smoke_arguments"), list):
+                errors.append(f"{cid}: smoke_arguments must be a list")
+            if not isinstance(experiment.get("optional_dependencies"), list):
+                errors.append(f"{cid}: optional_dependencies must be a list")
+            for field in ("baselines", "primary_metrics"):
+                if not isinstance(experiment.get(field), list) or not experiment.get(field):
+                    errors.append(f"{cid}: {field} must be a non-empty list")
+            if experiment.get("evidence_level") not in ALLOWED_EVIDENCE_LEVEL:
+                errors.append(f"{cid}: invalid evidence_level {experiment.get('evidence_level')!r}")
+            artifact = Path(str(experiment.get("artifact", "")))
+            if artifact.name != str(experiment.get("artifact", "")) or artifact.suffix != ".csv":
+                errors.append(f"{cid}: artifact must be a CSV basename")
+        if contribution_ids != expected:
+            errors.append(
+                "experiment contribution IDs differ from C01-C26: "
+                f"missing={sorted(expected-contribution_ids)}, extra={sorted(contribution_ids-expected)}"
+            )
+
     return {
         "schema_version": 1,
         "registry": str(registry_path.relative_to(root)),
         "contribution_count": len(entries),
+        "experiment_count": experiment_count,
         "ids": sorted(ids),
         "errors": errors,
         "warnings": warnings,

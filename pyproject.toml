@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "dynnav"
-version = "0.1.0"
+version = "0.2.0"
 description = "Risk-aware dynamic navigation and rerouting prototypes for unknown environments"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -36,6 +36,7 @@ dashboard = [
 web = []
 researcher = [
   "fastapi>=0.115,<1",
+  "httpx>=0.27,<1",
   "uvicorn[standard]>=0.30,<1",
 ]
 
@@ -44,7 +45,7 @@ dynnav-benchmark = "dynnav.benchmarks:main"
 dynnav-demo = "dynnav.demo:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/dynnav", "src/dynnav_dashboard"]
+packages = ["dynnav", "src/dynnav_dashboard"]
 
 [tool.black]
 line-length = 120
@@ -53,7 +54,13 @@ target-version = ["py310"]
 [tool.ruff]
 line-length = 120
 target-version = "py310"
-src = ["src", "tests", "scripts"]
+src = [
+  "dynnav",
+  "tests",
+  "scripts",
+  "ros2_ws/src/dynnav_nav2",
+  "ros2_ws/src/dynnav_nav2_benchmark",
+]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
@@ -61,11 +68,11 @@ select = ["E", "F", "I", "B", "UP"]
 [tool.ruff.lint.per-file-ignores]
 "tests/*.py" = ["E402", "E501", "F401", "F841", "I001"]
 "tests/**/*.py" = ["E402", "E501", "F401", "F841", "I001"]
-"src/dynnav/__init__.py" = ["I001"]
-"src/dynnav/benchmarks.py" = ["I001"]
-"src/dynnav/research_pipeline.py" = ["E501"]
+"dynnav/__init__.py" = ["I001"]
+"dynnav/benchmarks.py" = ["I001"]
+"dynnav/research_pipeline.py" = ["E501"]
 
 [tool.pytest.ini_options]
-pythonpath = ["src", "."]
+pythonpath = ["."]
 testpaths = ["tests"]
 addopts = "--cov=dynnav --cov-report=term-missing"

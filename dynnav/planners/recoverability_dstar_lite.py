@@ -8,13 +8,12 @@ retaining the D* Lite search state and moving-start key correction.
 from __future__ import annotations
 
 import heapq
-import math
 import time
 from dataclasses import dataclass
 
 from dynnav.planners.grid_map import GridCell, GridMap
 from dynnav.planners.recoverability_astar import PlannerMode, RecoverabilityAStarConfig
-from dynnav.recoverability import RecoverabilityState, recoverability_map
+from dynnav.recoverability import recoverability_map
 
 INF = float("inf")
 Key = tuple[float, float]

@@ -1,51 +1,87 @@
-# DynNav C++ Nav2 Plugin Skeleton
+# DynNav Nav2 Global Planner
 
-This package is a scaffold for a future Nav2-compatible DynNav global planner plugin.
+`dynnav_nav2_cpp` is a ROS 2 Jazzy/Nav2 global-planner plugin backed by a
+deterministic, costmap-aware A* search.
 
-## Current status
+## Implemented behavior
 
-Readiness: **skeleton only**
+- implements the Jazzy `nav2_core::GlobalPlanner` lifecycle and cancellation API;
+- snapshots the Nav2 global costmap under its mutex;
+- validates frames and start/goal map bounds;
+- rejects lethal goals and never expands lethal cells;
+- handles unknown cells according to `allow_unknown`;
+- returns a stamped `nav_msgs/msg/Path` in the global costmap frame;
+- exposes risk and local-irreversibility weights as plugin parameters;
+- raises the standard Nav2 planner exceptions for invalid requests;
+- includes deterministic grid-search tests and a pluginlib discovery test.
 
-Implemented:
+For a transition into cell `s`, the current implementation minimizes
 
-- C++ ROS 2 package structure,
-- `nav2_core::GlobalPlanner` class skeleton,
-- pluginlib export file,
-- CMake setup,
-- no-op lifecycle methods,
-- placeholder `createPlan()` that returns a direct two-pose path.
-
-Not implemented yet:
-
-- costmap conversion,
-- DynNav planner backend integration,
-- risk / uncertainty / information-gain objective,
-- collision checking,
-- parameter loading,
-- simulation validation.
-
-## Build
-
-From the ROS 2 workspace:
-
-```bash
-cd ros2_ws
-colcon build --packages-select dynnav_nav2_cpp
-source install/setup.bash
+```text
+c(s) = neutral_cost
+     + risk_weight * normalized_costmap_cost(s)
+     + irreversibility_weight * local_irreversibility(s)
 ```
 
-## Intended Nav2 configuration
+`local_irreversibility` combines the deficit in traversable four-connected
+escape options with a bottleneck penalty. It is a structural heuristic in
+`[0, 1]`; it is not a calibrated probability or a formal viability guarantee.
 
-A future planner-server configuration should load:
+## Supported platform
+
+- Ubuntu 24.04
+- ROS 2 Jazzy
+- Nav2 Jazzy
+- C++17
+
+The repository CI builds this package in `ros:jazzy-ros-base-noble`, runs the
+known-answer search tests, and verifies pluginlib discovery. Gazebo and robot
+validation are separate evidence milestones.
+
+## Build and test
+
+```bash
+source /opt/ros/jazzy/setup.bash
+rosdep install \
+  --from-paths ros2_ws/src/dynnav_nav2_cpp \
+  --ignore-src --rosdistro jazzy -r -y
+
+colcon build \
+  --base-paths ros2_ws/src/dynnav_nav2_cpp \
+  --packages-select dynnav_nav2_cpp
+source install/setup.bash
+
+colcon test --packages-select dynnav_nav2_cpp
+colcon test-result --verbose
+```
+
+## Nav2 configuration
+
+Merge [`config/nav2_params.yaml`](config/nav2_params.yaml) into the robot's Nav2
+parameters. The required planner-server fragment is:
 
 ```yaml
 planner_server:
   ros__parameters:
-    planner_plugins: ["DynNavPlanner"]
-    DynNavPlanner:
-      plugin: "dynnav_nav2_cpp/DynNavGlobalPlanner"
+    planner_plugins: ["DynNav"]
+    DynNav:
+      plugin: "dynnav_nav2_cpp::DynNavGlobalPlanner"
+      allow_unknown: true
+      lethal_cost_threshold: 253
+      neutral_cost: 1.0
+      risk_weight: 4.0
+      irreversibility_weight: 4.0
+      unknown_risk: 0.5
+      max_iterations: 0
 ```
 
-## Next milestone
+`max_iterations: 0` means unlimited. The Manhattan heuristic remains
+admissible because every transition costs at least `neutral_cost`.
 
-Replace the placeholder direct path with a costmap-backed grid planner, then connect the self-aware DynNav objective.
+## Evidence boundary
+
+This plugin uses one costmap snapshot per planning request. Replanning is
+triggered by Nav2, not by an internal background loop. The present
+irreversibility term is local, and the plugin does not yet ingest learned
+uncertainty, predicted obstacle trajectories, or a robot-specific dynamics
+model. Those capabilities require their own interfaces, ablations, and tests.

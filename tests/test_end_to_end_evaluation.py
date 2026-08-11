@@ -28,6 +28,8 @@ def test_runner_supports_all_canonical_modes():
         assert record.method == method
         assert record.seed == 3
         assert record.success
+        assert not record.planning_failure
+        assert not record.irreversible_failure
         assert record.path_length > 0
 
 

@@ -1,0 +1,45 @@
+name: C01-C26 experiment suite
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "configs/contributions/**"
+      - "contributions/**"
+      - "scripts/run_contribution_suite.py"
+      - "scripts/validate_contribution_registry.py"
+      - ".github/workflows/contribution-experiments.yml"
+  push:
+    branches: [main]
+    paths:
+      - "configs/contributions/**"
+      - "contributions/**"
+      - "scripts/run_contribution_suite.py"
+
+jobs:
+  controlled-smoke-suite:
+    name: Controlled C01-C26 smoke experiments
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install base experiment dependencies
+        run: python -m pip install -e ".[dev]"
+      - name: Validate contribution and experiment registries
+        run: python scripts/validate_contribution_registry.py
+      - name: Run dependency-aware C01-C26 suite
+        run: python scripts/run_contribution_suite.py --output-dir results/contribution_suite
+      - name: Publish summary to the Actions run
+        if: always()
+        run: cat results/contribution_suite/summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload experiment evidence bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dynnav-c01-c26-controlled-smoke
+          path: results/contribution_suite
+          if-no-files-found: error

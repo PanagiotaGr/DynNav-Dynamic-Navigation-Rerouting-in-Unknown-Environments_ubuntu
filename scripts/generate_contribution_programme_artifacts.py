@@ -4,6 +4,7 @@
 The canonical source is ``configs/contributions/registry.yaml``. Generated files are
 intentionally plain Markdown/JSON/CSV so they remain reviewable without the dashboard.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -17,6 +18,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_REGISTRY = ROOT / "configs/contributions/registry.yaml"
+DEFAULT_EXPERIMENTS = ROOT / "configs/contributions/experiments.yaml"
 
 
 def load_registry(path: Path) -> dict[str, Any]:
@@ -56,8 +58,17 @@ def write_inventory(rows: list[dict[str, Any]]) -> None:
         encoding="utf-8",
     )
     fields = [
-        "id", "slug", "title", "category", "status", "directory", "readme",
-        "readme_gr", "renderer", "directory_exists", "validation_status",
+        "id",
+        "slug",
+        "title",
+        "category",
+        "status",
+        "directory",
+        "readme",
+        "readme_gr",
+        "renderer",
+        "directory_exists",
+        "validation_status",
     ]
     with (out / "contribution_inventory.csv").open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields)
@@ -67,11 +78,7 @@ def write_inventory(rows: list[dict[str, Any]]) -> None:
 
 
 def write_dependency_graph(rows: list[dict[str, Any]]) -> None:
-    edges = [
-        {"source": row["id"], "target": target}
-        for row in rows
-        for target in row.get("integrates_with", [])
-    ]
+    edges = [{"source": row["id"], "target": target} for row in rows for target in row.get("integrates_with", [])]
     manifest = ROOT / "results/manifests/contribution_dependency_graph.json"
     manifest.parent.mkdir(parents=True, exist_ok=True)
     manifest.write_text(
@@ -83,7 +90,8 @@ def write_dependency_graph(rows: list[dict[str, Any]]) -> None:
     lines = [
         "# DynNav Contribution Dependency Graph",
         "",
-        "> Generated from `configs/contributions/registry.yaml`. Relationships indicate intended integration, not experimental validation.",
+        "> Generated from `configs/contributions/registry.yaml`. Relationships indicate intended integration, "
+        "not experimental validation.",
         "",
         "```mermaid",
         "graph LR",
@@ -96,9 +104,59 @@ def write_dependency_graph(rows: list[dict[str, Any]]) -> None:
     lines += ["```", "", "## Adjacency list", ""]
     for row in rows:
         targets = row.get("integrates_with", [])
-        rendered = ", ".join(f"[{target}](../{by_id[target]['directory']}/README.md)" for target in targets) or "None declared"
+        rendered = (
+            ", ".join(f"[{target}](../{by_id[target]['directory']}/README.md)" for target in targets) or "None declared"
+        )
         lines.append(f"- **{row['id']} — {row['title']}:** {rendered}")
     (ROOT / "docs/CONTRIBUTION_DEPENDENCY_GRAPH.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def write_experiment_catalogue(rows: list[dict[str, Any]], experiments: dict[str, dict[str, Any]]) -> None:
+    lines = [
+        "# DynNav C01–C26 Experiment Catalogue",
+        "",
+        "> Generated from `configs/contributions/registry.yaml` and `configs/contributions/experiments.yaml`.",
+        "> All commands below are controlled smoke benchmarks. Passing them is implementation evidence only; "
+        "it is not real-robot, Gazebo, formal-proof, trained-model, or generalization evidence.",
+        "",
+        "Run the complete dependency-aware suite:",
+        "",
+        "```bash",
+        "python scripts/run_contribution_suite.py --output-dir results/contribution_suite",
+        "```",
+        "",
+        "The suite emits per-contribution CSV files, `manifest.json`, and `summary.md`. Missing optional "
+        "dependencies are recorded as explicit skips rather than silently treated as passes.",
+        "",
+    ]
+    for row in rows:
+        exp = experiments[row["id"]]
+        args = " ".join(str(value) for value in exp["smoke_arguments"])
+        command = f"python {exp['runner']}"
+        if args:
+            command += f" {args}"
+        command += f" {exp['output_argument']} results/contribution_suite/artifacts/{exp['artifact']}"
+        dependencies = ", ".join(f"`{item}`" for item in exp["optional_dependencies"]) or "None"
+        metrics = ", ".join(f"`{item}`" for item in exp["primary_metrics"])
+        baselines = ", ".join(exp["baselines"])
+        lines += [
+            f"## {row['id']} — {row['title']}",
+            "",
+            f"- **Maturity:** {row['status']}",
+            f"- **Hypothesis:** {exp['hypothesis']}",
+            f"- **Baseline(s):** {baselines}",
+            f"- **Primary metrics:** {metrics}",
+            f"- **Evidence level:** `{exp['evidence_level']}`",
+            f"- **Optional dependencies:** {dependencies}",
+            f"- **Implementation:** [`{exp['runner']}`](../{exp['runner']})",
+            f"- **Limitation:** {exp['limitation']}",
+            "",
+            "```bash",
+            command,
+            "```",
+            "",
+        ]
+    (ROOT / "docs/CONTRIBUTIONS_26_EXPERIMENTS.md").write_text("\n".join(lines), encoding="utf-8")
 
 
 def write_index_and_maturity(rows: list[dict[str, Any]]) -> None:
@@ -114,14 +172,18 @@ def write_index_and_maturity(rows: list[dict[str, Any]]) -> None:
         readme = f"[English](../{row['readme']})" if row["readme"] else "Missing"
         greek = f"[Greek](../{row['readme_gr']})" if row["readme_gr"] else "—"
         renderer = f"[`{Path(row['renderer']).name}`](../{row['renderer']})" if row["renderer"] else "Not discovered"
-        index.append(f"| {row['id']} | {row['title']} | `{row['category']}` | {row['status']} | {readme} | {greek} | {renderer} |")
+        index.append(
+            f"| {row['id']} | {row['title']} | `{row['category']}` | {row['status']} | "
+            f"{readme} | {greek} | {renderer} |"
+        )
     (ROOT / "docs/CONTRIBUTION_INDEX.md").write_text("\n".join(index) + "\n", encoding="utf-8")
 
     counts = Counter(row["status"] for row in rows)
     maturity = [
         "# DynNav Contribution Maturity Matrix",
         "",
-        "> Generated from `configs/contributions/registry.yaml`. A passing registry check does not elevate scientific maturity.",
+        "> Generated from `configs/contributions/registry.yaml`. A passing registry check does not elevate "
+        "scientific maturity.",
         "",
         "## Distribution",
         "",
@@ -129,9 +191,19 @@ def write_index_and_maturity(rows: list[dict[str, Any]]) -> None:
         "|---|---:|",
     ]
     maturity.extend(f"| {status} | {count} |" for status, count in sorted(counts.items()))
-    maturity += ["", "## Contribution-level matrix", "", "| ID | Title | Maturity | Evidence boundary |", "|---|---|---|---|"]
+    maturity += [
+        "",
+        "## Contribution-level matrix",
+        "",
+        "| ID | Title | Maturity | Evidence boundary |",
+        "|---|---|---|---|",
+    ]
     for row in rows:
-        boundary = "Synthetic/controlled evidence only" if row["status"] != "Documentation Concept" else "Conceptual documentation; no validated implementation claim"
+        boundary = (
+            "Synthetic/controlled evidence only"
+            if row["status"] != "Documentation Concept"
+            else "Conceptual documentation; no validated implementation claim"
+        )
         maturity.append(f"| {row['id']} | {row['title']} | {row['status']} | {boundary} |")
     (ROOT / "docs/CONTRIBUTION_MATURITY_MATRIX.md").write_text("\n".join(maturity) + "\n", encoding="utf-8")
 
@@ -144,7 +216,9 @@ def write_validation(rows: list[dict[str, Any]]) -> None:
         "registered_count": len(rows),
         "expected_ids": [f"C{i:02d}" for i in range(1, 27)],
         "missing_directories": missing,
-        "claim_boundary": "Registry and path validation only; no dataset, ROS 2, hardware, formal, or trained-neural claim.",
+        "claim_boundary": (
+            "Registry and path validation only; no dataset, ROS 2, hardware, formal, " "or trained-neural claim."
+        ),
     }
     path = ROOT / "results/manifests/contribution_validation.json"
     path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
@@ -153,12 +227,16 @@ def write_validation(rows: list[dict[str, Any]]) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--registry", type=Path, default=DEFAULT_REGISTRY)
+    parser.add_argument("--experiments", type=Path, default=DEFAULT_EXPERIMENTS)
     args = parser.parse_args()
     data = load_registry(args.registry)
+    experiment_data = yaml.safe_load(args.experiments.read_text(encoding="utf-8"))
+    experiments = {item["contribution_id"]: item for item in experiment_data["experiments"]}
     rows = enriched_rows(data)
     write_inventory(rows)
     write_dependency_graph(rows)
     write_index_and_maturity(rows)
+    write_experiment_catalogue(rows, experiments)
     write_validation(rows)
     print(f"Generated programme artifacts for {len(rows)} contributions")
     return 0

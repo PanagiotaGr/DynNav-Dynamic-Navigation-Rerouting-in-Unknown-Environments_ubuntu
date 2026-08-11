@@ -7,9 +7,8 @@ whether to exploit a current route or gather more information first.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Sequence
-
 
 GridCell = tuple[int, int]
 
