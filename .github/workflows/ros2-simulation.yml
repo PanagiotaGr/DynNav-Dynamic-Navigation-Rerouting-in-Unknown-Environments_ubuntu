@@ -82,7 +82,7 @@ jobs:
             ros2 launch dynnav_nav2_benchmark \
               tb3_static_planner_benchmark.launch.py \
               headless:=true \
-              repetitions:=${{ inputs.repetitions }} \
+              repetitions:=${{ inputs.repetitions || '3' }} \
               output_dir:=/tmp/dynnav_gazebo/results
           test -s /tmp/dynnav_gazebo/results/results.json
           test -s /tmp/dynnav_gazebo/results/trials.csv
@@ -102,7 +102,7 @@ jobs:
           assert result["benchmark_type"] == "static_compute_path_to_pose"
           assert len(result["summary"]) == 6
           assert len(result["summary_by_scenario"]) == 2
-          expected = int("${{ inputs.repetitions }}") * 2
+          expected = int("${{ inputs.repetitions || '3' }}") * 2
           assert all(
               item["trials"] == expected for item in result["summary"].values()
           )
