@@ -1,7 +1,6 @@
 name: ROS 2 dynamic route-invalidation benchmark
 
 on:
-  pull_request:
   workflow_dispatch:
     inputs:
       repetitions:

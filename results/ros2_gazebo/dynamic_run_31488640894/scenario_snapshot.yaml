@@ -1,0 +1,63 @@
+schema_version: 1
+seed: 20260811
+
+gazebo:
+  world_name: default
+  robot_entity: turtlebot3_waffle
+  blocker:
+    entity_name: dynnav_route_blocker
+    parking_pose: {x: 100.0, y: 100.0, z: 0.5, yaw: 0.0}
+    size: {x: 0.35, y: 1.20, z: 1.00}
+
+planners:
+  - planner_id: NavFn
+    family: navfn_dijkstra
+  - planner_id: Smac2D
+    family: smac_2d_astar
+  - planner_id: DynNavRisk
+    family: dynnav_ablation
+    risk_weight: 4.0
+    irreversibility_weight: 0.0
+  - planner_id: DynNavJoint
+    family: dynnav_ablation
+    risk_weight: 4.0
+    irreversibility_weight: 4.0
+
+scenarios:
+  - name: return_gate_closure
+    frame_id: map
+    start: {x: -2.0, y: -0.5, yaw: 0.0}
+    goal: {x: 1.75, y: 1.0, yaw: 0.0}
+    safe_region:
+      center: {x: -2.0, y: -0.5, yaw: 0.0}
+      radius_m: 0.35
+    event:
+      trigger_elapsed_s: 8.0
+      observation_settle_s: 2.0
+      minimum_injection_clearance_m: 0.90
+      observation_margin_m: 0.10
+      minimum_lethal_cell_increase: 3
+      blocker_pose: {x: -0.95, y: -0.425, z: 0.5, yaw: 0.0}
+    recovery_budget_m: 5.0
+    reset_pose_tolerance_m: 0.40
+    execution_timeout_s: 75.0
+    wall_timeout_s: 150.0
+
+  - name: forward_closure_negative_control
+    frame_id: map
+    start: {x: -1.5, y: 0.5, yaw: 0.0}
+    goal: {x: 1.5, y: -0.5, yaw: 0.0}
+    safe_region:
+      center: {x: -1.5, y: 0.5, yaw: 0.0}
+      radius_m: 0.35
+    event:
+      trigger_elapsed_s: 4.0
+      observation_settle_s: 2.0
+      minimum_injection_clearance_m: 0.90
+      observation_margin_m: 0.10
+      minimum_lethal_cell_increase: 3
+      blocker_pose: {x: 0.9, y: -0.1, z: 0.5, yaw: 0.0}
+    recovery_budget_m: 5.0
+    reset_pose_tolerance_m: 0.40
+    execution_timeout_s: 75.0
+    wall_timeout_s: 150.0

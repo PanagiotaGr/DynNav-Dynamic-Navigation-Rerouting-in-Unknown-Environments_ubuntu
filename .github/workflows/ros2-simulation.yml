@@ -1,7 +1,6 @@
 name: ROS 2 Gazebo benchmark
 
 on:
-  pull_request:
   workflow_dispatch:
     inputs:
       repetitions:

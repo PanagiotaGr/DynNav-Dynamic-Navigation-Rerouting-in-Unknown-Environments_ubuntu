@@ -9,8 +9,11 @@ under the same frozen obstacle events.
 
 The runner, Gazebo service bridge, blocker model, scenario contract,
 costmap-reachability oracle, package tests, and manual GitHub Actions workflow
-are committed. No numerical dynamic result is claimed until the workflow passes
-on a named commit and the complete artifact is retained.
+are committed. The commissioning workflow passed as [run
+31488640894](https://github.com/panagiotagrosdouli/DynNav/actions/runs/31488640894)
+on branch head `253e3b3`; the complete artifact is retained under
+[`results/ros2_gazebo/dynamic_run_31488640894/`](../results/ros2_gazebo/dynamic_run_31488640894/).
+This is `n=1` protocol commissioning, not a powered hypothesis test.
 
 ## Operational irreversibility contract
 
@@ -57,8 +60,8 @@ control. Coordinates are frozen in
 
 | Scenario | Trigger | Blocker pose | Intended mechanism |
 |---|---:|---:|---|
-| `return_gate_closure` | 8.0 s | `(-1.2, -0.425)` | Close a narrow return gate after departure |
-| `forward_closure_negative_control` | 4.0 s | `(0.7, -0.1)` | Block the forward route without intentionally sealing the safe region |
+| `return_gate_closure` | 8.0 s | `(-0.95, -0.425)` | Close a narrow return gate after departure |
+| `forward_closure_negative_control` | 4.0 s | `(0.9, -0.1)` | Block the forward route without intentionally sealing the safe region |
 
 Both use the same red static box (`0.35 × 1.20 × 1.00 m`) and a 2.0 s
 observation delay. A trial is invalid—not a planner failure—when:
@@ -80,9 +83,12 @@ silently counted as a dynamic success. If navigation terminates shortly after a
 valid injection, the runner waits for the observation interval and still
 captures the post-event costmap.
 
-These coordinates are hypotheses until the first valid retained Gazebo run.
-If a geometry change is required, change the schema input before collecting the
-final comparison dataset and do not pool results across protocol versions.
+These coordinates passed the commissioning safety and observation guards in
+8/8 trials. Minimum observed robot-to-blocker centre clearance was 0.955 m,
+above the frozen 0.90 m threshold, and the blocker appeared in every archived
+post-event costmap. If a geometry change is required, change the schema input
+before collecting the final comparison dataset and do not pool results across
+protocol versions.
 
 ## Reset and order controls
 
@@ -133,7 +139,7 @@ irreversibility failures remain valid experimental outcomes.
 
 ## Required progression before a PhD-result claim
 
-1. Obtain a fully valid smoke artifact on the exact application commit.
+1. Completed: retain a fully valid smoke artifact on a named branch head.
 2. Inspect both scenarios in RViz/Gazebo and confirm the blocker mechanism.
 3. Freeze protocol version 1 or revise it before confirmatory data collection.
 4. Add at least 30 paired dynamic map/event seeds per mechanism after power

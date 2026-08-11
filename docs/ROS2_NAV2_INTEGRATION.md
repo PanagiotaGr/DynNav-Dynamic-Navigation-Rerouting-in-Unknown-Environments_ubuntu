@@ -35,12 +35,12 @@ it is not the Nav2 planner plugin.
 | Costmap-backed A* core | Pure C++ compilation and deterministic known-answer tests |
 | Jazzy `GlobalPlanner` API | Three-argument `createPlan` with cancellation checker |
 | Plugin discovery | pluginlib instantiation test in the ROS CI job |
-| ROS 2 Jazzy build | Automated in `ros:jazzy-ros-base-noble` after the branch is pushed |
+| ROS 2 Jazzy build | Passing in `ros:jazzy-ros-base-noble` on the evaluated branch |
 | Static Gazebo benchmark harness | Implemented with paired requests and provenance artifacts |
-| Gazebo Harmonic execution | Manual CI configured; not demonstrated until a commit run passes |
-| TurtleBot3 Burger simulation | Official minimal simulation configured; no retained run yet |
+| Gazebo Harmonic execution | Passing retained static run with 36/36 successful requests |
+| TurtleBot3 simulation | Official minimal simulation exercised in retained static and dynamic runs |
 | Dynamic route-invalidation harness | Implemented with Gazebo entity services and a costmap recovery oracle |
-| Dynamic result | Not demonstrated until the manual workflow produces a fully valid retained artifact |
+| Dynamic result | Passing retained `n=1` commissioning run with 8/8 valid trials; not a powered comparison |
 | Physical-robot safety | Not claimed |
 
 The ROS CI result should be cited only after the workflow has completed on the
@@ -107,17 +107,14 @@ planner_server:
 
 ## Next validation milestones
 
-1. Run the Jazzy CI job on the pushed commit and retain its logs.
-2. Run the [static Gazebo benchmark](GAZEBO_BENCHMARK_PROTOCOL.md) and retain its
-   raw result, parameter snapshots, and environment manifest.
-3. Run and visually inspect the implemented frozen Gazebo obstacle-event timelines.
-4. Validate the implemented [dynamic route-invalidation
-   protocol](DYNAMIC_EXECUTION_PROTOCOL.md), then compare NavFn, Smac 2D,
-   risk-only DynNav, and joint DynNav on identical dynamic runs.
-5. Record success, path length, replanning latency, clearances, safety stops, and
+1. Completed: pass Jazzy CI and retain the static and dynamic Gazebo artifacts.
+2. Visually inspect the implemented frozen Gazebo obstacle-event timelines.
+3. Expand the [dynamic route-invalidation protocol](DYNAMIC_EXECUTION_PROTOCOL.md)
+   to paired map/event seeds and compare NavFn, Smac 2D, risk-only DynNav, and
+   joint DynNav on identical dynamic runs.
+4. Record success, path length, replanning latency, clearances, safety stops, and
    structured failure causes over multiple seeds.
-6. Run TurtleBot3 Burger simulation before any physical-robot trial.
-7. Add velocity/dynamics constraints and an independent emergency-stop layer
+5. Add velocity/dynamics constraints and an independent emergency-stop layer
    before hardware claims.
 
 The Python simulation, ROS integration, Gazebo study, and physical-robot study

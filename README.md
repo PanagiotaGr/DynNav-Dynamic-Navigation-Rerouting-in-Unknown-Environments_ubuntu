@@ -39,8 +39,8 @@ it is not presented as recorded Gazebo or real-robot evidence.
 | Python research core | Verified by the regression and contribution suites | [`tests/`](tests/) and [`results/manifests/`](results/manifests/) |
 | ROS 2 Jazzy / Nav2 plugin | CI build, grid tests, plugin discovery and install verified | [`ros2_ws/src/dynnav_nav2_cpp`](ros2_ws/src/dynnav_nav2_cpp/) |
 | C01–C26 programme | 26 registered experiment contracts; dependency-aware execution | [`docs/CONTRIBUTIONS_26_EXPERIMENTS.md`](docs/CONTRIBUTIONS_26_EXPERIMENTS.md) |
-| Static Gazebo benchmark | Executable protocol; measured workflow artifact pending | [`docs/GAZEBO_BENCHMARK_PROTOCOL.md`](docs/GAZEBO_BENCHMARK_PROTOCOL.md) |
-| Frozen dynamic Gazebo benchmark | Executable protocol; measured workflow artifact pending | [`docs/DYNAMIC_EXECUTION_PROTOCOL.md`](docs/DYNAMIC_EXECUTION_PROTOCOL.md) |
+| Static Gazebo benchmark | Passing retained run: 36/36 planner-server requests succeeded across six planners and two scenarios; this is path/latency evidence only | [`results/ros2_gazebo/static_run_31488640827/`](results/ros2_gazebo/static_run_31488640827/) |
+| Frozen dynamic Gazebo benchmark | Passing retained `n=1` commissioning run: 8/8 valid event trials; one genuine execution timeout and no observed operational-irreversibility failures | [`results/ros2_gazebo/dynamic_run_31488640894/`](results/ros2_gazebo/dynamic_run_31488640894/) |
 | Physical robot | Pending traceable rosbag/log evidence from named hardware | [`docs/PHD_APPLICATION_READINESS.md`](docs/PHD_APPLICATION_READINESS.md) |
 
 The two web interfaces are built into one deployable portal: the research site
@@ -48,6 +48,10 @@ at `/` and the actual Researcher frontend at `/researcher`. The Researcher
 frontend requires the FastAPI service for protocol compilation and experiment
 execution; a static deployment alone is a presentation surface, not an
 execution result.
+
+The combined portal has a passing deployment-artifact workflow. No public URL
+is claimed yet: GitHub Pages is not enabled for this repository and the
+connected Vercel account does not yet contain a DynNav project.
 
 ---
 
@@ -359,10 +363,12 @@ ros2 launch dynnav_nav2_benchmark \
 
 Its six configurations are NavFn, Smac 2D, and four DynNav ablations. It stores
 raw requests, paths, failures, hashes, parameters, and environment versions.
-The harness is implemented, but a Gazebo result is not a completed claim until
-the workflow passes on a named commit and its artifact is retained. This static
-test also cannot establish dynamic irreversible-failure reduction. See the
-[protocol](docs/GAZEBO_BENCHMARK_PROTOCOL.md) and [integration evidence
+The retained [static commissioning run](results/ros2_gazebo/static_run_31488640827/)
+passed on branch head `253e3b3`: all 36 measured requests succeeded across two
+scenarios, three repetitions, and six planners. Raw paths, trial rows, map and
+parameter snapshots, package versions, and SHA-256 manifests are committed.
+This static test cannot establish dynamic irreversible-failure reduction. See
+the [protocol](docs/GAZEBO_BENCHMARK_PROTOCOL.md) and [integration evidence
 status](docs/ROS2_NAV2_INTEGRATION.md).
 
 The repository also contains a frozen dynamic-execution harness. It teleports
@@ -370,9 +376,14 @@ the simulated robot to a controlled start, executes `NavigateToPose`, injects a
 physical Gazebo blocker at a declared navigation time, archives the resulting
 global costmap, and evaluates return reachability with a planner-independent
 grid oracle. Its workflow intentionally fails on invalid event delivery while
-preserving genuine negative outcomes. See the [dynamic execution
-protocol](docs/DYNAMIC_EXECUTION_PROTOCOL.md). The harness is implemented; no
-dynamic numerical conclusion is claimed before a passing artifact exists.
+preserving genuine negative outcomes. The retained [dynamic commissioning
+run](results/ros2_gazebo/dynamic_run_31488640894/) passed its measurement
+contract with 8/8 valid trials and blocker observation in every trial. It
+recorded one genuine `DynNavJoint` execution timeout, seven navigation
+successes, and no operational-irreversibility failures for any planner. This
+single repetition is a valid negative smoke result, not evidence that DynNav
+reduces irreversible failure. See the [dynamic execution
+protocol](docs/DYNAMIC_EXECUTION_PROTOCOL.md).
 
 ---
 
@@ -388,8 +399,8 @@ The focused development sequence is:
 6. run fair four-way planner ablations;
 7. add multi-seed statistics, confidence intervals, and effect sizes;
 8. generate publication-quality tables, plots, and failure-case analyses;
-9. validate the implemented Nav2 plugin in ROS 2 Jazzy CI, run the static Gazebo
-   harness, then add frozen dynamic traces before physical platforms.
+9. expand the now-passing static and frozen-dynamic Gazebo commissioning runs
+   into a powered paired study before moving to physical platforms.
 
 The detailed implementation roadmap remains available in [`docs/DYNNAV_V2_RESEARCH_ROADMAP.md`](docs/DYNNAV_V2_RESEARCH_ROADMAP.md).
 
