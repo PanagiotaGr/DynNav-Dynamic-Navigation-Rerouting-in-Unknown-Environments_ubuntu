@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>dynnav_turtlebot3</name>
+  <version>0.1.0</version>
+  <description>DynNav TurtleBot3 Gazebo integration for ROS 2 Jazzy</description>
+  <maintainer email="maintainer@example.com">DynNav</maintainer>
+  <license>Apache-2.0</license>
+  <exec_depend>ros_gz_sim</exec_depend>
+  <exec_depend>turtlebot3_gazebo</exec_depend>
+  <exec_depend>nav2_bringup</exec_depend>
+  <exec_depend>dynnav_bringup</exec_depend>
+</package>
