@@ -11,7 +11,7 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](pyproject.toml)
 [![License](https://img.shields.io/badge/License-Apache--2.0-4C1.svg)](LICENSE)
 
-[Documentation](docs/README.md) · [C01–C26 experiments](docs/CONTRIBUTIONS_26_EXPERIMENTS.md) · [PhD readiness](docs/PHD_APPLICATION_READINESS.md) · [Dashboard](app/README.md) · [Research roadmap](docs/DYNNAV_V2_RESEARCH_ROADMAP.md)
+[Documentation](docs/README.md) · [C01–C26 experiments](docs/CONTRIBUTIONS_26_EXPERIMENTS.md) ·  · [Dashboard](app/README.md) · [Research roadmap](docs/DYNNAV_V2_RESEARCH_ROADMAP.md)
 
 </div>
 
