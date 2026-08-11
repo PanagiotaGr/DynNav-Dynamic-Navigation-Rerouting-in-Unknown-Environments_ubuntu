@@ -112,8 +112,6 @@
 - [`lidar_ros2/README (4).md`](../lidar_ros2/README%20%284%29.md) — LiDAR integration documentation; maturity: **Unclassified**
 - [`paper/dynnav_r/README.md`](../paper/dynnav_r/README.md) — Experiment documentation; maturity: **Experimental**
 - [`paper/README.md`](../paper/README.md) — Contribution guidance; maturity: **Planned**
-- [`pytest-of-root/pytest-27/test_generated_and_transient_d0/README.md`](../pytest-of-root/pytest-27/test_generated_and_transient_d0/README.md) — Directory or subsystem overview; maturity: **Unclassified**
-- [`pytest-of-root/pytest-28/test_generated_and_transient_d0/README.md`](../pytest-of-root/pytest-28/test_generated_and_transient_d0/README.md) — Directory or subsystem overview; maturity: **Unclassified**
 - [`README.md`](../README.md) — Contribution guidance; maturity: **Experimental**
 - [`readme_full.md`](../readme_full.md) — Experiment documentation; maturity: **Experimental**
 - [`README_GR.md`](../README_GR.md) — Contribution guidance; maturity: **Unclassified**
