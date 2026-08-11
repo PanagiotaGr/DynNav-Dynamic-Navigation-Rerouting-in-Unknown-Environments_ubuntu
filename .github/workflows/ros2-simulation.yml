@@ -1,8 +1,7 @@
 name: ROS 2 Gazebo benchmark
 
 on:
-  push:
-    branches: ["agent/readme-web-evidence"]
+  pull_request:
   workflow_dispatch:
     inputs:
       repetitions:
