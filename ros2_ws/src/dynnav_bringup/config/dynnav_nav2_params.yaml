@@ -1,0 +1,13 @@
+planner_server:
+  ros__parameters:
+    planner_plugins:
+      - DynNav
+
+    DynNav:
+      plugin: dynnav_nav2_cpp/DynNavPlanner
+      tolerance: 0.5
+
+controller_server:
+  ros__parameters:
+    controller_plugins:
+      - FollowPath
