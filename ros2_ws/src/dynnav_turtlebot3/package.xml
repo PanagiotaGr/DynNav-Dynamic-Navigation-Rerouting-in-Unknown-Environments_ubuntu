@@ -2,6 +2,7 @@
 <package format="3">
   <name>dynnav_turtlebot3</name>
   <version>0.1.0</version>
+
   <description>DynNav TurtleBot3 Gazebo integration for ROS 2 Jazzy</description>
   <maintainer email="maintainer@example.com">DynNav</maintainer>
   <license>Apache-2.0</license>
@@ -9,4 +10,20 @@
   <exec_depend>turtlebot3_gazebo</exec_depend>
   <exec_depend>nav2_bringup</exec_depend>
   <exec_depend>dynnav_bringup</exec_depend>
+
+  <description>TurtleBot3 Gazebo and Nav2 integration package for DynNav.</description>
+  <maintainer email="75089541+panagiotagrosdouli@users.noreply.github.com">Panagiota Grosdouli</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>nav2_bringup</depend>
+  <depend>turtlebot3_gazebo</depend>
+  <depend>rviz2</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+
 </package>
