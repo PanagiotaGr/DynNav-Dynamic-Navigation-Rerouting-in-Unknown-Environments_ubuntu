@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>dynnav_nav2_cpp</name>
-  <version>0.1.0</version>
-  <description>C++ Nav2 plugin skeleton for DynNav global planning.</description>
-  <maintainer email="maintainer@example.com">DynNav maintainers</maintainer>
-  <license>MIT</license>
+  <version>0.2.0</version>
+  <description>Risk- and recoverability-aware Nav2 global planner plugin for DynNav.</description>
+  <maintainer email="75089541+panagiotagrosdouli@users.noreply.github.com">Panagiota Grosdouli</maintainer>
+  <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
@@ -13,11 +13,15 @@
   <depend>nav2_costmap_2d</depend>
   <depend>nav_msgs</depend>
   <depend>geometry_msgs</depend>
+  <depend>nav2_util</depend>
   <depend>pluginlib</depend>
   <depend>tf2_ros</depend>
+  <depend>tf2_geometry_msgs</depend>
+
+  <test_depend>ament_cmake_gtest</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
-    <nav2_core plugin="dynnav_global_planner_plugin.xml" />
+    <nav2_core plugin="${prefix}/dynnav_global_planner_plugin.xml" />
   </export>
 </package>

@@ -1,0 +1,38 @@
+schema_version: 1
+seed: 20260811
+
+# Official Navigation2 Jazzy map provenance:
+# nav2_bringup/maps/tb3_sandbox.yaml @ git blob 676b700a80d7d5479a6eebd62e96a57ac486a7a2
+# nav2_bringup/maps/tb3_sandbox.pgm  @ git blob 10700a174d9641cd4033ed92b8e5e01b519569e7
+
+planners:
+  - planner_id: NavFn
+    family: navfn_dijkstra
+  - planner_id: Smac2D
+    family: smac_2d_astar
+  - planner_id: DynNavShortest
+    family: dynnav_ablation
+    risk_weight: 0.0
+    irreversibility_weight: 0.0
+  - planner_id: DynNavRisk
+    family: dynnav_ablation
+    risk_weight: 4.0
+    irreversibility_weight: 0.0
+  - planner_id: DynNavRecoverability
+    family: dynnav_ablation
+    risk_weight: 0.0
+    irreversibility_weight: 4.0
+  - planner_id: DynNavJoint
+    family: dynnav_ablation
+    risk_weight: 4.0
+    irreversibility_weight: 4.0
+
+scenarios:
+  - name: sandbox_diagonal
+    frame_id: map
+    start: {x: -2.0, y: -0.5, yaw: 0.0}
+    goal: {x: 1.75, y: 1.0, yaw: 0.0}
+  - name: sandbox_crossing
+    frame_id: map
+    start: {x: -1.5, y: 0.5, yaw: 0.0}
+    goal: {x: 1.5, y: -0.5, yaw: 0.0}

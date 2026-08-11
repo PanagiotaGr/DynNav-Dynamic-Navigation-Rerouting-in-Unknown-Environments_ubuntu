@@ -3,9 +3,9 @@ from __future__ import annotations
 
 import math
 import random
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from statistics import mean, median, stdev
-from typing import Iterable, Sequence
 
 
 @dataclass(frozen=True)
@@ -60,7 +60,7 @@ def paired_effect(
     if len(baseline) != len(proposed) or not baseline:
         raise ValueError("paired samples must have equal non-zero length")
     left, right = _values(baseline), _values(proposed)
-    differences = [candidate - reference for reference, candidate in zip(left, right)]
+    differences = [candidate - reference for reference, candidate in zip(left, right, strict=False)]
     spread = stdev(differences) if len(differences) > 1 else 0.0
     standardized = mean(differences) / spread if spread > 0.0 else 0.0
     wins = sum(diff < 0.0 for diff in differences)

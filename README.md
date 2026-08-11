@@ -7,12 +7,21 @@
 **Risk- and recoverability-aware online replanning in partially observed, dynamically changing environments.**
 
 [![CI](https://github.com/panagiotagrosdouli/DynNav/actions/workflows/ci.yml/badge.svg)](https://github.com/panagiotagrosdouli/DynNav/actions/workflows/ci.yml)
+[![C01-C26 experiments](https://github.com/panagiotagrosdouli/DynNav/actions/workflows/contribution-experiments.yml/badge.svg)](https://github.com/panagiotagrosdouli/DynNav/actions/workflows/contribution-experiments.yml)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](pyproject.toml)
 [![License](https://img.shields.io/badge/License-Apache--2.0-4C1.svg)](LICENSE)
 
-[Documentation](docs/README.md) · [Extended research modules](docs/CONTRIBUTION_FEATURE_CATALOG.md) · [Dashboard](app/README.md) · [Research roadmap](docs/DYNNAV_V2_RESEARCH_ROADMAP.md)
+[Documentation](docs/README.md) · [C01–C26 experiments](docs/CONTRIBUTIONS_26_EXPERIMENTS.md) · [PhD readiness](docs/PHD_APPLICATION_READINESS.md) · [Dashboard](app/README.md) · [Research roadmap](docs/DYNNAV_V2_RESEARCH_ROADMAP.md)
 
 </div>
+
+---
+
+## System walkthrough
+
+[![Animated DynNav technical overview](assets/dynnav_system_overview.gif)](assets/dynnav_system_overview.mp4)
+
+This deterministic animation explains the executable architecture, evidence tiers, and C01–C26 audit trail. It is deliberately labelled as a **synthetic technical overview**, not as recorded Gazebo or real-robot evidence. [Open the MP4 version](assets/dynnav_system_overview.mp4) or regenerate both assets with `python scripts/generate_readme_video.py`.
 
 ---
 
@@ -272,8 +281,59 @@ python scripts/run_benchmarks.py
 Run the test suite:
 
 ```bash
-pytest
+python -m pytest -q
 ```
+
+---
+
+## ROS 2 Jazzy / Nav2 plugin
+
+The repository includes a C++17 Nav2 global-planner plugin in
+[`ros2_ws/src/dynnav_nav2_cpp`](ros2_ws/src/dynnav_nav2_cpp/README.md). It reads
+the global costmap, performs deterministic risk- and local-irreversibility-aware
+A*, supports cancellation, and returns a `nav_msgs/msg/Path` through the Jazzy
+`nav2_core::GlobalPlanner` API.
+
+```bash
+source /opt/ros/jazzy/setup.bash
+rosdep install \
+  --from-paths ros2_ws/src/dynnav_nav2_cpp \
+  --ignore-src --rosdistro jazzy -r -y
+colcon build \
+  --base-paths ros2_ws/src/dynnav_nav2_cpp \
+  --packages-select dynnav_nav2_cpp
+source install/setup.bash
+colcon test --packages-select dynnav_nav2_cpp
+colcon test-result --verbose
+```
+
+The standard GitHub workflow builds and tests the plugin in a ROS 2 Jazzy
+container. A separate manual workflow launches the official minimal TurtleBot3
+Gazebo Harmonic simulation and runs a paired static planner-server benchmark:
+
+```bash
+ros2 launch dynnav_nav2_benchmark \
+  tb3_static_planner_benchmark.launch.py \
+  headless:=true repetitions:=10 \
+  output_dir:=$PWD/results/nav2_static
+```
+
+Its six configurations are NavFn, Smac 2D, and four DynNav ablations. It stores
+raw requests, paths, failures, hashes, parameters, and environment versions.
+The harness is implemented, but a Gazebo result is not a completed claim until
+the workflow passes on a named commit and its artifact is retained. This static
+test also cannot establish dynamic irreversible-failure reduction. See the
+[protocol](docs/GAZEBO_BENCHMARK_PROTOCOL.md) and [integration evidence
+status](docs/ROS2_NAV2_INTEGRATION.md).
+
+The repository also contains a frozen dynamic-execution harness. It teleports
+the simulated robot to a controlled start, executes `NavigateToPose`, injects a
+physical Gazebo blocker at a declared navigation time, archives the resulting
+global costmap, and evaluates return reachability with a planner-independent
+grid oracle. Its workflow intentionally fails on invalid event delivery while
+preserving genuine negative outcomes. See the [dynamic execution
+protocol](docs/DYNAMIC_EXECUTION_PROTOCOL.md). The harness is implemented; no
+dynamic numerical conclusion is claimed before a passing artifact exists.
 
 ---
 
@@ -289,7 +349,8 @@ The focused development sequence is:
 6. run fair four-way planner ablations;
 7. add multi-seed statistics, confidence intervals, and effect sizes;
 8. generate publication-quality tables, plots, and failure-case analyses;
-9. extend validation to ROS 2, simulation, and physical platforms after the algorithmic and experimental contracts are stable.
+9. validate the implemented Nav2 plugin in ROS 2 Jazzy CI, run the static Gazebo
+   harness, then add frozen dynamic traces before physical platforms.
 
 The detailed implementation roadmap remains available in [`docs/DYNNAV_V2_RESEARCH_ROADMAP.md`](docs/DYNNAV_V2_RESEARCH_ROADMAP.md).
 
@@ -301,7 +362,10 @@ DynNav is a real research software project, but scientific conclusions must foll
 
 Current repository results are primarily based on deterministic and stochastic synthetic navigation environments. They do not by themselves establish certified safety, universal generalization, production readiness, or physical-robot reliability.
 
-ROS 2/Nav2 integration, simulation-scale validation, physical-robot experiments, and formal safety guarantees require separate executable evidence before they are reported as completed results.
+The Nav2 plugin implementation is separate from experimental validation. ROS 2
+CI, simulation-scale validation, physical-robot experiments, and formal safety
+guarantees are distinct evidence tiers and must not be reported as completed
+until their reproducible artifacts exist.
 
 ---
 
@@ -309,10 +373,20 @@ ROS 2/Nav2 integration, simulation-scale validation, physical-robot experiments,
 
 Previous and exploratory work on uncertainty calibration, prediction, supervision, learning, human-aware navigation, multi-robot coordination, security, semantic representations, formal methods, and other extensions is preserved in:
 
+- [C01–C26 hypothesis, baseline, metric, command, and limitation catalogue](docs/CONTRIBUTIONS_26_EXPERIMENTS.md)
 - [Contribution feature catalog](docs/CONTRIBUTION_FEATURE_CATALOG.md)
 - [Contribution source index](contributions/CONTRIBUTIONS_README.md)
 - [Documentation index](docs/README.md)
 - [Interactive dashboard guide](app/README.md)
+
+Run one controlled smoke experiment for every registered contribution with:
+
+```bash
+python scripts/validate_contribution_registry.py
+python scripts/run_contribution_suite.py --output-dir results/contribution_suite
+```
+
+The suite stores CSV artifacts plus a JSON manifest and SHA-256 digest for each executed experiment. Optional dependencies are reported as explicit skips; they are never counted as scientific passes.
 
 These components may support future experiments, but the primary DynNav contribution is **risk- and recoverability-aware online replanning that preserves safe escape options under dynamic route invalidation**.
 

@@ -43,7 +43,7 @@ FEATURE_REGISTRY: tuple[DynNavFeature, ...] = (
     DynNavFeature(
         "Risk-aware A* over occupancy-belief grids",
         FeatureMaturity.IMPLEMENTED,
-        "src/dynnav/planning.py plus pytest coverage",
+        "dynnav/planning.py plus pytest coverage",
         "Validated on deterministic grid scenarios, not on hardware logs.",
     ),
     DynNavFeature(

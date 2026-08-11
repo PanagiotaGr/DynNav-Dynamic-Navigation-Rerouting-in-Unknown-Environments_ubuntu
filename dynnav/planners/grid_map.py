@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass, field
-from typing import Iterable
 
 GridCell = tuple[int, int]
 
@@ -34,7 +34,7 @@ class GridMap:
         obstacles: Iterable[GridCell] = (),
         risk: dict[GridCell, float] | None = None,
         uncertainty: dict[GridCell, float] | None = None,
-    ) -> "GridMap":
+    ) -> GridMap:
         grid = cls(
             width=width,
             height=height,

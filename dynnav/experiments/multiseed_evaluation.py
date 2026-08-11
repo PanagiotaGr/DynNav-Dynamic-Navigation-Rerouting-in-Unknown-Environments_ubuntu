@@ -4,9 +4,9 @@ from __future__ import annotations
 import csv
 import json
 import random
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Callable, Iterable, Mapping, Sequence
 
 from dynnav.experiments.statistics import bootstrap_mean_interval, paired_effect, summarize
 
@@ -23,6 +23,7 @@ class TrialRecord:
     cumulative_risk: float
     cumulative_irreversibility: float
     minimum_escape_options: float
+    planning_failure: bool = False
 
 
 @dataclass(frozen=True)
@@ -68,7 +69,9 @@ def run_multiseed(
     return records
 
 
-def aggregate(records: Iterable[TrialRecord], *, config: EvaluationConfig | None = None) -> dict[str, dict]:
+def aggregate(
+    records: Iterable[TrialRecord], *, config: EvaluationConfig | None = None
+) -> dict[str, dict]:
     cfg = config or EvaluationConfig()
     cfg.validate()
     grouped: dict[str, list[TrialRecord]] = {}
@@ -76,19 +79,26 @@ def aggregate(records: Iterable[TrialRecord], *, config: EvaluationConfig | None
         grouped.setdefault(record.method, []).append(record)
     output: dict[str, dict] = {}
     metrics = (
-        "path_length", "planning_time_ms", "nodes_expanded", "cumulative_risk",
-        "cumulative_irreversibility", "minimum_escape_options",
+        "path_length",
+        "planning_time_ms",
+        "nodes_expanded",
+        "cumulative_risk",
+        "cumulative_irreversibility",
+        "minimum_escape_options",
     )
     for method, rows in sorted(grouped.items()):
         summary: dict[str, object] = {
             "trials": len(rows),
             "success_rate": sum(row.success for row in rows) / len(rows),
+            "planning_failure_rate": sum(row.planning_failure for row in rows)
+            / len(rows),
             "irreversible_failure_rate": sum(row.irreversible_failure for row in rows) / len(rows),
         }
         for metric in metrics:
             values = [float(getattr(row, metric)) for row in rows]
             interval = bootstrap_mean_interval(
-                values, confidence=cfg.confidence,
+                values,
+                confidence=cfg.confidence,
                 resamples=cfg.bootstrap_resamples,
                 seed=sum(row.seed for row in rows) + len(metric),
             )
@@ -98,41 +108,70 @@ def aggregate(records: Iterable[TrialRecord], *, config: EvaluationConfig | None
 
 
 def paired_comparisons(
-    records: Iterable[TrialRecord], baseline: str, proposed: str,
-    *, metric: str = "planning_time_ms", config: EvaluationConfig | None = None,
+    records: Iterable[TrialRecord],
+    baseline: str,
+    proposed: str,
+    *,
+    metric: str = "planning_time_ms",
+    config: EvaluationConfig | None = None,
 ) -> dict:
     cfg = config or EvaluationConfig()
     cfg.validate()
     by_key = {(row.seed, row.method): row for row in records}
-    common = sorted(seed for seed, method in by_key if method == baseline and (seed, proposed) in by_key)
+    common = sorted(
+        seed
+        for seed, method in by_key
+        if method == baseline and (seed, proposed) in by_key
+    )
     if not common:
         raise ValueError("no paired seeds available")
     left = [float(getattr(by_key[(seed, baseline)], metric)) for seed in common]
     right = [float(getattr(by_key[(seed, proposed)], metric)) for seed in common]
-    return asdict(paired_effect(
-        left, right, confidence=cfg.confidence,
-        resamples=cfg.bootstrap_resamples, seed=sum(common) + len(metric),
-    ))
+    return asdict(
+        paired_effect(
+            left,
+            right,
+            confidence=cfg.confidence,
+            resamples=cfg.bootstrap_resamples,
+            seed=sum(common) + len(metric),
+        )
+    )
 
 
 def sensitivity_grid(
-    runner: TrialRunner, method: str, parameter: str, values: Sequence[float],
-    *, config: EvaluationConfig | None = None,
+    runner: TrialRunner,
+    method: str,
+    parameter: str,
+    values: Sequence[float],
+    *,
+    config: EvaluationConfig | None = None,
 ) -> dict[str, dict]:
     if not values:
         raise ValueError("sensitivity values cannot be empty")
     result: dict[str, dict] = {}
     for value in values:
-        records = run_multiseed(runner, [method], parameters={parameter: float(value)}, config=config)
+        records = run_multiseed(
+            runner,
+            [method],
+            parameters={parameter: float(value)},
+            config=config,
+        )
         result[str(value)] = aggregate(records, config=config)[method]
     return result
 
 
-def write_artifacts(records: Sequence[TrialRecord], summary: Mapping, output_dir: str | Path) -> None:
+def write_artifacts(
+    records: Sequence[TrialRecord], summary: Mapping, output_dir: str | Path
+) -> None:
     target = Path(output_dir)
     target.mkdir(parents=True, exist_ok=True)
     with (target / "trials.csv").open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(asdict(records[0]).keys()) if records else [field.name for field in TrialRecord.__dataclass_fields__.values()])
+        fieldnames = (
+            list(asdict(records[0]).keys())
+            if records
+            else [field.name for field in TrialRecord.__dataclass_fields__.values()]
+        )
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
         writer.writeheader()
         for record in records:
             writer.writerow(asdict(record))

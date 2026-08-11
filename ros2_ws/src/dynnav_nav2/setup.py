@@ -4,7 +4,7 @@ package_name = "dynnav_nav2"
 
 setup(
     name=package_name,
-    version="0.1.0",
+    version="0.2.0",
     packages=[package_name],
     data_files=[
         ("share/ament_index/resource_index/packages", ["resource/" + package_name]),
@@ -14,10 +14,10 @@ setup(
     ],
     install_requires=["setuptools"],
     zip_safe=True,
-    maintainer="DynNav maintainers",
-    maintainer_email="maintainer@example.com",
-    description="ROS 2 integration scaffold for DynNav planners.",
-    license="MIT",
+    maintainer="Panagiota Grosdouli",
+    maintainer_email="75089541+panagiotagrosdouli@users.noreply.github.com",
+    description="Diagnostic ROS 2 bridge for the Python DynNav research planners.",
+    license="Apache-2.0",
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [

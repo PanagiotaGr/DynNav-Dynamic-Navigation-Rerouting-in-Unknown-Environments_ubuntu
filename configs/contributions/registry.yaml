@@ -1,5 +1,6 @@
 schema_version: 1
 programme: DynNav unified contribution research programme
+experiment_registry: configs/contributions/experiments.yaml
 evidence_policy: >-
   Diagrams and deterministic fixtures are explanatory or synthetic evidence only.
   Dataset, ROS 2, hardware, formal-safety, and trained-neural claims require traceable artifacts.

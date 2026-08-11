@@ -166,8 +166,10 @@ Publication-grade experiments should include:
 
 After the algorithmic and experimental core is stable:
 
-- create a verified ROS 2/Nav2 integration path;
-- add deterministic simulation scenarios;
+- verify the implemented ROS 2 Jazzy/Nav2 plugin in CI;
+- run the implemented paired static Gazebo/TurtleBot3 planner benchmark;
+- validate the implemented dynamic Gazebo execution runner, frozen obstacle
+  traces, and independent safe-region costmap oracle;
 - validate occupancy-grid conversion and path output;
 - progress toward physical-robot experiments.
 

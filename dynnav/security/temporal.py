@@ -45,8 +45,17 @@ class SecurityStateMachine:
         self._dwell = 0
         self._recovery = 0
 
-    def update(self, *, timestamp: float, triggered: bool, trust: float, attribution_confidence: float,
-               isolated: bool = False, critical_context: bool = False, recovery_possible: bool = True) -> StateTransition:
+    def update(
+        self,
+        *,
+        timestamp: float,
+        triggered: bool,
+        trust: float,
+        attribution_confidence: float,
+        isolated: bool = False,
+        critical_context: bool = False,
+        recovery_possible: bool = True,
+    ) -> StateTransition:
         previous = self.state
         self._dwell = self._dwell + 1 if triggered else 0
         self._recovery = self._recovery + 1 if not triggered and trust >= self.config.recovery_trust else 0
@@ -76,7 +85,10 @@ class SecurityStateMachine:
         elif previous is SecurityState.RECOVERY_MONITORING and self._recovery < self.config.recovery_dwell:
             self.state = SecurityState.RECOVERY_MONITORING
             reason = "recovery dwell requirement has not yet been met"
-        elif self._recovery >= self.config.recovery_dwell or previous in {SecurityState.NORMAL, SecurityState.OBSERVING}:
+        elif self._recovery >= self.config.recovery_dwell or previous in {
+            SecurityState.NORMAL,
+            SecurityState.OBSERVING,
+        }:
             self.state = SecurityState.NORMAL
             reason = "nominal trust and recovery dwell requirements are satisfied"
 

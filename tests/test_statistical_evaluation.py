@@ -52,6 +52,7 @@ def test_multiseed_aggregation_and_pairing() -> None:
     assert len(records) == 6
     summary = aggregate(records, config=config)
     assert summary["baseline"]["trials"] == 3
+    assert summary["baseline"]["planning_failure_rate"] == 0.0
     comparison = paired_comparisons(records, "baseline", "proposed", config=config)
     assert comparison["mean_difference"] < 0.0
 

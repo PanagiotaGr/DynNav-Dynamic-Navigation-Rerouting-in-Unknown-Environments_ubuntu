@@ -1,8 +1,56 @@
-"""DynNav research package.
+"""Canonical DynNav research package.
 
-The package contains lightweight, dependency-minimal research components for
-uncertainty-aware navigation experiments. Modules are intentionally separated
-from ROS 2 integration so they can be unit-tested and benchmarked in isolation.
+Algorithms remain independent of ROS 2; middleware adapters live in the ROS
+workspace and consume these typed, deterministically tested APIs.
 """
 
-__all__ = ["core"]
+from dynnav.config import DynNavConfig
+from dynnav.core import (
+    GridMap,
+    NavigationState,
+    PathEvaluation,
+    Pose,
+    SelfAwareCostWeights,
+    SelfAwarenessScore,
+    Trajectory,
+    estimate_self_awareness,
+    expected_information_gain,
+    self_aware_path_cost,
+)
+from dynnav.research_modules import (
+    DynNavResearchStack,
+    MissionRiskEstimator,
+    MissionRiskReport,
+    RuntimeMonitor,
+    RuntimeObservation,
+    SafeModeSupervisor,
+    SafetyMode,
+    UncertaintyPropagator,
+    UncertaintyState,
+)
+
+__version__ = "0.2.0"
+
+__all__ = [
+    "DynNavConfig",
+    "DynNavResearchStack",
+    "GridMap",
+    "MissionRiskEstimator",
+    "MissionRiskReport",
+    "NavigationState",
+    "PathEvaluation",
+    "Pose",
+    "RuntimeMonitor",
+    "RuntimeObservation",
+    "SafeModeSupervisor",
+    "SafetyMode",
+    "SelfAwareCostWeights",
+    "SelfAwarenessScore",
+    "Trajectory",
+    "UncertaintyPropagator",
+    "UncertaintyState",
+    "estimate_self_awareness",
+    "expected_information_gain",
+    "self_aware_path_cost",
+    "__version__",
+]

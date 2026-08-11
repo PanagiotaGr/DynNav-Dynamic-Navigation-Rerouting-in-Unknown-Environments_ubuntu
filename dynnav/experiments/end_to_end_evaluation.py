@@ -1,9 +1,9 @@
 """End-to-end evaluation runner for all recoverability A* ablations."""
 from __future__ import annotations
 
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Mapping, Sequence
 
 from dynnav.experiments.multiseed_evaluation import (
     EvaluationConfig,
@@ -57,13 +57,16 @@ def make_runner(scenario_config: ScenarioConfig | None = None):
             seed=seed,
             method=method,
             success=result.success,
-            irreversible_failure=not result.success,
+            # This runner only evaluates static planning. Failure to find a path is a
+            # planning failure, not evidence of an irreversible execution failure.
+            irreversible_failure=False,
             path_length=float(result.geometric_length),
             planning_time_ms=float(result.planning_time_ms),
             nodes_expanded=float(result.nodes_expanded),
             cumulative_risk=float(result.cumulative_risk),
             cumulative_irreversibility=float(result.cumulative_irreversibility),
             minimum_escape_options=float(result.minimum_escape_options),
+            planning_failure=not result.success,
         )
 
     return runner

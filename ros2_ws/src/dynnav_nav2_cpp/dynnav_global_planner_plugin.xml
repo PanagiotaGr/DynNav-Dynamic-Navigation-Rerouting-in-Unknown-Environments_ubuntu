@@ -1,3 +1,8 @@
 <library path="dynnav_global_planner">
-  <class name="dynnav_nav2_cpp/DynNavGlobalPlanner" type="dynnav_nav2_cpp::DynNavGlobalPlanner" base_class_type="nav2_core::GlobalPlanner" />
+  <class
+    name="dynnav_nav2_cpp::DynNavGlobalPlanner"
+    type="dynnav_nav2_cpp::DynNavGlobalPlanner"
+    base_class_type="nav2_core::GlobalPlanner">
+    <description>Costmap-backed risk- and recoverability-aware A* global planner.</description>
+  </class>
 </library>

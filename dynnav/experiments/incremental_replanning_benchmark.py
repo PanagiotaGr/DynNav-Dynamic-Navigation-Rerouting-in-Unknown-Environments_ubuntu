@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping, Sequence
 from dataclasses import asdict, dataclass
-from typing import Mapping, Sequence
 
 from dynnav.planners.grid_map import GridCell, GridMap
 from dynnav.planners.online_recoverability import ObstacleUpdate
