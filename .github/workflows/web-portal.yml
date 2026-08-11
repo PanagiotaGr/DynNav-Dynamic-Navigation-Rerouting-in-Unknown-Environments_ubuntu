@@ -46,7 +46,7 @@ jobs:
         run: |
           test -s .web-dist/index.html
           test -s .web-dist/researcher/index.html
-          test -s .web-dist/.nojekyll
+          test -f .web-dist/.nojekyll
       - name: Upload deployment-ready portal
         uses: actions/upload-artifact@v4
         with:

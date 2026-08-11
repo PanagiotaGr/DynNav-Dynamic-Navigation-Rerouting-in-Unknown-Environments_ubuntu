@@ -1596,6 +1596,30 @@
     "verified": false
   },
   {
+    "classification": "required and executable",
+    "command": "npm --prefix website ci --no-audit --no-fund",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "npm --prefix apps/web ci --no-audit --no-fund",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "bash scripts/build_web_portal.sh",
+    "document": "README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m http.server 4173 --directory .web-dist",
+    "document": "README.md",
+    "verified": false
+  },
+  {
     "classification": "illustrative",
     "command": "streamlit run app/dashboard.py",
     "document": "README.md",
@@ -2185,7 +2209,7 @@
   },
   {
     "classification": "required and executable",
-    "command": "pytest",
+    "command": "python -m pytest -q",
     "document": "src/README.md",
     "verified": false
   },
@@ -2246,6 +2270,30 @@
   {
     "classification": "required and executable",
     "command": "npm run build",
+    "document": "website/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "npm --prefix website ci --no-audit --no-fund",
+    "document": "website/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "npm --prefix apps/web ci --no-audit --no-fund",
+    "document": "website/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "bash scripts/build_web_portal.sh",
+    "document": "website/README.md",
+    "verified": false
+  },
+  {
+    "classification": "required and executable",
+    "command": "python -m http.server 4173 --directory .web-dist",
     "document": "website/README.md",
     "verified": false
   }

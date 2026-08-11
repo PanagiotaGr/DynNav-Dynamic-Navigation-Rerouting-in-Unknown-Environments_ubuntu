@@ -63,6 +63,7 @@ jobs:
 
       - name: Record installed environment
         run: |
+          source /opt/ros/jazzy/setup.bash
           mkdir -p /tmp/dynnav_dynamic/results
           dpkg-query -W -f='${binary:Package}\t${Version}\n' 'ros-jazzy-*' \
             | sort > /tmp/dynnav_dynamic/results/ros_packages.tsv

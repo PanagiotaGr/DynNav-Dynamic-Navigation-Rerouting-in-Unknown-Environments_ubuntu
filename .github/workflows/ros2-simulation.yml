@@ -67,6 +67,7 @@ jobs:
 
       - name: Record installed simulation environment
         run: |
+          source /opt/ros/jazzy/setup.bash
           mkdir -p /tmp/dynnav_gazebo/results
           dpkg-query -W -f='${binary:Package}\t${Version}\n' 'ros-jazzy-*' \
             | sort > /tmp/dynnav_gazebo/results/ros_packages.tsv
