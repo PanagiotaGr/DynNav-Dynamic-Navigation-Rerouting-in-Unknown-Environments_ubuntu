@@ -200,6 +200,28 @@ def _pose3(payload: dict[str, Any]) -> Pose3D:
     )
 
 
+def path_intersects_oriented_box(
+    points: Sequence[Pose2D], center: Pose3D, size: BoxSize
+) -> bool:
+    """Return whether any path pose lies inside a yaw-oriented blocker box."""
+
+    center.validate()
+    size.validate()
+    cosine = math.cos(center.yaw)
+    sine = math.sin(center.yaw)
+    half_x = size.x / 2.0
+    half_y = size.y / 2.0
+    for point in points:
+        point.validate()
+        dx = point.x - center.x
+        dy = point.y - center.y
+        local_x = cosine * dx + sine * dy
+        local_y = -sine * dx + cosine * dy
+        if abs(local_x) <= half_x and abs(local_y) <= half_y:
+            return True
+    return False
+
+
 def load_dynamic_suite(path: str | Path) -> DynamicBenchmarkSuite:
     """Load and validate a frozen dynamic benchmark YAML."""
 

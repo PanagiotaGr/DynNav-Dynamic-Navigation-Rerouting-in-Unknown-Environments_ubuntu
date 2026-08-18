@@ -90,12 +90,17 @@ def install_document_discovery_filter() -> None:
         # documentation and can contain links that only resolve inside wheels.
         if path.name in _GENERATED_DOCUMENTS:
             return False
+        # Pytest commonly places the *entire repository fixture* below a
+        # system-level ``pytest-of-root`` directory.  Rejecting any absolute
+        # path containing that name therefore discards legitimate documents.
+        # A nested fixture-generated pytest tree has a second occurrence and
+        # remains transient.  In normal repository runs one occurrence below
+        # the repository root is sufficient to reject the path.
+        pytest_roots = sum(part.startswith("pytest-of-root") for part in path.parts)
         if any(
-            part in _TRANSIENT_DIRECTORY_NAMES
-            or part.startswith("pip-")
-            or part.startswith("pytest-of-root")
+            part in _TRANSIENT_DIRECTORY_NAMES or part.startswith("pip-")
             for part in path.parts
-        ):
+        ) or pytest_roots >= 2:
             return False
         if path.suffix.lower() in _SOURCE_SUFFIXES:
             return False

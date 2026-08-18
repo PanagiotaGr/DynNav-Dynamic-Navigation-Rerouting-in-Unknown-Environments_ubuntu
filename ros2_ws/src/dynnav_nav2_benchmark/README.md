@@ -79,8 +79,8 @@ ros2 launch dynnav_nav2_benchmark \
   output_dir:=$PWD/results/nav2_dynamic
 ```
 
-The dynamic runner executes Nav2 goals for NavFn, Smac 2D, DynNav risk-only,
-and DynNav joint, moves a physical blocker through Gazebo's entity services,
+The dynamic runner executes Nav2 goals for NavFn, Smac 2D, and all four DynNav
+J0--J3 ablations, moves a physical blocker through Gazebo's entity services,
 and saves the post-event global costmap for an independent safe-region
 reachability assessment. It also checkpoints partial JSON/CSV after every
 trial. See the [dynamic protocol](../../../docs/DYNAMIC_EXECUTION_PROTOCOL.md)

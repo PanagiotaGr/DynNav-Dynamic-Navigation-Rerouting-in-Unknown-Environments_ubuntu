@@ -14,10 +14,18 @@ planners:
     family: navfn_dijkstra
   - planner_id: Smac2D
     family: smac_2d_astar
+  - planner_id: DynNavShortest
+    family: dynnav_ablation
+    risk_weight: 0.0
+    irreversibility_weight: 0.0
   - planner_id: DynNavRisk
     family: dynnav_ablation
     risk_weight: 4.0
     irreversibility_weight: 0.0
+  - planner_id: DynNavRecoverability
+    family: dynnav_ablation
+    risk_weight: 0.0
+    irreversibility_weight: 4.0
   - planner_id: DynNavJoint
     family: dynnav_ablation
     risk_weight: 4.0

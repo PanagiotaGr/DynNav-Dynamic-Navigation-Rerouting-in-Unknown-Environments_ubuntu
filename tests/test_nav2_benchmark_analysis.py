@@ -34,6 +34,7 @@ from dynnav_nav2_benchmark.dynamic_analysis import (  # noqa: E402
     load_dynamic_suite,
     maximum_cost_near,
     planner_behavior_tree,
+    path_intersects_oriented_box,
     summarize_dynamic_trials,
     terminal_failure_class,
 )
@@ -58,6 +59,18 @@ def test_declared_ablation_weights_match_runtime_configuration() -> None:
             configured[planner.planner_id]["irreversibility_weight"]
             == planner.irreversibility_weight
         )
+
+
+def test_all_turtlebot_configs_use_registered_plugin_type() -> None:
+    configs = [
+        REPOSITORY / "ros2_ws/src/dynnav_bringup/config/dynnav_nav2_params.yaml",
+        REPOSITORY / "ros2_ws/src/dynnav_turtlebot3/config/nav2_dynnav_params.yaml",
+        REPOSITORY / "ros2_ws/src/dynnav_turtlebot3/config/turtlebot3_dynnav_nav2.yaml",
+    ]
+    for path in configs:
+        text = path.read_text(encoding="utf-8")
+        assert "dynnav_nav2_cpp::DynNavGlobalPlanner" in text
+        assert "dynnav_nav2_cpp/DynNavPlanner" not in text
 
 
 def test_parameter_injection_is_non_mutating_and_removes_default_plugin() -> None:
@@ -138,7 +151,9 @@ def test_dynamic_suite_is_frozen_and_matches_runtime_plugins() -> None:
     assert tuple(planner.planner_id for planner in suite.planners) == (
         "NavFn",
         "Smac2D",
+        "DynNavShortest",
         "DynNavRisk",
+        "DynNavRecoverability",
         "DynNavJoint",
     )
     assert set(planner.planner_id for planner in suite.planners) <= set(PLANNER_IDS)
@@ -241,6 +256,17 @@ def test_obstacle_observation_and_terminal_classes() -> None:
     assert terminal_failure_class(succeeded=False, timed_out=True, error_code=0) == "execution_timeout"
     assert terminal_failure_class(succeeded=False, timed_out=False, error_code=208) == "planning_failure"
     assert terminal_failure_class(succeeded=False, timed_out=False, error_code=105) == "controller_failure"
+
+
+def test_path_invalidation_uses_blocker_geometry() -> None:
+    box = BoxSize(1.0, 2.0, 1.0)
+    center = Pose3D(2.0, 2.0, 0.5)
+    assert path_intersects_oriented_box(
+        [Pose2D(0.0, 2.0), Pose2D(2.0, 2.0), Pose2D(4.0, 2.0)], center, box
+    )
+    assert not path_intersects_oriented_box(
+        [Pose2D(0.0, 0.0), Pose2D(4.0, 0.0)], center, box
+    )
 
 
 def test_behavior_tree_hard_codes_only_requested_planner() -> None:

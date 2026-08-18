@@ -71,17 +71,23 @@ jobs:
 
       - name: Run frozen dynamic trials
         run: |
+          set -o pipefail
           source /opt/ros/jazzy/setup.bash
           source /tmp/dynnav_dynamic/install/setup.bash
           timeout --signal=INT --kill-after=30s 55m \
             ros2 launch dynnav_nav2_benchmark \
               tb3_dynamic_execution_benchmark.launch.py \
               headless:=true \
+              record_bag:=true \
               repetitions:=${{ inputs.repetitions || '1' }} \
-              output_dir:=/tmp/dynnav_dynamic/results
+              output_dir:=/tmp/dynnav_dynamic/results \
+            2>&1 | tee /tmp/dynnav_dynamic/results/ros_launch.log
           test -s /tmp/dynnav_dynamic/results/results.json
           test -s /tmp/dynnav_dynamic/results/trials.csv
           test -s /tmp/dynnav_dynamic/results/blocker_snapshot.sdf
+          test -s /tmp/dynnav_dynamic/results/run_manifest.json
+          test -s /tmp/dynnav_dynamic/results/ros_launch.log
+          test -s /tmp/dynnav_dynamic/results/rosbag2/metadata.yaml
 
       - name: Validate dynamic result contract
         run: |
@@ -97,9 +103,12 @@ jobs:
           assert result["benchmark_type"] == (
               "dynamic_navigate_to_pose_route_invalidation"
           )
-          assert len(result["trials"]) == repetitions * 2 * 4
-          assert len(result["summary"]) == 4
+          assert len(result["trials"]) == repetitions * 2 * 6
+          assert len(result["summary"]) == 6
+          assert result["source_revision"] != "unrecorded"
           assert all(row["valid_trial"] for row in result["trials"])
+          assert all(row["pre_event_path_invalidated"] for row in result["trials"])
+          assert all(row["planner_path_count"] >= 1 for row in result["trials"])
           assessed = sum(
               row["recovery_assessment"] is not None for row in result["trials"]
           )

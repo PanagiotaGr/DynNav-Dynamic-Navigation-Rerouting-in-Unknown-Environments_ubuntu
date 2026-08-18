@@ -19,6 +19,7 @@ from launch.actions import (
     RegisterEventHandler,
     TimerAction,
 )
+from launch.conditions import IfCondition
 from launch.event_handlers import OnProcessExit
 from launch.events import Shutdown
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -83,6 +84,21 @@ def _launch_setup(context):
         ],
     )
 
+    rosbag = Node(
+        package="rosbag2_transport",
+        executable="record",
+        name="dynnav_evidence_recorder",
+        output="screen",
+        condition=IfCondition(LaunchConfiguration("record_bag")),
+        arguments=[
+            "--output", str(Path(output) / "rosbag2"), "--storage", "sqlite3",
+            "/tf", "/tf_static", "/odom", "/scan", "/cmd_vel", "/amcl_pose",
+            "/plan", "/global_costmap/costmap", "/global_costmap/costmap_updates",
+            "/local_costmap/costmap", "/local_costmap/costmap_updates",
+            "/behavior_tree_log",
+        ],
+    )
+
     runner = Node(
         package="dynnav_nav2_benchmark",
         executable="dynamic_execution_benchmark",
@@ -118,7 +134,7 @@ def _launch_setup(context):
             ],
         )
     )
-    return [simulation, gazebo_services, delayed_runner, shutdown_after_benchmark]
+    return [simulation, gazebo_services, rosbag, delayed_runner, shutdown_after_benchmark]
 
 
 def generate_launch_description() -> LaunchDescription:
@@ -154,6 +170,7 @@ def generate_launch_description() -> LaunchDescription:
             ),
             DeclareLaunchArgument("repetitions", default_value="1"),
             DeclareLaunchArgument("headless", default_value="true"),
+            DeclareLaunchArgument("record_bag", default_value="true"),
             OpaqueFunction(function=_launch_setup),
         ]
     )
