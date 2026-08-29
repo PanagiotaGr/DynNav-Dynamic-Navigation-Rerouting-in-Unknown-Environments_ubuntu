@@ -1,0 +1,22 @@
+{
+  "name": "recoverability-astar-smoke",
+  "seeds": [0, 1, 2],
+  "methods": [
+    "shortest",
+    "risk_aware",
+    "recoverability_aware",
+    "proposed"
+  ],
+  "confidence": 0.95,
+  "bootstrap_resamples": 200,
+  "scenario": {
+    "width": 16,
+    "height": 16,
+    "obstacle_probability": 0.15
+  },
+  "parameters": {
+    "risk_weight": 4.0,
+    "irreversibility_weight": 4.0,
+    "heuristic_weight": 1.0
+  }
+}
