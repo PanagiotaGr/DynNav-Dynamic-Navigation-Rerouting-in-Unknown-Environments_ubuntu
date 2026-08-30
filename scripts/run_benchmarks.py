@@ -25,8 +25,8 @@ def main(argv: list[str] | None = None) -> None:
         metrics = run_pipeline(cfg, smoke=args.smoke)
         rows.append(metrics)
 
-    metrics_dir = Path("results/metrics")
-    reports_dir = Path("results/reports")
+    metrics_dir = root / "metrics"
+    reports_dir = root / "reports"
     metrics_dir.mkdir(parents=True, exist_ok=True)
     reports_dir.mkdir(parents=True, exist_ok=True)
     with (metrics_dir / "benchmark_summary.csv").open("w", newline="") as handle:
@@ -38,7 +38,11 @@ def main(argv: list[str] | None = None) -> None:
         + json.dumps(rows, indent=2)
         + "\n```\n"
     )
-    print("Benchmark outputs saved to results/metrics/benchmark_summary.csv and results/reports/benchmark_report.md")
+    print(
+        "Benchmark outputs saved to "
+        f"{metrics_dir / 'benchmark_summary.csv'} and "
+        f"{reports_dir / 'benchmark_report.md'}"
+    )
 
 
 if __name__ == "__main__":

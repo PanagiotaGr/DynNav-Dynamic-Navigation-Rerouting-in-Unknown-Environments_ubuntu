@@ -21,6 +21,7 @@ _EXECUTABLE_PREFIXES = {
     "streamlit", "dynnav-benchmark", "sudo", "source", "export", "mkdir",
 }
 _FENCE_OPEN = re.compile(r"^\s*```\s*([^\s`]*)\s*$")
+_ORIGINAL_DISCOVER_DOCUMENTS = markdown_audit_core.discover_documents
 _ORIGINAL_IS_DOCUMENT = markdown_audit_core.is_document
 _ORIGINAL_SHLEX_SPLIT = shlex.split
 _GENERATED_DOCUMENTS = {"DOCUMENTATION_MAP.md", "MARKDOWN_INVENTORY.md"}
@@ -90,17 +91,24 @@ def install_document_discovery_filter() -> None:
         # documentation and can contain links that only resolve inside wheels.
         if path.name in _GENERATED_DOCUMENTS:
             return False
-        if any(
-            part in _TRANSIENT_DIRECTORY_NAMES
-            or part.startswith("pip-")
-            or part.startswith("pytest-of-root")
-            for part in path.parts
-        ):
-            return False
         if path.suffix.lower() in _SOURCE_SUFFIXES:
             return False
         return _ORIGINAL_IS_DOCUMENT(path)
 
+    def discover_filtered(root: Path) -> list[Path]:
+        documents = _ORIGINAL_DISCOVER_DOCUMENTS(root)
+        return [
+            path
+            for path in documents
+            if not any(
+                part in _TRANSIENT_DIRECTORY_NAMES
+                or part.startswith("pip-")
+                or part.startswith("pytest-of-root")
+                for part in path.resolve().relative_to(root.resolve()).parts
+            )
+        ]
+
     markdown_audit_core.is_document = filtered
+    markdown_audit_core.discover_documents = discover_filtered
     markdown_audit_core.shlex.split = _safe_shlex_split
     markdown_audit_core.commands = _documented_commands

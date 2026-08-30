@@ -11,7 +11,7 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](pyproject.toml)
 [![License](https://img.shields.io/badge/License-Apache--2.0-4C1.svg)](LICENSE)
 
-[Documentation](docs/README.md) · [C01–C26 experiments](docs/CONTRIBUTIONS_26_EXPERIMENTS.md) ·  · [Dashboard](app/README.md) · [Research roadmap](docs/DYNNAV_V2_RESEARCH_ROADMAP.md)
+[Research dossier](docs/PHD_APPLICATION_READINESS.md) · [Evidence matrix](CLAIM_EVIDENCE_MATRIX.md) · [Documentation](docs/README.md) · [Dashboard](app/README.md)
 
 </div>
 
@@ -52,6 +52,15 @@ execution result.
 The combined portal has a passing deployment-artifact workflow. No public URL
 is claimed yet: GitHub Pages is not enabled for this repository and the
 connected Vercel account does not yet contain a DynNav project.
+
+### Ten-minute research review
+
+For a compact, evidence-first assessment of the project, follow the
+[research dossier](docs/PHD_APPLICATION_READINESS.md). It links the smallest
+publishable contribution, claim–evidence matrix, preregistered experiment
+protocol, failure and falsification suite, executable metrics, tests, ROS 2
+integration, and retained results. The dossier also states the current gaps;
+in particular, no physical-robot or powered efficacy claim is made.
 
 ---
 

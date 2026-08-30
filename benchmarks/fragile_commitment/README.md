@@ -2,6 +2,18 @@
 
 This benchmark constructs navigation counterexamples in which routes have similar immediate traversal risk but different retained recovery freedom.
 
+The original controlled benchmark is a **positive-control counterexample**, not
+an unbiased efficacy estimate: its closure is deliberately placed on the
+fragile route.  Use `v2_benchmark.py` for comparative claims.  V2 randomizes
+`none`/`fragile`/`resilient` event targets from an independent RNG stream,
+manipulates route risk separately, and compares the complete J0--J3 ablation.
+
+```bash
+python benchmarks/fragile_commitment/v2_benchmark.py \
+  --seeds 100 \
+  --output results/fragile_commitment_v2.csv
+```
+
 The controlled scenario contains two homotopy classes:
 
 - a short, narrow route vulnerable to a dynamic closure;

@@ -20,6 +20,7 @@ from typing import Any
 import rclpy
 from geometry_msgs.msg import Pose, PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
+from nav_msgs.msg import Path as NavPath
 from rclpy.client import Client
 from rclpy.parameter import Parameter
 from ros_gz_interfaces.msg import Entity
@@ -38,6 +39,7 @@ from dynnav_nav2_benchmark.dynamic_analysis import (
     assess_recovery_reachability,
     count_costs_in_oriented_box,
     load_dynamic_suite,
+    path_intersects_oriented_box,
     planner_behavior_tree,
     summarize_dynamic_trials,
     terminal_failure_class,
@@ -153,6 +155,24 @@ def _feedback_row(feedback: Any) -> dict[str, Any]:
             feedback.estimated_time_remaining
         ),
         "number_of_recoveries": int(feedback.number_of_recoveries),
+    }
+
+
+def _plan_record(message: NavPath, received_sim_time_s: float) -> dict[str, Any]:
+    points = [
+        {"x": float(pose.pose.position.x), "y": float(pose.pose.position.y)}
+        for pose in message.poses
+    ]
+    length = sum(
+        math.hypot(right["x"] - left["x"], right["y"] - left["y"])
+        for left, right in zip(points, points[1:], strict=False)
+    )
+    return {
+        "received_sim_time_s": received_sim_time_s,
+        "frame_id": message.header.frame_id,
+        "pose_count": len(points),
+        "path_length_m": length,
+        "points": points,
     }
 
 
@@ -330,6 +350,18 @@ def _run_dynamic_trial(
     navigator.clearAllCostmaps()
     time.sleep(reset_settle_s)
 
+    plan_trace: list[dict[str, Any]] = []
+
+    def on_plan(message: NavPath) -> None:
+        plan_trace.append(
+            _plan_record(
+                message,
+                navigator.get_clock().now().nanoseconds / 1_000_000_000.0,
+            )
+        )
+
+    plan_subscription = navigator.create_subscription(NavPath, "/plan", on_plan, 10)
+
     # BasicNavigator retains the previous task's last feedback between goals.
     navigator.feedback = None
     accepted = navigator.goToPose(
@@ -337,6 +369,7 @@ def _run_dynamic_trial(
         behavior_tree=str(behavior_tree),
     )
     if not accepted:
+        navigator.destroy_subscription(plan_subscription)
         return {
             "scenario": scenario.name,
             "planner_id": planner_id,
@@ -361,6 +394,10 @@ def _run_dynamic_trial(
             "post_event_lethal_cells_in_blocker_footprint": None,
             "recovery_assessment": None,
             "operational_irreversible_failure": None,
+            "pre_event_path_invalidated": None,
+            "planner_path_count": 0,
+            "replan_count": 0,
+            "planner_paths": [],
             "costmap_snapshot": None,
             "costmap_snapshot_sha256": None,
             "trace": [],
@@ -385,6 +422,7 @@ def _run_dynamic_trial(
     snapshot_name: str | None = None
     snapshot_sha256: str | None = None
     timed_out = False
+    pre_event_path_invalidated: bool | None = None
 
     def capture_recovery(feedback: Any, navigation_time_s: float) -> None:
         nonlocal recovery_assessment
@@ -473,6 +511,19 @@ def _run_dynamic_trial(
                             center=scenario.event.blocker_pose,
                             size=_blocker_observation_size(suite, scenario),
                         )
+                        if not plan_trace:
+                            raise RuntimeError("no planner path received before event")
+                        latest_points = tuple(
+                            Pose2D(float(point["x"]), float(point["y"]))
+                            for point in plan_trace[-1]["points"]
+                        )
+                        pre_event_path_invalidated = path_intersects_oriented_box(
+                            latest_points,
+                            scenario.event.blocker_pose,
+                            _blocker_observation_size(suite, scenario),
+                        )
+                        if not pre_event_path_invalidated:
+                            raise RuntimeError("event does not intersect pre-event planner path")
                         _set_entity_pose(
                             navigator,
                             set_pose_client,
@@ -537,6 +588,7 @@ def _run_dynamic_trial(
     if event_error is None and not event_applied:
         if pre_event_terminal_failure:
             event_not_applied_reason = "navigation_failed_before_event"
+            event_error = event_not_applied_reason
         elif timed_out:
             event_error = "event_not_reached_before_timeout"
         else:
@@ -560,8 +612,12 @@ def _run_dynamic_trial(
     if event_error is None and event_applied and recovery_assessment is None:
         event_error = "navigation_completed_before_post_event_assessment"
 
-    valid_trial = event_error is None and (
-        pre_event_terminal_failure or recovery_assessment is not None
+    valid_trial = (
+        event_error is None
+        and event_applied
+        and blocker_observed
+        and pre_event_path_invalidated is True
+        and recovery_assessment is not None
     )
     failure_class = (
         terminal_failure_class(
@@ -572,7 +628,15 @@ def _run_dynamic_trial(
         if valid_trial
         else "invalid_trial"
     )
-    return {
+    replans = (
+        sum(
+            float(path["received_sim_time_s"]) > float(event_sim_clock)
+            for path in plan_trace
+        )
+        if event_sim_clock is not None
+        else 0
+    )
+    record = {
         "scenario": scenario.name,
         "planner_id": planner_id,
         "repetition": repetition,
@@ -596,11 +660,26 @@ def _run_dynamic_trial(
         "pre_event_lethal_cells_in_blocker_footprint": pre_event_lethal_cells,
         "post_event_lethal_cells_in_blocker_footprint": post_event_lethal_cells,
         "recovery_assessment": recovery_assessment,
-        "operational_irreversible_failure": irreversible if valid_trial else None,
+        "recovery_feasible": (
+            bool(recovery_assessment["within_budget"])
+            if valid_trial and recovery_assessment is not None
+            else None
+        ),
+        "operational_irreversible_failure": (
+            bool(not succeeded and irreversible)
+            if valid_trial and irreversible is not None
+            else None
+        ),
+        "pre_event_path_invalidated": pre_event_path_invalidated,
+        "planner_path_count": len(plan_trace),
+        "replan_count": replans,
+        "planner_paths": plan_trace,
         "costmap_snapshot": snapshot_name,
         "costmap_snapshot_sha256": snapshot_sha256,
         "trace": trace,
     }
+    navigator.destroy_subscription(plan_subscription)
+    return record
 
 
 def _summary_by_scenario(
@@ -686,9 +765,13 @@ def _write_trials_csv(path: Path, records: list[dict[str, Any]]) -> None:
         "event_not_applied_reason",
         "event_robot_clearance_m",
         "blocker_observed",
+        "pre_event_path_invalidated",
+        "planner_path_count",
+        "replan_count",
         "pre_event_lethal_cells_in_blocker_footprint",
         "post_event_lethal_cells_in_blocker_footprint",
         "operational_irreversible_failure",
+        "recovery_feasible",
         "costmap_snapshot",
         "costmap_snapshot_sha256",
     ]
@@ -732,6 +815,27 @@ def main(argv: list[str] | None = None) -> int:
     output.mkdir(parents=True, exist_ok=True)
     planner_ids = tuple(planner.planner_id for planner in suite.planners)
     behavior_trees = _write_behavior_trees(output, planner_ids)
+    _atomic_json(
+        output / "run_manifest.json",
+        {
+            "schema_version": 1,
+            "created_at_utc": datetime.now(UTC).isoformat(),
+            "command_argv": list(sys.argv),
+            "source_revision": os.environ.get("GITHUB_SHA", "unrecorded"),
+            "github_ref": os.environ.get("GITHUB_REF", "unrecorded"),
+            "github_run_id": os.environ.get("GITHUB_RUN_ID", "unrecorded"),
+            "github_workflow": os.environ.get("GITHUB_WORKFLOW", "unrecorded"),
+            "ros_distro": os.environ.get("ROS_DISTRO", "unknown"),
+            "scenario_sha256": _sha256(scenario_path),
+            "params_sha256": _sha256(params_path),
+            "map_yaml_sha256": _sha256(map_path),
+            "map_image_sha256": _sha256(map_image_path),
+            "blocker_sdf_sha256": _sha256(blocker_sdf),
+            "seed": suite.seed,
+            "repetitions": parsed.repetitions,
+            "planner_ids": list(planner_ids),
+        },
+    )
     records: list[dict[str, Any]] = []
 
     rclpy.init(args=ros_arguments)

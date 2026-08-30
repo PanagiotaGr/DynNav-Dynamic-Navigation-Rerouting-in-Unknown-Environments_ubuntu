@@ -1,40 +1,32 @@
 # DynNav Contribution Index
 
-> Generated from `configs/contributions/registry.yaml`. Maturity describes currently claimed evidence, not future ambition.
+> Generated from the canonical registry. Maturity describes currently claimed evidence, not future ambition.
 
-| ID | Contribution | Category | Maturity | Canonical module |
-|---|---|---|---|---|
-| C01 | Learned A* Search | planning | Research Prototype | [01_learned_astar](../contributions/01_learned_astar/README.md) |
-| C02 | Uncertainty Calibration | uncertainty | Research Prototype | [02_uncertainty_calibration](../contributions/02_uncertainty_calibration/README.md) |
-| C03 | Belief and Risk Planning | planning | Research Prototype | [03_belief_risk_planning](../contributions/03_belief_risk_planning/README.md) |
-| C04 | Irreversibility and Returnability | safety | Research Prototype | [04_irreversibility_returnability](../contributions/04_irreversibility_returnability/README.md) |
-| C05 | Safe-Mode Navigation | safety | Research Prototype | [05_safe_mode_navigation](../contributions/05_safe_mode_navigation/README.md) |
-| C06 | Energy and Connectivity | resources | Research Prototype | [06_energy_connectivity](../contributions/06_energy_connectivity/README.md) |
-| C07 | Next-Best View | active_perception | Research Prototype | [07_next_best_view](../contributions/07_next_best_view/README.md) |
-| C08 | Security IDS | security | Experimental | [08_security_ids](../contributions/08_security_ids/README.md) |
-| C09 | Multi-Robot Navigation | multi_robot | Experimental | [09_multi_robot](../contributions/09_multi_robot/README.md) |
-| C10 | Human, Language, and Ethics | human_robot_interaction | Experimental | [10_human_language_ethics](../contributions/10_human_language_ethics/README.md) |
-| C11 | VLM Navigation Agent | multimodal_learning | Experimental | [11_vlm_navigation_agent](../contributions/11_vlm_navigation_agent/README.md) |
-| C12 | Diffusion Occupancy | prediction | Experimental | [12_diffusion_occupancy](../contributions/12_diffusion_occupancy/README.md) |
-| C13 | Latent World Model | world_models | Experimental | [13_latent_world_model](../contributions/13_latent_world_model/README.md) |
-| C14 | Causal Risk Attribution | explainability | Experimental | [14_causal_risk_attribution](../contributions/14_causal_risk_attribution/README.md) |
-| C15 | Neuromorphic Sensing | perception | Experimental | [15_neuromorphic_sensing](../contributions/15_neuromorphic_sensing/README.md) |
-| C16 | Federated Navigation Learning | distributed_learning | Experimental | [16_federated_nav_learning](../contributions/16_federated_nav_learning/README.md) |
-| C17 | Topological Semantic Maps | mapping | Experimental | [17_topological_semantic_maps](../contributions/17_topological_semantic_maps/README.md) |
-| C18 | Formal Safety Shields | formal_methods | Experimental | [18_formal_safety_shields](../contributions/18_formal_safety_shields/README.md) |
-| C19 | LLM Mission Planner | language_planning | Documentation Concept | [19_llm_mission_planner](../contributions/19_llm_mission_planner/README.md) |
-| C20 | Multimodal Failure Explainer | explainability | Experimental | [20_multimodal_failure_explainer](../contributions/20_multimodal_failure_explainer/README.md) |
-| C21 | PPO Navigation Agent | reinforcement_learning | Experimental | [21_ppo_navigation_agent](../contributions/21_ppo_navigation_agent/README.md) |
-| C22 | Curriculum RL | reinforcement_learning | Experimental | [22_curriculum_rl](../contributions/22_curriculum_rl/README.md) |
-| C23 | Gaussian Splatting Mapper | neural_mapping | Documentation Concept | [23_gaussian_splatting_mapper](../contributions/23_gaussian_splatting_mapper/README.md) |
-| C24 | NeRF Uncertainty | neural_mapping | Documentation Concept | [24_nerf_uncertainty](../contributions/24_nerf_uncertainty/README.md) |
-| C25 | Adversarial Attack Simulator | security | Experimental | [25_adversarial_attack_simulator](../contributions/25_adversarial_attack_simulator/README.md) |
-| C26 | Swarm Consensus | multi_robot | Experimental | [26_swarm_consensus](../contributions/26_swarm_consensus/README.md) |
-
-## Evidence interpretation
-
-- **Research Prototype** means implemented or exercised in controlled research conditions; it is not a production, hardware, or formal-guarantee claim.
-- **Experimental** means a computational research module with narrower validation.
-- **Documentation Concept** means the scientific direction and interface are documented without an equivalent validated implementation claim.
-
-The machine-readable inventory is generated at `results/manifests/contribution_inventory.json` and `results/manifests/contribution_inventory.csv`.
+| ID | Contribution | Category | Maturity | README | Greek | Renderer |
+|---|---|---|---|---|---|---|
+| C01 | Learned A* Search | `planning` | Research Prototype | [English](../contributions/01_learned_astar/README.md) | [Greek](../contributions/01_learned_astar/README_GR.md) | [`c01_learned_astar.py`](../src/dynnav_dashboard/contributions/c01_learned_astar.py) |
+| C02 | Uncertainty Calibration | `uncertainty` | Research Prototype | [English](../contributions/02_uncertainty_calibration/README.md) | — | Not discovered |
+| C03 | Belief and Risk Planning | `planning` | Research Prototype | [English](../contributions/03_belief_risk_planning/README.md) | [Greek](../contributions/03_belief_risk_planning/README_GR.md) | Not discovered |
+| C04 | Irreversibility and Returnability | `safety` | Research Prototype | [English](../contributions/04_irreversibility_returnability/README.md) | [Greek](../contributions/04_irreversibility_returnability/README_GR.md) | [`c04_returnability.py`](../src/dynnav_dashboard/contributions/c04_returnability.py) |
+| C05 | Safe-Mode Navigation | `safety` | Research Prototype | [English](../contributions/05_safe_mode_navigation/README.md) | [Greek](../contributions/05_safe_mode_navigation/README_GR.md) | Not discovered |
+| C06 | Energy and Connectivity | `resources` | Research Prototype | [English](../contributions/06_energy_connectivity/README.md) | [Greek](../contributions/06_energy_connectivity/README_GR.md) | [`c06_energy_connectivity.py`](../src/dynnav_dashboard/contributions/c06_energy_connectivity.py) |
+| C07 | Next-Best View | `active_perception` | Research Prototype | [English](../contributions/07_next_best_view/README.md) | [Greek](../contributions/07_next_best_view/README_GR.md) | Not discovered |
+| C08 | Security IDS | `security` | Experimental | [English](../contributions/08_security_ids/README.md) | — | [`c08_security_ids.py`](../src/dynnav_dashboard/contributions/c08_security_ids.py) |
+| C09 | Multi-Robot Navigation | `multi_robot` | Experimental | [English](../contributions/09_multi_robot/README.md) | — | Not discovered |
+| C10 | Human, Language, and Ethics | `human_robot_interaction` | Experimental | [English](../contributions/10_human_language_ethics/README.md) | — | Not discovered |
+| C11 | VLM Navigation Agent | `multimodal_learning` | Experimental | [English](../contributions/11_vlm_navigation_agent/README.md) | — | Not discovered |
+| C12 | Diffusion Occupancy | `prediction` | Experimental | [English](../contributions/12_diffusion_occupancy/README.md) | — | [`c12_diffusion_occupancy.py`](../src/dynnav_dashboard/contributions/c12_diffusion_occupancy.py) |
+| C13 | Latent World Model | `world_models` | Experimental | [English](../contributions/13_latent_world_model/README.md) | — | Not discovered |
+| C14 | Causal Risk Attribution | `explainability` | Experimental | [English](../contributions/14_causal_risk_attribution/README.md) | — | Not discovered |
+| C15 | Neuromorphic Sensing | `perception` | Experimental | [English](../contributions/15_neuromorphic_sensing/README.md) | — | Not discovered |
+| C16 | Federated Navigation Learning | `distributed_learning` | Experimental | [English](../contributions/16_federated_nav_learning/README.md) | — | Not discovered |
+| C17 | Topological Semantic Maps | `mapping` | Experimental | [English](../contributions/17_topological_semantic_maps/README.md) | — | Not discovered |
+| C18 | Formal Safety Shields | `formal_methods` | Experimental | [English](../contributions/18_formal_safety_shields/README.md) | — | Not discovered |
+| C19 | LLM Mission Planner | `language_planning` | Documentation Concept | [English](../contributions/19_llm_mission_planner/README.md) | — | Not discovered |
+| C20 | Multimodal Failure Explainer | `explainability` | Experimental | [English](../contributions/20_multimodal_failure_explainer/README.md) | — | Not discovered |
+| C21 | PPO Navigation Agent | `reinforcement_learning` | Experimental | [English](../contributions/21_ppo_navigation_agent/README.md) | — | Not discovered |
+| C22 | Curriculum RL | `reinforcement_learning` | Experimental | [English](../contributions/22_curriculum_rl/README.md) | — | [`c22_curriculum_rl.py`](../src/dynnav_dashboard/contributions/c22_curriculum_rl.py) |
+| C23 | Gaussian Splatting Mapper | `neural_mapping` | Documentation Concept | [English](../contributions/23_gaussian_splatting_mapper/README.md) | — | Not discovered |
+| C24 | NeRF Uncertainty | `neural_mapping` | Documentation Concept | [English](../contributions/24_nerf_uncertainty/README.md) | — | [`c24_nerf_uncertainty.py`](../src/dynnav_dashboard/contributions/c24_nerf_uncertainty.py) |
+| C25 | Adversarial Attack Simulator | `security` | Experimental | [English](../contributions/25_adversarial_attack_simulator/README.md) | — | Not discovered |
+| C26 | Swarm Consensus | `multi_robot` | Experimental | [English](../contributions/26_swarm_consensus/README.md) | — | Not discovered |

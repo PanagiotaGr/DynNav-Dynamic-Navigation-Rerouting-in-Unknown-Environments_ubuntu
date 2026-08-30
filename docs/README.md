@@ -10,12 +10,16 @@ The central question is whether explicit recoverability estimation can reduce ir
 
 The canonical reading order is:
 
-1. [`RESEARCH_OVERVIEW.md`](RESEARCH_OVERVIEW.md): problem, gap, research question and scope.
-2. [`MATHEMATICAL_FORMULATION.md`](MATHEMATICAL_FORMULATION.md): path cost, risk, irreversibility and assumptions.
-3. [`RISK_ESTIMATION.md`](RISK_ESTIMATION.md): occupancy-risk definitions and aggregation.
-4. [`EVALUATION_PROTOCOL.md`](EVALUATION_PROTOCOL.md): baselines, scenarios, metrics, ablations and fair-comparison rules.
-5. [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md): seeds, commands, configurations and artifact traceability.
-6. [`DYNNAV_V2_RESEARCH_ROADMAP.md`](DYNNAV_V2_RESEARCH_ROADMAP.md): implementation and evidence plan.
+1. [`PHD_APPLICATION_READINESS.md`](PHD_APPLICATION_READINESS.md): ten-minute evidence-first reviewer guide.
+2. [`../CORE_CONTRIBUTION.md`](../CORE_CONTRIBUTION.md): smallest publishable contribution and frozen J0–J3 comparison.
+3. [`../CLAIM_EVIDENCE_MATRIX.md`](../CLAIM_EVIDENCE_MATRIX.md): supported, partial and unsupported claims.
+4. [`../EXPERIMENT_PROTOCOL_V2.md`](../EXPERIMENT_PROTOCOL_V2.md): preregistered factorial protocol and artifact contract.
+5. [`RESEARCH_OVERVIEW.md`](RESEARCH_OVERVIEW.md): problem, gap, research question and scope.
+6. [`MATHEMATICAL_FORMULATION.md`](MATHEMATICAL_FORMULATION.md): path cost, risk, irreversibility and assumptions.
+7. [`RISK_ESTIMATION.md`](RISK_ESTIMATION.md): occupancy-risk definitions and aggregation.
+8. [`EVALUATION_PROTOCOL.md`](EVALUATION_PROTOCOL.md): baselines, scenarios, metrics, ablations and fair-comparison rules.
+9. [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md): seeds, commands, configurations and artifact traceability.
+10. [`DYNNAV_V2_RESEARCH_ROADMAP.md`](DYNNAV_V2_RESEARCH_ROADMAP.md): implementation and evidence plan.
 
 ## Architecture and implementation references
 

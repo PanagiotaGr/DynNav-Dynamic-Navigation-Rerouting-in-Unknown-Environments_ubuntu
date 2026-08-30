@@ -8,7 +8,7 @@ planner_server:
       - DynNav
 
     DynNav:
-      plugin: dynnav_nav2_cpp/DynNavPlanner
+      plugin: "dynnav_nav2_cpp::DynNavGlobalPlanner"
       tolerance: 0.5
 
 controller_server:

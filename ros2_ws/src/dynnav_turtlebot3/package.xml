@@ -22,6 +22,8 @@
   <exec_depend>nav2_bringup</exec_depend>
   <exec_depend>rviz2</exec_depend>
   <exec_depend>dynnav_bringup</exec_depend>
+  <exec_depend>dynnav_nav2_cpp</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
