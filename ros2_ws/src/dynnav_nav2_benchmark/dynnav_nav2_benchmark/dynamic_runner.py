@@ -165,7 +165,7 @@ def _plan_record(message: NavPath, received_sim_time_s: float) -> dict[str, Any]
     ]
     length = sum(
         math.hypot(right["x"] - left["x"], right["y"] - left["y"])
-        for left, right in zip(points, points[1:])
+        for left, right in zip(points, points[1:], strict=False)
     )
     return {
         "received_sim_time_s": received_sim_time_s,

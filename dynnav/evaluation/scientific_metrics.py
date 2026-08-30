@@ -7,9 +7,9 @@ ground truth.  They do not convert a heuristic into a probability.
 from __future__ import annotations
 
 import math
+from collections.abc import Sequence
 from dataclasses import dataclass
 from statistics import NormalDist
-from typing import Sequence
 
 import numpy as np
 
@@ -78,7 +78,7 @@ def executed_path_length(
     ):
         raise ValueError("reset jump threshold must be finite and positive")
     total = 0.0
-    for left, right in zip(xy, xy[1:]):
+    for left, right in zip(xy, xy[1:], strict=False):
         values = (*left, *right)
         if not all(math.isfinite(value) for value in values):
             raise ValueError("trajectory coordinates must be finite")
@@ -105,7 +105,7 @@ def time_integral(times_s: Sequence[float], values: Sequence[float]) -> float:
         raise ValueError("times and values must have equal non-zero length")
     if not all(math.isfinite(value) for value in (*times_s, *values)):
         raise ValueError("times and values must be finite")
-    if any(right <= left for left, right in zip(times_s, times_s[1:])):
+    if any(right <= left for left, right in zip(times_s, times_s[1:], strict=False)):
         raise ValueError("timestamps must be strictly increasing")
     return float(np.trapezoid(np.asarray(values, dtype=float), np.asarray(times_s, dtype=float)))
 
@@ -134,7 +134,10 @@ def paired_risk_difference(
 
     if len(baseline_failures) != len(candidate_failures) or not baseline_failures:
         raise ValueError("paired outcomes must have equal non-zero length")
-    baseline_only = sum(left and not right for left, right in zip(baseline_failures, candidate_failures))
-    candidate_only = sum(right and not left for left, right in zip(baseline_failures, candidate_failures))
+    baseline_only = 0
+    candidate_only = 0
+    for left, right in zip(baseline_failures, candidate_failures, strict=True):
+        baseline_only += int(left and not right)
+        candidate_only += int(right and not left)
     difference = (candidate_only - baseline_only) / len(baseline_failures)
     return difference, baseline_only, candidate_only
