@@ -17,7 +17,13 @@ From the repository root:
 ```bash
 python scripts/generate_research_assets.py
 python scripts/make_demo_gif.py
+python scripts/generate_readme_video.py
 ```
+
+`dynnav_system_overview.gif` and its MP4 counterpart are rendered from a
+deterministic execution of the canonical `OnlineRecoverabilityPlanner`. The
+generator verifies that the injected obstacle invalidates the initial route and
+that the planner returns a successful repaired route before writing either file.
 
 ## Evidence policy
 

@@ -21,13 +21,14 @@
 
 <p align="center">
   <a href="assets/dynnav_system_overview.mp4">
-    <img src="assets/dynnav_system_overview.gif" alt="Animated DynNav system walkthrough" width="100%" />
+    <img src="assets/dynnav_system_overview.gif" alt="Animated execution trace of DynNav online replanning" width="100%" />
   </a>
 </p>
 
-> The animation is a deterministic technical walkthrough generated from the
-> repository interfaces and architecture. It is not presented as Gazebo or
-> physical-robot footage.
+> This is a real execution trace of the canonical Python J3 planner. At step 5,
+> an occupancy update blocks the initial route; the displayed path and telemetry
+> are rendered directly from `OnlineRecoverabilityPlanner` records. It is a
+> deterministic software simulation, not Gazebo or physical-robot footage.
 
 ---
 
