@@ -17,7 +17,6 @@ Other documented entry points include:
 python scripts/run_research_suite.py --out-dir results/research_suite
 python scripts/generate_research_assets.py
 python scripts/make_demo_gif.py
-python scripts/generate_readme_video.py
 ```
 
 Before relying on an optional script, inspect its `--help` output and source. Do not treat generated synthetic artifacts as hardware or Gazebo evidence.
