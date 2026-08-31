@@ -21,13 +21,15 @@
 
 <p align="center">
   <a href="assets/dynnav_system_overview.mp4">
-    <img src="assets/dynnav_system_overview.gif" alt="Κινούμενη τεχνική επισκόπηση του DynNav" width="100%" />
+    <img src="assets/dynnav_system_overview.gif" alt="Κινούμενο ίχνος εκτέλεσης του online replanning του DynNav" width="100%" />
   </a>
 </p>
 
-> Η κινούμενη επισκόπηση παράγεται ντετερμινιστικά από τα interfaces και την
-> αρχιτεκτονική του repository. Δεν παρουσιάζεται ως καταγραφή από Gazebo ή
-> φυσικό ρομπότ.
+> Πρόκειται για πραγματικό ίχνος εκτέλεσης του κανονικού Python J3 planner. Στο
+> βήμα 5, ένα occupancy update μπλοκάρει την αρχική διαδρομή· η εμφανιζόμενη
+> πορεία και η τηλεμετρία παράγονται απευθείας από τα records του
+> `OnlineRecoverabilityPlanner`. Είναι ντετερμινιστική software simulation, όχι
+> καταγραφή από Gazebo ή φυσικό ρομπότ.
 
 ---
 
