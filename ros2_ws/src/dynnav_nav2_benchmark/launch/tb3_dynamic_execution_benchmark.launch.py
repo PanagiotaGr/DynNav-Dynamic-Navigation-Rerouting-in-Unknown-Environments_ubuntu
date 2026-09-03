@@ -14,6 +14,7 @@ from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
     EmitEvent,
+    ExecuteProcess,
     IncludeLaunchDescription,
     OpaqueFunction,
     RegisterEventHandler,
@@ -84,19 +85,18 @@ def _launch_setup(context):
         ],
     )
 
-    rosbag = Node(
-        package="rosbag2_transport",
-        executable="record",
-        name="dynnav_evidence_recorder",
-        output="screen",
-        condition=IfCondition(LaunchConfiguration("record_bag")),
-        arguments=[
-            "--output", str(Path(output) / "rosbag2"), "--storage", "sqlite3",
+    rosbag = ExecuteProcess(
+        cmd=[
+            "ros2", "bag", "record",
+            "--output", str(Path(output) / "rosbag2"),
+            "--storage", "sqlite3",
             "/tf", "/tf_static", "/odom", "/scan", "/cmd_vel", "/amcl_pose",
             "/plan", "/global_costmap/costmap", "/global_costmap/costmap_updates",
             "/local_costmap/costmap", "/local_costmap/costmap_updates",
             "/behavior_tree_log",
         ],
+        output="screen",
+        condition=IfCondition(LaunchConfiguration("record_bag")),
     )
 
     runner = Node(
