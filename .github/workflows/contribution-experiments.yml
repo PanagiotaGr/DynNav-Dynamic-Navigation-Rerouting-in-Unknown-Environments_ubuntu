@@ -10,32 +10,41 @@ on:
       - "scripts/validate_contribution_registry.py"
       - ".github/workflows/contribution-experiments.yml"
   push:
-    branches: [main]
+    branches: [main, validation/gazebo-dynamic]
     paths:
       - "configs/contributions/**"
       - "contributions/**"
       - "scripts/run_contribution_suite.py"
+      - "scripts/validate_contribution_registry.py"
+      - ".github/workflows/contribution-experiments.yml"
 
 jobs:
   controlled-smoke-suite:
     name: Controlled C01-C26 smoke experiments
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
-      - name: Install base experiment dependencies
-        run: python -m pip install -e ".[dev]"
+      - name: Install experiment dependencies
+        run: |
+          python -m pip install -e ".[dev]"
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
       - name: Validate contribution and experiment registries
         run: python scripts/validate_contribution_registry.py
-      - name: Run dependency-aware C01-C26 suite
-        run: python scripts/run_contribution_suite.py --output-dir results/contribution_suite
+      - name: Run strict C01-C26 suite
+        run: python scripts/run_contribution_suite.py --output-dir results/contribution_suite --fail-on-skip
       - name: Publish summary to the Actions run
         if: always()
-        run: cat results/contribution_suite/summary.md >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          if [ -s results/contribution_suite/summary.md ]; then
+            cat results/contribution_suite/summary.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Contribution suite did not produce summary.md" >> "$GITHUB_STEP_SUMMARY"
+          fi
       - name: Upload experiment evidence bundle
         if: always()
         uses: actions/upload-artifact@v4
