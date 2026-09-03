@@ -3,10 +3,25 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
-# Virtual environment
+# Virtual environments
 venv/
 .venv/
+
+# Python packaging / build outputs
+build/
+dist/
+install/
+log/
+
+# ROS 2 / colcon generated outputs
+**/build/
+**/install/
+**/log/
 
 # Web applications
 node_modules/
@@ -34,8 +49,18 @@ assets/gifs/
 *.mp4
 *.mkv
 
+# Archives
+*.zip
+
 # Logs
 *.log
+
+# Backup / editor-generated files
+*.save
+*.save.*
+*.swp
+*.swo
+*~
 
 # Misc
 .DS_Store
@@ -46,8 +71,3 @@ neural_uncertainty/*.save
 #joint_*.png
 #connectivity_*.png
 #heatmap_*.png
-
-# Editor swap files
-*.swp
-*.swo
-*~
