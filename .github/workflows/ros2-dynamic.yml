@@ -1,6 +1,13 @@
 name: ROS 2 dynamic route-invalidation benchmark
 
 on:
+  push:
+    branches:
+      - validation/gazebo-dynamic
+    paths:
+      - '.github/workflows/ros2-dynamic.yml'
+      - 'ros2_ws/src/dynnav_nav2_cpp/**'
+      - 'ros2_ws/src/dynnav_nav2_benchmark/**'
   workflow_dispatch:
     inputs:
       repetitions:
