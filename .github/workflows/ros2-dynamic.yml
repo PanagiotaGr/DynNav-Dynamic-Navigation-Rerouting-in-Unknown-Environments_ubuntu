@@ -46,6 +46,14 @@ jobs:
             --rosdistro jazzy \
             -r -y
 
+      - name: Verify real ROS and Gazebo runtime
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          echo "ROS_DISTRO=$ROS_DISTRO"
+          test "$ROS_DISTRO" = "jazzy"
+          ros2 --help >/dev/null
+          gz sim --versions
+
       - name: Build and test experiment packages
         run: |
           source /opt/ros/jazzy/setup.bash
