@@ -10,6 +10,8 @@ One route is short, but it passes through a narrow area with very few ways to es
 
 A conventional planner can prefer the first route because it is shorter. DynNav asks whether the planner should also care about **what options the robot will still have if its current plan becomes invalid later**.
 
+![Conceptual comparison between a brittle short route and a route that preserves alternatives](../assets/readme/problem_preserve_options.svg)
+
 That is the central idea of the project.
 
 ## What was built
@@ -25,6 +27,10 @@ DynNav is not one script. It is an end-to-end research system containing:
 7. reproducibility tooling that retains configuration, seeds and raw results;
 8. interfaces for inspecting and running experiments;
 9. tests and claim/evidence documentation.
+
+![DynNav system architecture from research code to robot integration, evidence and interfaces](../assets/readme/system_architecture.svg)
+
+The important point is that these parts are connected. The Python layer lets the research idea be tested in controlled conditions. The ROS 2/Nav2 layer checks that the planning idea can be integrated into a robotics navigation stack. The experiment/evidence layer makes comparisons reproducible. The interfaces and documentation make the work inspectable by other people.
 
 ## The four planners being compared
 
@@ -46,6 +52,10 @@ The current implementation uses a structural/local estimate of whether a state p
 ## What happens in an experiment
 
 A typical dynamic experiment follows this sequence:
+
+![DynNav dynamic experiment from scenario setup through replanning and retained evidence](../assets/readme/experiment_flow.svg)
+
+In words:
 
 ```text
 Robot receives a start and goal
@@ -80,6 +90,7 @@ It does **not** currently demonstrate that DynNav is universally safer, that rec
 - Read `README.md` for the complete project explanation and commands.
 - Read `docs/PROJECT_OVERVIEW.md` for a reviewer-oriented overview.
 - Read `docs/REPOSITORY_MAP.md` to understand the folders.
+- Read `docs/DOCUMENTATION_MAP.md` for the curated documentation path.
 - Read `CORE_CONTRIBUTION.md` for the smallest publishable scientific claim.
 - Read `CLAIM_EVIDENCE_MATRIX.md` to see which claims have which evidence.
 - Inspect `dynnav/` for the Python algorithm.
