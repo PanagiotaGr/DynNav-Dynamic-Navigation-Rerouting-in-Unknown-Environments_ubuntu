@@ -45,7 +45,7 @@ scenarios:
       minimum_injection_clearance_m: 0.90
       observation_margin_m: 0.10
       minimum_lethal_cell_increase: 3
-      blocker_pose: {x: -0.95, y: -0.425, z: 0.5, yaw: 0.0}
+      blocker_pose: {x: -0.95, y: 0.525, z: 0.5, yaw: 0.0}
     recovery_budget_m: 5.0
     reset_pose_tolerance_m: 0.40
     execution_timeout_s: 75.0
