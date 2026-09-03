@@ -4,6 +4,9 @@ The metrics in this module are deliberately independent from occupancy risk.
 They quantify structural escape and return options in the currently known free
 space, so planners can distinguish a low-risk corridor from a state that is
 actually easy to leave after route invalidation.
+
+These quantities are structural heuristics, not calibrated probabilities,
+viability certificates, or formal safety guarantees.
 """
 
 from __future__ import annotations
@@ -89,12 +92,12 @@ def bottleneck_exposure(grid: GridMap, cell: GridCell) -> float:
     return 0.0
 
 
-def return_failure_probability(grid: GridMap, cell: GridCell, safe_cells: set[GridCell]) -> float:
-    """Estimate inability to return to any designated safe cell.
+def return_failure_indicator(grid: GridMap, cell: GridCell, safe_cells: set[GridCell]) -> float:
+    """Return a deterministic indicator of failure to reach a designated safe cell.
 
-    The estimate is deterministic for the known map: zero when at least one safe
-    cell is reachable, one otherwise. Dynamic uncertainty can later replace this
-    binary model without changing the planner interface.
+    The value is 0 when at least one designated safe cell is reachable in the
+    currently known free-space graph and 1 otherwise. It must not be interpreted
+    as a calibrated probability of future recovery failure.
     """
 
     valid_safe = {safe for safe in safe_cells if grid.in_bounds(safe) and grid.passable(safe)}
@@ -113,7 +116,7 @@ def analyze_recoverability(
     safe_cells: set[GridCell],
     weights: RecoverabilityWeights | None = None,
 ) -> RecoverabilityState:
-    """Compute a normalized and auditable irreversibility score."""
+    """Compute a normalized and auditable structural irreversibility score."""
 
     if not grid.in_bounds(cell) or not grid.passable(cell):
         raise ValueError("recoverability can only be evaluated for a free in-bounds cell")
@@ -124,7 +127,7 @@ def analyze_recoverability(
     options = escape_option_count(grid, cell)
     escape_deficit = 1.0 / (1.0 + float(options))
     bottleneck = bottleneck_exposure(grid, cell)
-    return_failure = return_failure_probability(grid, cell, safe_cells)
+    return_failure = return_failure_indicator(grid, cell, safe_cells)
 
     total_weight = weights.escape_deficit + weights.bottleneck_exposure + weights.return_failure
     irreversibility = (
